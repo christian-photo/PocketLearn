@@ -1,16 +1,16 @@
-﻿using System.Drawing;
-using ZXing.Common;
-using ZXing.QrCode;
-using ZXing;
+﻿using QRCoder;
+using System.Drawing;
 
 namespace PocketLearn.Core
 {
     public class Utility
     {
-        public Bitmap CreateQRCode(string content, int size = 32)
+        public Bitmap CreateQRCode(string content)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, size, size);
-            return new BarcodeWriter<Bitmap>() { Format = BarcodeFormat.QR_CODE }.Write(matrix);
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            return qrCode.GetGraphic(20);
         }
     }
 }
