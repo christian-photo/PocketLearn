@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="PocketLearn.Win.MVVM.View.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PocketLearn.Win.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:PocketLearn.Win.MVVM.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    DataContext="{Binding HomeVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
+    mc:Ignorable="d">
+    <Grid Background="Green">
+        <ListView
+            x:Name="Panel_Mini"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Focusable="False"
+            ItemsSource="{Binding LearningProjectsView}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Focusable="False" Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+        </ListView>
+
+    </Grid>
+</UserControl>
