@@ -6,8 +6,10 @@ namespace PocketLearn.Core.Learning
 {
     public class LearnCard
     {
-        public string Question { get; set; }
-        public string Answer { get; set; }
-        public Difficulty Difficulty { get; set; } = Difficulty.Medium;
+        public string Text1 { get; set; }
+        public string Text2 { get; set; }
+        public CardType CardType { get; set; }
+        public DateTime LastLearnedTime { get; set; }
+        public Difficulty Difficulty { get; set; };
     }
 }
