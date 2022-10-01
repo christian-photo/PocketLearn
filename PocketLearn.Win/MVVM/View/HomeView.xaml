@@ -10,9 +10,10 @@
     d:DesignWidth="800"
     DataContext="{Binding HomeVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
     mc:Ignorable="d">
-    <Grid Background="Green">
+    <Grid Background="Transparent">
         <ListView
             x:Name="Panel_Mini"
+            HorizontalAlignment="Stretch"
             Background="Transparent"
             BorderBrush="Transparent"
             Focusable="False"
@@ -26,6 +27,5 @@
             </ListView.ItemsPanel>
 
         </ListView>
-
     </Grid>
 </UserControl>

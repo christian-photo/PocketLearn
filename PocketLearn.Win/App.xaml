@@ -2,13 +2,21 @@
     x:Class="PocketLearn.Win.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:PocketLearn.Win.MVVM.Model.ValueConverter"
     xmlns:local="clr-namespace:PocketLearn.Win"
+    xmlns:util="clr-namespace:PocketLearn.Win.MVVM"
     xmlns:view="clr-namespace:PocketLearn.Win.MVVM.View"
     xmlns:viewmodel="clr-namespace:PocketLearn.Win.MVVM.ViewModel"
     Exit="Window_Closing"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <util:SharedResourceDictionary Source="/PocketLearn.Win;component/MVVM/Model/ValueConverter/Converters.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewmodel:HomeVM}">
                 <view:HomeView />

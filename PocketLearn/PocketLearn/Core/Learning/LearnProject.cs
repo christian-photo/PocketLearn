@@ -11,7 +11,9 @@ namespace PocketLearn.Core.Learning
         public DateTime HasToBeCompleted { get; set; }
         public DateTime LastLearnedTime { get; set; }
         public List<(TimeSpan, TimeSpan)> LearnTimes { get; set; }
-        public List<LearnCard> Cards { get => Cards; set { Cards = value; InitCards(); } }
+
+        private List<LearnCard> _cards;
+        public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
 
         private List<LearnCard> hardCards = new List<LearnCard>();
@@ -21,12 +23,18 @@ namespace PocketLearn.Core.Learning
 
         private LearnCard activeCard;
 
+        public void SetCards(List<LearnCard> cards)
+        {
+            Cards = cards;
+            InitCards();
+        }
+
         private bool IsLastDay()
         {
             return DateTime.Now.Day == HasToBeCompleted.Day-1;
         }
 
-        private void InitCards()
+        public void InitCards()
         {
             foreach (var card in Cards)
             {

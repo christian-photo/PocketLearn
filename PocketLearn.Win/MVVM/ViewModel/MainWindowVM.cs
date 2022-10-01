@@ -28,6 +28,10 @@ namespace PocketLearn.Win.MVVM.ViewModel
             Instance = this;
 
             ProjectManager = CreateProjectManager();
+            foreach (LearnProject project in ProjectManager.LearnProjects)
+            {
+                project.InitCards();
+            }
             HomeVM = new HomeVM(ProjectManager);
             CurrentView = HomeVM;
         }

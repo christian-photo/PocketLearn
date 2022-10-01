@@ -1,0 +1,95 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:PocketLearn.Win.MVVM.Model.ValueConverter"
+    xmlns:local="clr-namespace:PocketLearn.Win"
+    xmlns:model="clr-namespace:PocketLearn.Win.MVVM.Model">
+
+
+    <Style TargetType="{x:Type model:LearningProjectControl}">
+        <Style.Resources>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
+        </Style.Resources>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type model:LearningProjectControl}">
+                    <Border
+                        Height="80"
+                        Margin="5,15,5,5"
+                        HorizontalAlignment="Stretch"
+                        Background="#575757"
+                        BorderThickness="0"
+                        CornerRadius="10"
+                        Focusable="False">
+                        <StackPanel Focusable="False" Orientation="Vertical">
+                            <StackPanel
+                                Margin="5,5,5,2"
+                                Focusable="False"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text="{Binding ProjectName}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="5,2,5,5"
+                                Focusable="False"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,0,2,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="12"
+                                    Foreground="White"
+                                    Text="{Binding CreationTime, Converter={StaticResource DateTimeConverter}, ConverterParameter='Creation Date'}"
+                                    TextWrapping="Wrap" />
+
+                                <TextBlock
+                                    Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="12"
+                                    Foreground="White"
+                                    Text="{Binding HasToBeCompleted, Converter={StaticResource DateTimeConverter}, ConverterParameter='Has to be learned until'}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="5,2,5,5"
+                                Focusable="False"
+                                Orientation="Horizontal">
+                                <Button
+                                    Width="50"
+                                    Height="50"
+                                    Margin="5,5,2,5"
+                                    Background="Gray"
+                                    BorderThickness="0"
+                                    Command="{Binding Learn}"
+                                    Content="Learn" />
+                                <Button
+                                    Width="50"
+                                    Height="50"
+                                    Margin="2,5,2,5"
+                                    Background="Gray"
+                                    BorderThickness="0"
+                                    Command="{Binding Edit}"
+                                    Content="Edit" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

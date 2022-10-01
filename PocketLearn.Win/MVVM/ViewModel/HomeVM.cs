@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using Brushes = System.Windows.Media.Brushes;
 
@@ -26,6 +28,16 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
         }
 
+        public RelayCommand Learn { get; set; } = new RelayCommand(_ =>
+        {
+            throw new NotImplementedException();
+        });
+
+        public RelayCommand Edit { get; set; } = new RelayCommand(_ =>
+        {
+            throw new NotImplementedException();
+        });
+
         public HomeVM(ProjectManager projectManager)
         {
             UpdateView(projectManager);
@@ -42,14 +54,17 @@ namespace PocketLearn.Win.MVVM.ViewModel
             List<object> view = new List<object>();
             foreach (LearnProject project in projectManager.LearnProjects)
             {
+                view.Add(new LearningProjectControl(project.ProjectName, project.CreationTime, project.HasToBeCompleted));
+                /*
                 Border container = new Border()
                 {
-                    Height = 50,
+                    Height = 80,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
                     CornerRadius = new CornerRadius(10),
                     Margin = new Thickness(5, 15, 5, 5),
                     BorderThickness = new Thickness(0),
                     Focusable = false,
-                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#6E6E6E")
+                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#6E6E6E"),
                 };
 
                 StackPanel panel = new StackPanel()
@@ -69,7 +84,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 {
                     Text = project.ProjectName,
                     Foreground = Brushes.White,
-                    FontSize = 16,
+                    FontSize = 20,
                     Background = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Left,
@@ -88,7 +103,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 {
                     Text = $"Creation date: {project.CreationTime:dd.MM.yy}",
                     Foreground = Brushes.White,
-                    FontSize = 10,
+                    FontSize = 14,
                     Background = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Left,
@@ -100,12 +115,37 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 {
                     Text = $"Learn until: {project.HasToBeCompleted:dd.MM.yy}",
                     Foreground = Brushes.White,
-                    FontSize = 10,
+                    FontSize = 14,
                     Background = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Focusable = false,
                     TextWrapping = TextWrapping.Wrap
+                };
+
+                StackPanel ActionButtons = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal,
+                    Focusable = false,
+                    Margin = new Thickness(5, 2, 5, 5)
+                };
+
+                Button Learn = new Button() // Replace with SVG
+                {
+                    Command = this.Learn,
+                    Width = 20,
+                    Height = 20,
+                    Content = "Learn",
+                    Margin = new Thickness(5, 5, 2, 5)
+                };
+
+                Button Edit = new Button()
+                {
+                    Command = this.Edit,
+                    Width = 20,
+                    Height = 20,
+                    Content = "Edit",
+                    Margin = new Thickness(2, 5, 2, 5)
                 };
 
                 Row1.Children.Add(block);
@@ -116,7 +156,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 panel.Children.Add(Row1);
                 panel.Children.Add(Row2);
                 container.Child = panel;
-                view.Add(container);
+                view.Add(container); */
             }
             LearningProjectsView = view;
         }
