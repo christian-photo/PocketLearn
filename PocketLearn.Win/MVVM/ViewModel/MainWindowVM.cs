@@ -1,6 +1,8 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.API;
 using System.IO;
+using PocketLearn.Public.Core.Config;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -11,6 +13,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public HomeVM HomeVM { get; private set; }
 
         public ProjectManager ProjectManager { get; private set; }
+        public WebAPI API { get; private set; }
 
         private object _currentView;
         public object CurrentView
@@ -33,6 +36,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 project.InitCards();
             }
             HomeVM = new HomeVM(ProjectManager);
+
+            API = new WebAPI(WinConfig.Get());
             CurrentView = HomeVM;
         }
 

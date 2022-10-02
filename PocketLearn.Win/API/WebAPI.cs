@@ -1,26 +1,24 @@
 ﻿using EmbedIO;
 using EmbedIO.WebApi;
 using PocketLearn.Public.Core.Config;
-using Swan.Logging;
-using System;
 using System.Threading;
 
 namespace PocketLearn.Win.API
 {
-    public class API
+    public class WebAPI
     {
         public WebServer ActiveServer;
         private CancellationTokenSource apiToken;
         public readonly int Port;
         private Thread serverThread;
 
-        public API(WinConfig config)
+        public WebAPI(WinConfig config)
         {
             Port = config.Port;
             Start();
         }
 
-        public WebServer CreateServer()
+        private WebServer CreateServer()
         {
             ActiveServer = new WebServer(o => o
                .WithUrlPrefix($"http://*:{Port}")
@@ -40,10 +38,7 @@ namespace PocketLearn.Win.API
                 serverThread.SetApartmentState(ApartmentState.STA);
                 serverThread.Start();
             }
-            catch (Exception ex)
-            {
-                Logger.Error($"failed to start web server: {ex}");
-            }
+            catch { }
         }
 
         public void Stop()
@@ -66,10 +61,7 @@ namespace PocketLearn.Win.API
                     serverThread = null;
                 }
             }
-            catch (Exception ex)
-            {
-                Logger.Error($"failed to stop API: {ex}");
-            }
+            catch { }
         }
 
         private void APITask()
@@ -82,7 +74,7 @@ namespace PocketLearn.Win.API
                     webServer.RunAsync(apiToken.Token).Wait();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 serverThread.Abort();
             }

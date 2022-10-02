@@ -1,4 +1,5 @@
-﻿using PocketLearn.Win.Core;
+﻿using PocketLearn.Public.Core.Config;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
 using System.IO;
 using System.Windows;
@@ -18,6 +19,8 @@ namespace PocketLearn.Win
             }
 
             File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
+            WinConfig.Get().Save();
+            MainWindowVM.Instance.API.Stop();
         }
     }
 }
