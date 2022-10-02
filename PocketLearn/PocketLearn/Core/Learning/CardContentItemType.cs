@@ -4,10 +4,9 @@ using System.Text;
 
 namespace PocketLearn.Core.Learning
 {
-    public enum CardType
+    public enum CardContentItemType
     {
-        OneWay,
-        TwoWay,
-        ReverseOneWay
+        Text,
+        Image
     }
 }
