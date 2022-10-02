@@ -126,7 +126,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:LearningProjectControl}">
                     <Border
-                        Height="100"
+                        Height="130"
                         Margin="5,15,5,5"
                         HorizontalAlignment="Stretch"
                         Background="#575757"
@@ -175,7 +175,12 @@
                                     Foreground="#B0B0B0"
                                     Text="{Binding HasToBeCompleted, Converter={StaticResource DateTimeConverter}, ConverterParameter='Has to be learned until'}"
                                     TextWrapping="Wrap" />
+                            </StackPanel>
 
+                            <StackPanel
+                                Margin="2,2,5,5"
+                                Focusable="False"
+                                Orientation="Horizontal">
                                 <TextBlock
                                     Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
@@ -184,9 +189,9 @@
                                     Focusable="False"
                                     FontSize="14"
                                     Foreground="#B0B0B0"
-                                    Text="{Binding Subject, Converter={StaticResource LearnSubjectConverter}, ConverterParameter='Subject:'}"
+                                    Text="{Binding Subject, Converter={StaticResource LearnSubjectConverter}, ConverterParameter='Subject'}"
                                     TextWrapping="Wrap" />
-                                
+
                                 <TextBlock
                                     Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
