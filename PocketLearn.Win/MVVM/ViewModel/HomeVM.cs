@@ -54,7 +54,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             List<object> view = new List<object>();
             foreach (LearnProject project in projectManager.LearnProjects)
             {
-                view.Add(new LearningProjectControl(project.ProjectName, project.CreationTime, project.HasToBeCompleted));
+                view.Add(new LearningProjectControl(project));
                 /*
                 Border container = new Border()
                 {
