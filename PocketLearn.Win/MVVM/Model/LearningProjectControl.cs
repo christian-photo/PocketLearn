@@ -1,5 +1,7 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.MVVM.ViewModel;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -38,6 +40,8 @@ namespace PocketLearn.Win.MVVM.Model
     /// </summary>
     public class LearningProjectControl : Control
     {
+        private Guid UUID;
+
         public static readonly DependencyProperty LearnProperty = DependencyProperty.Register(nameof(Learn), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
         public ICommand Learn
         {
@@ -108,7 +112,9 @@ namespace PocketLearn.Win.MVVM.Model
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
         }
 
-        public LearningProjectControl(string projectName, DateTime creationTime, DateTime hasToBeCompleted)
+        private LearnProject GetProject() => MainWindowVM.Instance.ProjectManager.LearnProjects.Where(x => x.ProjectID == UUID).First();
+
+        public LearningProjectControl(string projectName, DateTime creationTime, DateTime hasToBeCompleted, Guid projectID)
         {
             ProjectName = projectName;
             CreationTime = creationTime;
@@ -122,6 +128,7 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 throw new NotImplementedException();
             });
+            UUID = projectID;
         }
     }
 }

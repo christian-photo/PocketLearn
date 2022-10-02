@@ -15,11 +15,15 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <util:SharedResourceDictionary Source="/PocketLearn.Win;component/MVVM/Model/ValueConverter/Converters.xaml" />
+                <ResourceDictionary Source="/PocketLearn.Win;component/Themes/Generic.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewmodel:HomeVM}">
                 <view:HomeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodel:EditVM}">
+                <view:EditView />
             </DataTemplate>
 
         </ResourceDictionary>
