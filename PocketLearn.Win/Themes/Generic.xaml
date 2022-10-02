@@ -5,22 +5,97 @@
     xmlns:local="clr-namespace:PocketLearn.Win"
     xmlns:model="clr-namespace:PocketLearn.Win.MVVM.Model">
 
+    <Style x:Key="ButtonHover" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="3">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                AutoReverse="False"
+                                FillBehavior="HoldEnd"
+                                RepeatBehavior="1x"
+                                Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                To="#2B2B2B"
+                                Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                AutoReverse="False"
+                                FillBehavior="HoldEnd"
+                                RepeatBehavior="1x"
+                                Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+
+            </Trigger>
+
+
+        </Style.Triggers>
+    </Style>
+
 
     <Style TargetType="{x:Type model:LearningProjectControl}">
         <Style.Resources>
             <converter:DateTimeConverter x:Key="DateTimeConverter" />
+            <DrawingImage x:Key="Start">
+                <DrawingImage.Drawing>
+                    <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                        <GeometryDrawing Brush="#FF000000" Geometry="F0 M16,16z M0,0z M4.25,3L5.416,2.376 13.416,7.709 13.416,8.957 5.416,14.291 4.25,13.667 4.25,3z M5.75,4.401L5.75,12.265 11.648,8.333 5.75,4.401z" />
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+            <DrawingImage x:Key="Edit">
+                <DrawingImage.Drawing>
+                    <DrawingGroup ClipGeometry="M0,0 V330 H330 V0 H0 Z">
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF000000" Geometry="F1 M330,330z M0,0z M75,180L75,240C75,248.284,81.716,255,90,255L150,255C153.978,255,157.793,253.419,160.606,250.606L325.605,85.606C331.463,79.748,331.463,70.251,325.605,64.393L265.605,4.393C262.794,1.581 258.978,0 255,0 251.022,0 247.206,1.581 244.394,4.394L79.394,169.394C76.58,172.206,75,176.022,75,180z M105,186.213L255,36.213 293.787,75 143.787,225 105,225 105,186.213z" />
+                            <GeometryDrawing Brush="#FF000000" Geometry="F1 M330,330z M0,0z M315,150.001C306.716,150.001,300,156.717,300,165.001L300,300 30,300 30,30 165,30C173.284,30 180,23.284 180,15 180,6.716 173.284,0 165,0L15,0C6.716,0,0,6.716,0,15L0,315C0,323.284,6.716,330,15,330L315,330C323.284,330,330,323.284,330,315L330,165.001C330,156.716,323.284,150.001,315,150.001z" />
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+
+            <DropShadowEffect
+                x:Key="dropShadow"
+                BlurRadius="13"
+                Direction="315"
+                Color="#636363" />
         </Style.Resources>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:LearningProjectControl}">
                     <Border
-                        Height="80"
+                        Height="100"
                         Margin="5,15,5,5"
                         HorizontalAlignment="Stretch"
                         Background="#575757"
                         BorderThickness="0"
                         CornerRadius="10"
+                        Effect="{StaticResource dropShadow}"
                         Focusable="False">
                         <StackPanel Focusable="False" Orientation="Vertical">
                             <StackPanel
@@ -32,7 +107,7 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     Focusable="False"
-                                    FontSize="20"
+                                    FontSize="22"
                                     Foreground="White"
                                     Text="{Binding ProjectName}"
                                     TextWrapping="Wrap" />
@@ -48,8 +123,8 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     Focusable="False"
-                                    FontSize="12"
-                                    Foreground="White"
+                                    FontSize="14"
+                                    Foreground="#B0B0B0"
                                     Text="{Binding CreationTime, Converter={StaticResource DateTimeConverter}, ConverterParameter='Creation Date'}"
                                     TextWrapping="Wrap" />
 
@@ -59,32 +134,38 @@
                                     VerticalAlignment="Center"
                                     Background="Transparent"
                                     Focusable="False"
-                                    FontSize="12"
-                                    Foreground="White"
+                                    FontSize="14"
+                                    Foreground="#B0B0B0"
                                     Text="{Binding HasToBeCompleted, Converter={StaticResource DateTimeConverter}, ConverterParameter='Has to be learned until'}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
 
                             <StackPanel
-                                Margin="5,2,5,5"
+                                Margin="3,0,5,5"
                                 Focusable="False"
                                 Orientation="Horizontal">
                                 <Button
-                                    Width="50"
-                                    Height="50"
+                                    Width="25"
+                                    Height="25"
                                     Margin="5,5,2,5"
                                     Background="Gray"
                                     BorderThickness="0"
                                     Command="{Binding Learn}"
-                                    Content="Learn" />
+                                    Style="{StaticResource ButtonHover}"
+                                    ToolTip="Start Learning">
+                                    <Image Margin="5" Source="{StaticResource Start}" />
+                                </Button>
                                 <Button
-                                    Width="50"
-                                    Height="50"
+                                    Width="25"
+                                    Height="25"
                                     Margin="2,5,2,5"
                                     Background="Gray"
                                     BorderThickness="0"
                                     Command="{Binding Edit}"
-                                    Content="Edit" />
+                                    Style="{StaticResource ButtonHover}"
+                                    ToolTip="Edit">
+                                    <Image Margin="5" Source="{StaticResource Edit}" />
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </Border>

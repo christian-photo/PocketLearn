@@ -31,6 +31,16 @@ namespace PocketLearn.Win
         {
             new MainWindowVM();
             InitializeComponent();
+
+            this.PreviewKeyDown += MainWindow_PreviewKeyDown;
+        }
+
+        private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
