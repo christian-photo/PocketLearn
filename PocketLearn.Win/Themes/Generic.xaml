@@ -175,6 +175,16 @@
                                     Foreground="#B0B0B0"
                                     Text="{Binding HasToBeCompleted, Converter={StaticResource DateTimeConverter}, ConverterParameter='Has to be learned until'}"
                                     TextWrapping="Wrap" />
+                                <TextBlock
+                                    Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="14"
+                                    Foreground="#B0B0B0"
+                                    Text="{Binding ShouldLearn, StringFormat='Should be learned: {0}'}"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
 
                             <StackPanel

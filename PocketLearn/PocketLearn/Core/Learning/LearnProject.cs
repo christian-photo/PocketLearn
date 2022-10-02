@@ -56,13 +56,13 @@ namespace PocketLearn.Core.Learning
                 }
             }
         }
-            
+
 
         public bool ShouldLearn()
         {
             bool learnTime = false;
             TimeSpan now = DateTime.Now.TimeOfDay;
-            foreach(var i in LearnTimes)
+            foreach (var i in LearnTimes)
             {
                 if (i.Item1 < i.Item2)
                 {
@@ -72,20 +72,20 @@ namespace PocketLearn.Core.Learning
                 {
                     learnTime = !(i.Item2 < now && now < i.Item1);
                 }
-                if(learnTime) { break; }
+                if (learnTime) { break; }
             }
-            if(!learnTime) { return false; }
+            if (!learnTime) { return false; }
 
-            if(easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
-            if((Cards.Count - easyCards.Count) / ((HasToBeCompleted.Day-CreationTime.Day-1)/Cards.Count) > 1) { return false; }
+            if (easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
+            if ((Cards.Count - easyCards.Count) / ((HasToBeCompleted.Day-CreationTime.Day-1)/Cards.Count) > 1) { return false; }
             return true;
         }
 
-        public (string, string) ShowNextCard()
+        public (CardContent, CardContent) ShowNextCard()
         {
-           TimeSpan lastCardSpan = new TimeSpan(0);
-           LearnCard lastCard = new LearnCard();
-           foreach(var card in hardCards)
+            TimeSpan lastCardSpan = new TimeSpan(0);
+            LearnCard lastCard = new LearnCard();
+            foreach (var card in hardCards)
             {
                 var span = DateTime.Now - card.LastLearnedTime;
                 if (span.Ticks/ProjectConfig.HardFactor >= lastCardSpan.Ticks)
@@ -94,7 +94,7 @@ namespace PocketLearn.Core.Learning
                     lastCardSpan = span;
                 }
             }
-           foreach(var card in mediumCards)
+            foreach (var card in mediumCards)
             {
                 var span = DateTime.Now - card.LastLearnedTime;
                 if (span.Ticks/ProjectConfig.MediumFactor >= lastCardSpan.Ticks)
@@ -122,30 +122,31 @@ namespace PocketLearn.Core.Learning
                 }
             }
             activeCard = lastCard;
-            switch(activeCard.CardType)
+            switch (activeCard.CardType)
             {
                 case CardType.OneWay:
-                    return((activeCard.Text1, activeCard.Text2));
+                    return (activeCard.CardContent1, activeCard.CardContent2);
                 case CardType.TwoWay:
                     Random random = new Random();
-                    if(random.Next(0, 2) == 0)
+                    if (random.Next(0, 2) == 0)
                     {
-                        return((activeCard.Text1, activeCard.Text2));
-                    } else
+                        return (activeCard.CardContent1, activeCard.CardContent2);
+                    }
+                    else
                     {
-                        return ((activeCard.Text2, activeCard.Text1));
+                        return (activeCard.CardContent2, activeCard.CardContent1);
                     }
                 case CardType.ReverseOneWay:
-                    return((activeCard.Text2,activeCard.Text1));
+                    return (activeCard.CardContent2, activeCard.CardContent1);
                 default:
-                    return (("Placeholder", "Placeholder"));
+                    return (null, null);
             }
 
         }
 
         public void CardInput(Difficulty difficulty)
         {
-            switch(activeCard.Difficulty)
+            switch (activeCard.Difficulty)
             {
                 case Difficulty.Hard:
                     hardCards.Remove(activeCard);
@@ -160,7 +161,7 @@ namespace PocketLearn.Core.Learning
                     easyCards.Remove(activeCard);
                     break;
             }
-            switch(difficulty)
+            switch (difficulty)
             {
                 case Difficulty.Hard:
                     hardCards.Add(activeCard);

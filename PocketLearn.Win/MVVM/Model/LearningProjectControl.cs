@@ -107,18 +107,31 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
+        public static readonly DependencyProperty ShouldLearnProperty = DependencyProperty.Register(nameof(ShouldLearn), typeof(bool), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public bool ShouldLearn
+        {
+            get
+            {
+                return (bool)GetValue(ShouldLearnProperty);
+            }
+            set
+            {
+                SetValue(ShouldLearnProperty, value);
+            }
+        }
+
         static LearningProjectControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
         }
 
-        private LearnProject GetProject() => MainWindowVM.Instance.ProjectManager.LearnProjects.Where(x => x.ProjectID == UUID).First();
-
-        public LearningProjectControl(string projectName, DateTime creationTime, DateTime hasToBeCompleted, Guid projectID)
+        public LearningProjectControl(LearnProject project)
         {
-            ProjectName = projectName;
-            CreationTime = creationTime;
-            HasToBeCompleted = hasToBeCompleted;
+            ProjectName = project.ProjectName;
+            CreationTime = project.CreationTime;
+            HasToBeCompleted = project.HasToBeCompleted;
+            ShouldLearn = project.ShouldLearn();
+
 
             Learn = new RelayCommand(_ =>
             {

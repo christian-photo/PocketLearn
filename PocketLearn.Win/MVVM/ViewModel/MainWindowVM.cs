@@ -3,6 +3,7 @@ using PocketLearn.Win.Core;
 using PocketLearn.Win.API;
 using System.IO;
 using PocketLearn.Public.Core.Config;
+using System.Collections.Generic;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -49,7 +50,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             {
                 return ProjectManager.Create(File.ReadAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json")));
             }
-            return ProjectManager.Create(null);
+            return ProjectManager.Create("");
         }
     }
 }

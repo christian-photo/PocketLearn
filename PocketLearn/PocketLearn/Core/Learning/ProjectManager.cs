@@ -41,6 +41,10 @@ namespace PocketLearn.Core.Learning
 
             return new ProjectManager() { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
         }
+        public static ProjectManager Create(List<LearnProject> projects)
+        {
+            return new ProjectManager() { LearnProjects=projects};
+        }
 
         public string Serialize() => JsonConvert.SerializeObject(LearnProjects, Formatting.Indented);
     }
