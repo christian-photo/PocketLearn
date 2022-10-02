@@ -2,7 +2,7 @@
 
 namespace PocketLearn.Core.Learning
 {
-    public enum Difficulty
+    public enum CardDifficulty
     {
         None = 0,
         Hard,

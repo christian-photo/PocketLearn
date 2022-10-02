@@ -4,4 +4,6 @@
     xmlns:converter="clr-namespace:PocketLearn.Win.MVVM.Model.ValueConverter">
 
     <converter:DateTimeConverter x:Key="DateTimeConverter" />
+    <converter:LearnCardConverter x:Key="LearnCardConverter"/>
+    <converter:LearnSubjectConverter x:Key="LearnSubjectConverter"/>
 </ResourceDictionary>

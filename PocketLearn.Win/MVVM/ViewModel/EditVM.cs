@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,32 @@ namespace PocketLearn.Win.MVVM.ViewModel
 {
     public class EditVM : ObservableObject
     {
-        public List<LearnCard> ViewLearnCards { get; set; }
+        private List<object> _learningCardsView;
+        public List<object> LearningCardsView
+        {
+            get => _learningCardsView;
+            set
+            {
+                _learningCardsView = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private LearnProject project;
 
-        public void Init(LearnProject project)
+        public EditVM(LearnProject project)
         {
-            ViewLearnCards = project.Cards;
             this.project = project;
+            UpdateView(project);
+        }
+
+        void UpdateView(LearnProject project)
+        {
+            List<object> view = new List<object>();
+            foreach (LearnCard card in project.Cards)
+            {
+                view.Add(new EditProjectControl(card));
+            }
         }
     }
 }

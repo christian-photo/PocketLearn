@@ -10,6 +10,6 @@ namespace PocketLearn.Core.Learning
         public CardContent CardContent2 { get; set; }
         public CardType CardType { get; set; }
         public DateTime LastLearnedTime { get; set; }
-        public Difficulty Difficulty { get; set; }
+        public CardDifficulty Difficulty { get; set; }
     }
 }

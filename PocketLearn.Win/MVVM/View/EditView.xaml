@@ -33,7 +33,7 @@
                 Background="Transparent"
                 BorderBrush="Transparent"
                 Focusable="False"
-                ItemsSource="{Binding ViewLearnCards}"
+                ItemsSource="{Binding LearningCardsView}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListView.ItemContainerStyle>

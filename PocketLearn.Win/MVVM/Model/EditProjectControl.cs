@@ -38,22 +38,8 @@ namespace PocketLearn.Win.MVVM.Model
     ///     <MyNamespace:LearningProjectControl/>
     ///
     /// </summary>
-    public class LearningProjectControl : Control
+    public class EditProjectControl : Control
     {
-        private Guid UUID;
-
-        public static readonly DependencyProperty LearnProperty = DependencyProperty.Register(nameof(Learn), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public ICommand Learn
-        {
-            get
-            {
-                return (ICommand)GetValue(LearnProperty);
-            }
-            set
-            {
-                SetValue(LearnProperty, value);
-            }
-        }
 
         public static readonly DependencyProperty EditProperty = DependencyProperty.Register(nameof(Edit), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
         public ICommand Edit
@@ -68,93 +54,91 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty ProjectNameProperty = DependencyProperty.Register(nameof(ProjectName), typeof(string), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public string ProjectName
+        public static readonly DependencyProperty DeleteProperty = DependencyProperty.Register(nameof(Delete), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public ICommand Delete
         {
             get
             {
-                return (string)GetValue(ProjectNameProperty);
+                return (ICommand)GetValue(DeleteProperty);
             }
             set
             {
-                SetValue(ProjectNameProperty, value);
+                SetValue(EditProperty, value);
             }
         }
 
-        public static readonly DependencyProperty CreationTimeProperty = DependencyProperty.Register(nameof(CreationTime), typeof(DateTime), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public DateTime CreationTime
+        public static readonly DependencyProperty CardContent1Property = DependencyProperty.Register(nameof(CardContent1), typeof(CardContent), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public CardContent CardContent1
         {
             get
             {
-                return (DateTime)GetValue(CreationTimeProperty);
+                return (CardContent)GetValue(CardContent1Property);
             }
             set
             {
-                SetValue(CreationTimeProperty, value);
+                SetValue(CardContent1Property, value);
             }
         }
 
-        public static readonly DependencyProperty HasToBeCompletedProperty = DependencyProperty.Register(nameof(HasToBeCompleted), typeof(DateTime), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public DateTime HasToBeCompleted
+        public static readonly DependencyProperty CardContent2Property = DependencyProperty.Register(nameof(CardContent2), typeof(CardContent), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public CardContent CardContent2
         {
             get
             {
-                return (DateTime)GetValue(HasToBeCompletedProperty);
+                return (CardContent)GetValue(CardContent2Property);
             }
             set
             {
-                SetValue(HasToBeCompletedProperty, value);
+                SetValue(CardContent2Property, value);
             }
         }
 
-        public static readonly DependencyProperty ShouldLearnProperty = DependencyProperty.Register(nameof(ShouldLearn), typeof(bool), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public bool ShouldLearn
+        public static readonly DependencyProperty DifficultyProperty = DependencyProperty.Register(nameof(Difficulty), typeof(CardDifficulty), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public CardDifficulty Difficulty
         {
             get
             {
-                return (bool)GetValue(ShouldLearnProperty);
+                return (CardDifficulty)GetValue(DifficultyProperty);
             }
             set
             {
-                SetValue(ShouldLearnProperty, value);
+                SetValue(DifficultyProperty, value);
             }
         }
 
-        public static readonly DependencyProperty SubjectProperty = DependencyProperty.Register(nameof(Subject), typeof(LearnSubject), typeof(LearningProjectControl), new UIPropertyMetadata(null));
-        public LearnSubject Subject
+        public static readonly DependencyProperty LastLearnedTimeProperty = DependencyProperty.Register(nameof(LastLearnedTime), typeof(DateTime), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public DateTime LastLearnedTime
         {
             get
             {
-                return (LearnSubject)GetValue(SubjectProperty);
+                return (DateTime)GetValue(LastLearnedTimeProperty);
             }
             set
             {
-                SetValue(SubjectProperty, value);
+                SetValue(LastLearnedTimeProperty, value);
             }
         }
 
-        static LearningProjectControl()
+        static EditProjectControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
         }
 
-        public LearningProjectControl(LearnProject project)
+        public EditProjectControl(LearnCard card)
         {
-            ProjectName = project.ProjectName;
-            CreationTime = project.CreationTime;
-            HasToBeCompleted = project.HasToBeCompleted;
-            ShouldLearn = project.ShouldLearn();
-            Subject = project.LearnSubject;
+            CardContent1 = card.CardContent1;
+            CardContent2 = card.CardContent2;
+            Difficulty = card.Difficulty;
+            LastLearnedTime = card.LastLearnedTime;
 
-            Learn = new RelayCommand(_ =>
-            {
-                throw new NotImplementedException();
-            });
             Edit = new RelayCommand(_ =>
             {
                 throw new NotImplementedException();
             });
-            UUID = project.ProjectID;
+            Delete = new RelayCommand(_ =>
+            {
+                throw new NotImplementedException();
+            });
         }
     }
 }

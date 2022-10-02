@@ -41,16 +41,16 @@ namespace PocketLearn.Core.Learning
             {
                 switch (card.Difficulty)
                 {
-                    case Difficulty.Hard:
+                    case CardDifficulty.Hard:
                         hardCards.Add(card);
                         break;
-                    case Difficulty.Medium:
+                    case CardDifficulty.Medium:
                         mediumCards.Add(card);
                         break;
-                    case Difficulty.OK:
+                    case CardDifficulty.OK:
                         okCards.Add(card);
                         break;
-                    case Difficulty.Easy:
+                    case CardDifficulty.Easy:
                         easyCards.Add(card);
                         break;
                 }
@@ -144,35 +144,35 @@ namespace PocketLearn.Core.Learning
 
         }
 
-        public void CardInput(Difficulty difficulty)
+        public void CardInput(CardDifficulty difficulty)
         {
             switch (activeCard.Difficulty)
             {
-                case Difficulty.Hard:
+                case CardDifficulty.Hard:
                     hardCards.Remove(activeCard);
                     break;
-                case Difficulty.Medium:
+                case CardDifficulty.Medium:
                     mediumCards.Remove(activeCard);
                     break;
-                case Difficulty.OK:
+                case CardDifficulty.OK:
                     okCards.Remove(activeCard);
                     break;
-                case Difficulty.Easy:
+                case CardDifficulty.Easy:
                     easyCards.Remove(activeCard);
                     break;
             }
             switch (difficulty)
             {
-                case Difficulty.Hard:
+                case CardDifficulty.Hard:
                     hardCards.Add(activeCard);
                     break;
-                case Difficulty.Medium:
+                case CardDifficulty.Medium:
                     mediumCards.Add(activeCard);
                     break;
-                case Difficulty.OK:
+                case CardDifficulty.OK:
                     okCards.Add(activeCard);
                     break;
-                case Difficulty.Easy:
+                case CardDifficulty.Easy:
                     easyCards.Add(activeCard);
                     break;
             }
