@@ -141,7 +141,7 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 throw new NotImplementedException();
             });
-            UUID = projectID;
+            UUID = project.ProjectID;
         }
     }
 }
