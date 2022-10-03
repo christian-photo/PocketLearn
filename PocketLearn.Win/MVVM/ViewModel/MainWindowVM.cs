@@ -4,6 +4,8 @@ using PocketLearn.Win.API;
 using System.IO;
 using PocketLearn.Public.Core.Config;
 using System.Collections.Generic;
+using PocketLearn.Core.Interfaces.Classes;
+using PocketLearn.Core;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -42,6 +44,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             API = new WebAPI(WinConfig.Get());
             CurrentView = HomeVM;
+            new WindowsNotificationSender().SendNotification("Test", NotificationArguments.LEARN);
         }
 
         private ProjectManager CreateProjectManager()

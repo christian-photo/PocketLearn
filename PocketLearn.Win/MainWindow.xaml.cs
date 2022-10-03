@@ -1,5 +1,7 @@
-﻿using PocketLearn.Core;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using PocketLearn.Core;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.Core.Notification;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
