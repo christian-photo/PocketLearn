@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace PocketLearn.Core.Learning
 {
@@ -11,6 +13,8 @@ namespace PocketLearn.Core.Learning
 
         public delegate void EventHandler(object sender);
         public event EventHandler ProjectsChanged;
+
+        private static ProjectManager instance;
 
         public void DeleteProject(LearnProject project) // Delete from List and json file
         {
@@ -36,15 +40,19 @@ namespace PocketLearn.Core.Learning
         {
             if (JsonContent == null)
             {
-                return new ProjectManager();
+                instance = new ProjectManager();
+                return instance;
             }
-
-            return new ProjectManager() { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
+            instance = new ProjectManager() { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
+            return instance;
         }
         public static ProjectManager Create(List<LearnProject> projects)
         {
-            return new ProjectManager() { LearnProjects=projects};
+            instance = new ProjectManager() { LearnProjects = projects };
+            return instance;
         }
+
+        public static LearnProject GetProjectByID(Guid projectID) => instance.LearnProjects.Where(x => x.ProjectID == projectID).FirstOrDefault();
 
         public string Serialize() => JsonConvert.SerializeObject(LearnProjects, Formatting.Indented);
     }

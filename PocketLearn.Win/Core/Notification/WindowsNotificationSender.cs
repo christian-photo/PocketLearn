@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 
 namespace PocketLearn.Core.Interfaces.Classes
 {
@@ -7,10 +8,18 @@ namespace PocketLearn.Core.Interfaces.Classes
         public void SendNotification(string message, NotificationArguments parameter)
         {
             new ToastContentBuilder()
-                .SetBackgroundActivation()
                 .AddText("PocketLearn")
                 .AddText(message)
-                .AddButton("Learn now", ToastActivationType.Foreground, parameter.Argument)
+                .AddArgument(parameter.Argument)
+                .Show();
+        }
+
+        public void SendNotification(string message, NotificationArguments parameter, Guid projectID)
+        {
+            new ToastContentBuilder()
+                .AddText("PocketLearn")
+                .AddText(message)
+                .AddArgument(parameter.Argument + "&" + projectID.ToString())
                 .Show();
         }
     }

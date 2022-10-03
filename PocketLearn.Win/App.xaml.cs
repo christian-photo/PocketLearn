@@ -6,6 +6,7 @@ using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.IO;
 using System.Windows;
+using Windows.Foundation.Collections;
 
 namespace PocketLearn.Win
 {
@@ -16,14 +17,11 @@ namespace PocketLearn.Win
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            ToastNotificationManagerCompat.OnActivated += NotificationManagerRoute;
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                NotificationManager.Handle(toastArgs);
+            };
             base.OnStartup(e);
-        }
-
-        private void NotificationManagerRoute(ToastNotificationActivatedEventArgsCompat e)
-        {
-            throw new Exception();
-            NotificationManager.Handle(e);
         }
 
         private void Window_Closing(object sender, ExitEventArgs e)

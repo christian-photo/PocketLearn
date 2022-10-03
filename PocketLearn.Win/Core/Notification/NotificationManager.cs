@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using PocketLearn.Core;
+using PocketLearn.Core.Learning;
 using System;
 
 namespace PocketLearn.Win.Core.Notification
@@ -8,9 +9,12 @@ namespace PocketLearn.Win.Core.Notification
     {
         public static void Handle(ToastNotificationActivatedEventArgsCompat e)
         {
-            if (e.Argument == NotificationArguments.LEARN.Argument)
+            string[] split = e.Argument.Split('&');
+            if (split[0] == NotificationArguments.LEARN.Argument)
             {
-                // DO Stuff
+                Guid projectGuid = Guid.Parse(split[1]);
+                LearnProject project = ProjectManager.GetProjectByID(projectGuid);
+                // Open learn window
             }
             throw new NotImplementedException();
         }
