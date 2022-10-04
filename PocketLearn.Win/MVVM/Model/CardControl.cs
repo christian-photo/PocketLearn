@@ -38,10 +38,10 @@ namespace PocketLearn.Win.MVVM.Model
     ///     <MyNamespace:LearningProjectControl/>
     ///
     /// </summary>
-    public class EditProjectControl : Control
+    public class CardControl : Control
     {
 
-        public static readonly DependencyProperty EditProperty = DependencyProperty.Register(nameof(Edit), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty EditProperty = DependencyProperty.Register(nameof(Edit), typeof(ICommand), typeof(CardControl), new UIPropertyMetadata(null));
         public ICommand Edit
         {
             get
@@ -54,7 +54,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty DeleteProperty = DependencyProperty.Register(nameof(Delete), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty DeleteProperty = DependencyProperty.Register(nameof(Delete), typeof(ICommand), typeof(CardControl), new UIPropertyMetadata(null));
         public ICommand Delete
         {
             get
@@ -67,7 +67,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty CardContent1Property = DependencyProperty.Register(nameof(CardContent1), typeof(CardContent), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty CardContent1Property = DependencyProperty.Register(nameof(CardContent1), typeof(CardContent), typeof(CardControl), new UIPropertyMetadata(null));
         public CardContent CardContent1
         {
             get
@@ -80,7 +80,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty CardContent2Property = DependencyProperty.Register(nameof(CardContent2), typeof(CardContent), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty CardContent2Property = DependencyProperty.Register(nameof(CardContent2), typeof(CardContent), typeof(CardControl), new UIPropertyMetadata(null));
         public CardContent CardContent2
         {
             get
@@ -93,7 +93,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty DifficultyProperty = DependencyProperty.Register(nameof(Difficulty), typeof(CardDifficulty), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty DifficultyProperty = DependencyProperty.Register(nameof(Difficulty), typeof(CardDifficulty), typeof(CardControl), new UIPropertyMetadata(null));
         public CardDifficulty Difficulty
         {
             get
@@ -106,7 +106,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty LastLearnedTimeProperty = DependencyProperty.Register(nameof(LastLearnedTime), typeof(DateTime), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty LastLearnedTimeProperty = DependencyProperty.Register(nameof(LastLearnedTime), typeof(DateTime), typeof(CardControl), new UIPropertyMetadata(null));
         public DateTime LastLearnedTime
         {
             get
@@ -119,12 +119,12 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        static EditProjectControl()
+        static CardControl()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CardControl), new FrameworkPropertyMetadata(typeof(CardControl)));
         }
 
-        public EditProjectControl(LearnCard card)
+        public CardControl(LearnCard card)
         {
             CardContent1 = card.CardContent1;
             CardContent2 = card.CardContent2;

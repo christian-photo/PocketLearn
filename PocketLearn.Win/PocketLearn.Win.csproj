@@ -88,6 +88,7 @@
     <Compile Include="Core\ApplicationConstants.cs" />
     <Compile Include="Core\Notification\NotificationManager.cs" />
     <Compile Include="Core\Notification\WindowsNotificationSender.cs" />
+    <Compile Include="Core\Utility.cs" />
     <Compile Include="Core\WinConfig.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -113,8 +114,8 @@
   <ItemGroup>
     <Compile Include="MVVM\Model\LearningProjectControl.cs" />
     <Compile Include="MVVM\Model\ValueConverter\DateTimeConverter.cs" />
-    <Compile Include="MVVM\Model\EditProjectControl.cs" />
-    <Compile Include="MVVM\Model\ValueConverter\LearnCardConverter.cs" />
+    <Compile Include="MVVM\Model\CardControl.cs" />
+    <Compile Include="MVVM\Model\ValueConverter\CardContentConverter.cs" />
     <Compile Include="MVVM\Model\ValueConverter\LearnSubjectConverter.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
