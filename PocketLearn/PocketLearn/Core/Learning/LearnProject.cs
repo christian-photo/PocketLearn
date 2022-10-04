@@ -21,6 +21,7 @@ namespace PocketLearn.Core.Learning
         private List<LearnCard> mediumCards = new List<LearnCard>();
         private List<LearnCard> okCards = new List<LearnCard>();
         private List<LearnCard> easyCards = new List<LearnCard>();
+        private List<LearnCard> notLearnedCards = new List<LearnCard>();
 
         private LearnCard activeCard;
 
@@ -52,6 +53,9 @@ namespace PocketLearn.Core.Learning
                         break;
                     case CardDifficulty.Easy:
                         easyCards.Add(card);
+                        break;
+                    case CardDifficulty.NotLearned:
+                        notLearnedCards.Add(card);
                         break;
                 }
             }
@@ -85,6 +89,15 @@ namespace PocketLearn.Core.Learning
         {
             TimeSpan lastCardSpan = new TimeSpan(0);
             LearnCard lastCard = new LearnCard();
+            foreach (var card in notLearnedCards)
+            {
+                var span = DateTime.Now - card.LastLearnedTime;
+                if (span.Ticks/ProjectConfig.NotLearnedFactor >= lastCardSpan.Ticks)
+                {
+                    lastCard = card;
+                    lastCardSpan = span;
+                }
+            }
             foreach (var card in hardCards)
             {
                 var span = DateTime.Now - card.LastLearnedTime;
@@ -158,6 +171,9 @@ namespace PocketLearn.Core.Learning
                     okCards.Remove(activeCard);
                     break;
                 case CardDifficulty.Easy:
+                    easyCards.Remove(activeCard);
+                    break;
+                case CardDifficulty.NotLearned:
                     easyCards.Remove(activeCard);
                     break;
             }

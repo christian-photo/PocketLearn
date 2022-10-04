@@ -28,13 +28,16 @@ namespace PocketLearn.Core
         private void RequestLearnIfNeeded(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
+            int learnCount = 0;
             foreach (LearnProject project in manager.LearnProjects)
             {
                 if (project.ShouldLearn())
                 {
-                    notification.SendNotification("Learn now!", NotificationArguments.LEARN);
+                    learnCount++;
+                    
                 }
             }
+            notification.SendNotification("Learn now " + learnCount.ToString() + " Projects!", NotificationArguments.LEARN);
             _timer.Start();
         }
     }
