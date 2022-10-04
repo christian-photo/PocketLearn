@@ -10,6 +10,7 @@ namespace PocketLearn.Core.Learning
         public float MediumFactor { get; set; }
         public float OKFactor { get; set; }
         public float EasyFactor { get; set; }
+        public float NotLearnedFactor { get;set; }
 
     }
 }

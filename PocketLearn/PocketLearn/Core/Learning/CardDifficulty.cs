@@ -8,6 +8,7 @@ namespace PocketLearn.Core.Learning
         Hard,
         Medium,
         OK,
-        Easy
+        Easy,
+        NotLearned
     }
 }
