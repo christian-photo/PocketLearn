@@ -40,7 +40,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 project.InitCards();
             }
             HomeVM = new HomeVM(ProjectManager);
-           // EditVM = new EditVM();
+           EditVM = new EditVM();
 
             API = new WebAPI(WinConfig.Get());
             CurrentView = HomeVM;

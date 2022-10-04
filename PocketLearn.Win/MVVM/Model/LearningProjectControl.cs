@@ -152,7 +152,8 @@ namespace PocketLearn.Win.MVVM.Model
             });
             Edit = new RelayCommand(_ =>
             {
-                throw new NotImplementedException();
+                MainWindowVM.Instance.EditVM.UpdateView(project);
+                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.EditVM;
             });
             UUID = project.ProjectID;
         }

@@ -270,19 +270,9 @@
                         Effect="{StaticResource dropShadow}"
                         Focusable="False">
                         <StackPanel Focusable="False" Orientation="Vertical">
-                            <StackPanel
-                                Margin="5,5,5,2"
-                                Focusable="False"
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    Focusable="False"
-                                    FontSize="22"
-                                    Foreground="White"
-                                    Text="{Binding ProjectName}"
-                                    TextWrapping="Wrap" />
+                            <StackPanel Focusable="False" Orientation="Horizontal">
+                                <ContentControl Background="Transparent" Content="{Binding CardContent1, Converter={StaticResource CardContentConverter}}" />
+                                <ContentControl Background="Transparent" Content="{Binding CardContent2, Converter={StaticResource CardContentConverter}}" />
                             </StackPanel>
 
                             <StackPanel
@@ -297,7 +287,7 @@
                                     Focusable="False"
                                     FontSize="14"
                                     Foreground="#B0B0B0"
-                                    Text="{Binding CreationTime, Converter={StaticResource DateTimeConverter}, ConverterParameter='Creation Date'}"
+                                    Text="{Binding CreationTime, Converter={StaticResource DateTimeConverter}, ConverterParameter='Creation Date: '}"
                                     TextWrapping="Wrap" />
 
                                 <TextBlock
@@ -308,34 +298,7 @@
                                     Focusable="False"
                                     FontSize="14"
                                     Foreground="#B0B0B0"
-                                    Text="{Binding HasToBeCompleted, Converter={StaticResource DateTimeConverter}, ConverterParameter='Has to be learned until'}"
-                                    TextWrapping="Wrap" />
-                            </StackPanel>
-
-                            <StackPanel
-                                Margin="2,2,5,5"
-                                Focusable="False"
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="3,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    Focusable="False"
-                                    FontSize="14"
-                                    Foreground="#B0B0B0"
-                                    Text="{Binding Subject, Converter={StaticResource LearnSubjectConverter}, ConverterParameter='Subject'}"
-                                    TextWrapping="Wrap" />
-
-                                <TextBlock
-                                    Margin="3,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    Focusable="False"
-                                    FontSize="14"
-                                    Foreground="#B0B0B0"
-                                    Text="{Binding ShouldLearn, StringFormat='Should be learned: {0}'}"
+                                    Text="{Binding LastLearned, Converter={StaticResource DateTimeConverter}, ConverterParameter='Last learned: '}"
                                     TextWrapping="Wrap" />
                             </StackPanel>
 
@@ -343,17 +306,6 @@
                                 Margin="3,0,5,5"
                                 Focusable="False"
                                 Orientation="Horizontal">
-                                <Button
-                                    Width="25"
-                                    Height="25"
-                                    Margin="5,5,2,5"
-                                    Background="Gray"
-                                    BorderThickness="0"
-                                    Command="{Binding Learn}"
-                                    Style="{StaticResource ButtonHover}"
-                                    ToolTip="Start Learning">
-                                    <Image Margin="5" Source="{StaticResource Start}" />
-                                </Button>
                                 <Button
                                     Width="25"
                                     Height="25"

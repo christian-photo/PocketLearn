@@ -11,23 +11,33 @@
     DataContext="{Binding EditVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
     mc:Ignorable="d">
     <Grid Background="Transparent">
-        <StackPanel Orientation="Vertical">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Button
-                Width="40"
-                Height="40"
-                Margin="5,5,2,2"
-                HorizontalAlignment="Left"
-                Background="Gray"
-                BorderThickness="0"
-                Command="{Binding AddCard}"
-                Style="{StaticResource ButtonHover}"
-                ToolTip="Start Learning">
-                <Image Margin="5" Source="{StaticResource Add}" />
-            </Button>
+        <Button
+            Grid.Row="0"
+            Width="40"
+            Height="40"
+            Margin="5,5,2,2"
+            HorizontalAlignment="Left"
+            Background="Gray"
+            BorderThickness="0"
+            Command="{Binding AddCard}"
+            Style="{StaticResource ButtonHover}"
+            ToolTip="Start Learning">
+            <Image Margin="5" Source="{StaticResource Add}" />
+        </Button>
 
+        <ScrollViewer
+            Grid.Row="1"
+            IsTabStop="True"
+            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+            VerticalScrollBarVisibility="Auto">
             <ListView
                 x:Name="Panel_Mini"
+                Height="Auto"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 Background="Transparent"
@@ -35,7 +45,7 @@
                 Focusable="False"
                 ItemsSource="{Binding LearningCardsView}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
 
@@ -50,7 +60,6 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

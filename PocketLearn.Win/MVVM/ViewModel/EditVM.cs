@@ -2,9 +2,6 @@
 using PocketLearn.Win.MVVM.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -21,21 +18,41 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
         }
 
+        public RelayCommand AddCard { get; set; }
+
         private LearnProject project;
 
-        public EditVM(LearnProject project)
+        public EditVM()
         {
-            this.project = project;
-            UpdateView(project);
+            AddCard = new RelayCommand(_ =>
+            {
+                LearnCard card = new()
+                {
+                    CardContent1 = new CardContent(new List<dynamic>() { "test" }),
+                    CardContent2 = new CardContent(new List<dynamic>() { "test2" }),
+                    CardType = CardType.OneWay,
+                    Difficulty = CardDifficulty.None,
+                    LastLearnedTime = DateTime.Now
+                };
+                project.Cards.Add(card);
+                project.InitCards();
+                UpdateView(project);
+            });
         }
 
-        void UpdateView(LearnProject project)
+        /// <summary>
+        /// Call every time when openening the edit view
+        /// </summary>
+        /// <param name="project">The project to be edited</param>
+        public void UpdateView(LearnProject project)
         {
-            List<object> view = new List<object>();
+            List<object> view = new();
             foreach (LearnCard card in project.Cards)
             {
                 view.Add(new CardControl(card));
             }
+            LearningCardsView = view;
+            this.project = project;
         }
     }
 }
