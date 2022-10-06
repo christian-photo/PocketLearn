@@ -22,11 +22,11 @@ namespace PocketLearn.Win.MVVM.PopUp
     /// <summary>
     /// Interaktionslogik für EditPopUp.xaml
     /// </summary>
-    public partial class EditPopUp : Window
+    public partial class PopUpEdit : Window
     {
         public LearnCard ActiveCard { get; set; }
 
-        public EditPopUp(LearnCard learnCard)
+        public PopUpEdit(LearnCard learnCard)
         {
             ActiveCard = learnCard;
             InitializeComponent();
