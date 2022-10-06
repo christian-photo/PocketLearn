@@ -24,6 +24,7 @@ namespace PocketLearn.Core.Learning
         private List<LearnCard> notLearnedCards = new List<LearnCard>();
 
         private LearnCard activeCard;
+        private (CardContent, CardContent) activeContents;
 
         public void SetCards(List<LearnCard> cards)
         {
@@ -143,58 +144,35 @@ namespace PocketLearn.Core.Learning
                     Random random = new Random();
                     if (random.Next(0, 2) == 0)
                     {
-                        return (activeCard.CardContent1, activeCard.CardContent2);
+                        activeContents = (activeCard.CardContent1, activeCard.CardContent2);
                     }
                     else
                     {
-                        return (activeCard.CardContent2, activeCard.CardContent1);
+                        activeContents = (activeCard.CardContent2, activeCard.CardContent1);
                     }
+                    break;
                 case CardType.ReverseOneWay:
-                    return (activeCard.CardContent2, activeCard.CardContent1);
+                    activeContents = (activeCard.CardContent2, activeCard.CardContent1);
+                    break;
                 default:
-                    return (null, null);
+                    activeContents = (null, null);
+                    break;
             }
+            return activeContents;
 
+        }
+
+        public (CardContent, CardContent) GetActiveCardContents()
+        {
+            return activeContents;
         }
 
         public void CardInput(CardDifficulty difficulty)
         {
-            switch (activeCard.Difficulty)
-            {
-                case CardDifficulty.Hard:
-                    hardCards.Remove(activeCard);
-                    break;
-                case CardDifficulty.Medium:
-                    mediumCards.Remove(activeCard);
-                    break;
-                case CardDifficulty.OK:
-                    okCards.Remove(activeCard);
-                    break;
-                case CardDifficulty.Easy:
-                    easyCards.Remove(activeCard);
-                    break;
-                case CardDifficulty.NotLearned:
-                    easyCards.Remove(activeCard);
-                    break;
-            }
-            switch (difficulty)
-            {
-                case CardDifficulty.Hard:
-                    hardCards.Add(activeCard);
-                    break;
-                case CardDifficulty.Medium:
-                    mediumCards.Add(activeCard);
-                    break;
-                case CardDifficulty.OK:
-                    okCards.Add(activeCard);
-                    break;
-                case CardDifficulty.Easy:
-                    easyCards.Add(activeCard);
-                    break;
-            }
             activeCard.Difficulty = difficulty;
             activeCard.LastLearnedTime = DateTime.Now;
             LastLearnedTime = DateTime.Now;
+            InitCards();
         }
     }
 }

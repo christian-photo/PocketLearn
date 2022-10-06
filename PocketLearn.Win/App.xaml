@@ -25,6 +25,12 @@
             <DataTemplate DataType="{x:Type viewmodel:EditVM}">
                 <view:EditView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodel:QuestionVM}">
+                <view:QuestionView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodel:AnswerVM}">
+                <view:AnswerView/>
+            </DataTemplate>
 
         </ResourceDictionary>
 
