@@ -98,10 +98,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\AnswerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVVM\View\EditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +122,9 @@
     <Compile Include="MVVM\Model\ValueConverter\CardContentConverter.cs" />
     <Compile Include="MVVM\Model\ValueConverter\LearnSubjectConverter.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
+    <Compile Include="MVVM\PopUp\EditPopUp.xaml.cs">
+      <DependentUpon>EditPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\SharedResourceDictionary.cs" />
     <Compile Include="MVVM\ViewModel\AnswerVM.cs" />

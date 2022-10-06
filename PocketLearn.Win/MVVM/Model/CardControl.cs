@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Linq;
@@ -106,8 +107,8 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty LastLearnedTimeProperty = DependencyProperty.Register(nameof(LastLearnedTime), typeof(DateTime), typeof(CardControl), new UIPropertyMetadata(null));
-        public DateTime LastLearnedTime
+        public static readonly DependencyProperty LastLearnedTimeProperty = DependencyProperty.Register(nameof(LastLearned), typeof(DateTime), typeof(CardControl), new UIPropertyMetadata(null));
+        public DateTime LastLearned
         {
             get
             {
@@ -129,11 +130,11 @@ namespace PocketLearn.Win.MVVM.Model
             CardContent1 = card.CardContent1;
             CardContent2 = card.CardContent2;
             Difficulty = card.Difficulty;
-            LastLearnedTime = card.LastLearnedTime;
+            LastLearned = card.LastLearnedTime;
 
             Edit = new RelayCommand(_ =>
             {
-                throw new NotImplementedException();
+                new EditPopUp(card).Show();
             });
             Delete = new RelayCommand(_ =>
             {
