@@ -64,7 +64,7 @@ namespace PocketLearn.Win.MVVM.Model
             }
             set
             {
-                SetValue(EditProperty, value);
+                SetValue(DeleteProperty, value);
             }
         }
 
@@ -125,7 +125,7 @@ namespace PocketLearn.Win.MVVM.Model
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CardControl), new FrameworkPropertyMetadata(typeof(CardControl)));
         }
 
-        public CardControl(LearnCard card)
+        public CardControl(LearnProject project, LearnCard card)
         {
             CardContent1 = card.CardContent1;
             CardContent2 = card.CardContent2;
@@ -134,7 +134,7 @@ namespace PocketLearn.Win.MVVM.Model
 
             Edit = new RelayCommand(_ =>
             {
-                new PopUpEdit(card).Show();
+                new PopUpEdit(project, card).Show();
             });
             Delete = new RelayCommand(_ =>
             {

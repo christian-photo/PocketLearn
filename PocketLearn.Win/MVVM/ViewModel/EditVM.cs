@@ -49,7 +49,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             List<object> view = new();
             foreach (LearnCard card in project.Cards)
             {
-                view.Add(new CardControl(card));
+                view.Add(new CardControl(project, card));
             }
             LearningCardsView = view;
             this.project = project;

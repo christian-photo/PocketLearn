@@ -1,5 +1,6 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.ViewModel;
 using Swan;
 using System;
 using System.Collections.Generic;
@@ -25,16 +26,19 @@ namespace PocketLearn.Win.MVVM.PopUp
     public partial class PopUpEdit : Window
     {
         public LearnCard ActiveCard { get; set; }
+        public LearnProject LearnProject { get; set; }
 
-        public PopUpEdit(LearnCard learnCard)
+        public PopUpEdit(LearnProject learnProject, LearnCard learnCard)
         {
             ActiveCard = learnCard;
+            LearnProject = learnProject;
+
             InitializeComponent();
             foreach (object obj in learnCard.CardContent1.Items)
             {
                 if (obj is string question)
                 {
-                    QuestionText.Text += $"{question}\n";
+                    QuestionText.Text += $"{question}" + learnCard.CardContent1.Items.fil(x => typeof(x) == typeof(string)).Last();
                 }
                 else if (obj is Bitmap bmp)
                 {
@@ -45,7 +49,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 if (obj is string question)
                 {
-                    AnswerText.Text += $"{question}\n";
+                    AnswerText.Text += $"{question}" + learnCard.CardContent1.Items.LastOrDefault() ? "" : "\n";
                 }
                 else if (obj is Bitmap bmp)
                 {
@@ -90,6 +94,8 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 ActiveCard.CardContent2.Items.Add(bmp.ToBitmap());
             }
+            MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
+            Close();
         }
     }
 }
