@@ -9,6 +9,7 @@
     Width="450"
     Height="350"
     Background="DimGray"
+    MouseDown="Window_MouseDown"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>

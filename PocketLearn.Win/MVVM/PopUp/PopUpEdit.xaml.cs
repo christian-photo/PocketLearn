@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Image = System.Windows.Controls.Image;
 
 namespace PocketLearn.Win.MVVM.PopUp
 {
@@ -38,7 +39,14 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 if (obj is string question)
                 {
-                    QuestionText.Text += $"{question}" + learnCard.CardContent1.Items.fil(x => typeof(x) == typeof(string)).Last();
+                    if (learnCard.CardContent1.Items.Where(x => ((object)x).GetType() == typeof(string)).Last() == obj)
+                    {
+                        QuestionText.Text += $"{question}";
+                    }
+                    else
+                    {
+                        QuestionText.Text += $"{question}\n";
+                    }
                 }
                 else if (obj is Bitmap bmp)
                 {
@@ -47,9 +55,16 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             foreach (object obj in learnCard.CardContent2.Items)
             {
-                if (obj is string question)
+                if (obj is string answer)
                 {
-                    AnswerText.Text += $"{question}" + learnCard.CardContent1.Items.LastOrDefault() ? "" : "\n";
+                    if (learnCard.CardContent2.Items.Where(x => ((object)x).GetType() == typeof(string)).Last() == obj)
+                    {
+                        AnswerText.Text += $"{answer}";
+                    }
+                    else
+                    {
+                        AnswerText.Text += $"{answer}\n";
+                    }
                 }
                 else if (obj is Bitmap bmp)
                 {
@@ -65,12 +80,20 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void AddImage(object sender, RoutedEventArgs e)
         {
-
+            List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
+            foreach (string file in files)
+            {
+                AnswerImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
+            }
         }
 
         private void AddImageAnswer(object sender, RoutedEventArgs e)
         {
-
+            List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
+            foreach (string file in files)
+            {
+                AnswerImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
+            }
         }
 
         private void Accept(object sender, RoutedEventArgs e)
@@ -96,6 +119,11 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

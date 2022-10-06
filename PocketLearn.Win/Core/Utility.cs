@@ -2,6 +2,10 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
+using Microsoft.Win32;
+using System.Windows.Forms;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace PocketLearn.Win.Core
 {
@@ -36,6 +40,27 @@ namespace PocketLearn.Win.Core
 
                 return new Bitmap(bitmap);
             }
+        }
+
+        public static List<string> FileDialog(string filter, string title)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = filter;
+            dialog.Title = title;
+            dialog.Multiselect = true;
+            DialogResult res = dialog.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                return dialog.FileNames.ToList();
+            }
+            return null;
+        }
+
+        public static List<string> ToList(this string[] str)
+        {
+            List<string> list = new List<string>();
+            list.AddRange(str);
+            return list;
         }
     }
 }

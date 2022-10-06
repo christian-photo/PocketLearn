@@ -48,7 +48,6 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             API = new WebAPI(WinConfig.Get());
             CurrentView = HomeVM;
-            new WindowsNotificationSender().SendNotification("Test", NotificationArguments.LEARN);
         }
 
         private ProjectManager CreateProjectManager()
