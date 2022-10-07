@@ -31,7 +31,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                     CardContent1 = new CardContent(new List<dynamic>() { "test" }),
                     CardContent2 = new CardContent(new List<dynamic>() { "test2" }),
                     CardType = CardType.OneWay,
-                    Difficulty = CardDifficulty.None,
+                    Difficulty = CardDifficulty.NotLearned,
                     LastLearnedTime = DateTime.Now
                 };
                 project.Cards.Add(card);
