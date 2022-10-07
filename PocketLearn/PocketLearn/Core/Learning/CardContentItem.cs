@@ -1,11 +1,11 @@
 ﻿namespace PocketLearn.Core.Learning
 {
-    public class CardContentItem<T>
+    public class CardContentItem
     {
         public CardContentItemType Type { get; set; }
-        public T Content { get; set; }
+        public string Content { get; set; }
 
-        public CardContentItem(T content, CardContentItemType type)
+        public CardContentItem(string content, CardContentItemType type)
         {
             this.Content = content;
             this.Type = type;

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PocketLearn.Core.Learning
 {
     public class CardContent
     {
-        public List<dynamic> Items { get; private set; }
-        public CardContent(List<dynamic> items)
+        public List<CardContentItem> Items { get; private set; }
+        public CardContent(List<CardContentItem> items)
         {
             Items = items;
         }

@@ -43,8 +43,6 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
             HomeVM = new HomeVM(ProjectManager);
             EditVM = new EditVM();
-            QuestionVM = new QuestionVM();
-            AnswerVM = new AnswerVM();
 
             API = new WebAPI(WinConfig.Get());
             CurrentView = HomeVM;

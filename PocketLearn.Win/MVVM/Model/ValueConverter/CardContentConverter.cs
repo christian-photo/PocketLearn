@@ -21,20 +21,20 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             };
             foreach (object item in content.Items)
             {
-                if (((CardContentItem<string>)item).Type == CardContentItemType.Image)
+                if (((CardContentItem)item).Type == CardContentItemType.Image)
                 {
                     Image image = new()
                     {
-                        Source = new Bitmap(((CardContentItem<string>)item).Content).ToBitmapImage(),
+                        Source = new Bitmap(((CardContentItem)item).Content).ToBitmapImage(),
                         Margin = new System.Windows.Thickness(2),
                     };
                     container.Children.Add(image);
                 }
-                else if (((CardContentItem<string>)item).Type == CardContentItemType.Text)
+                else if (((CardContentItem)item).Type == CardContentItemType.Text)
                 {
                     TextBlock textBlock = new()
                     {
-                        Text = ((CardContentItem<string>)item).Content,
+                        Text = ((CardContentItem)item).Content,
                         FontSize = 14,
                         Margin = new System.Windows.Thickness(2),
                     };
