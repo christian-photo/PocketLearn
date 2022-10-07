@@ -11,6 +11,29 @@
     DataContext="{Binding HomeVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
     mc:Ignorable="d">
     <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Margin="5"
+            HorizontalAlignment="Stretch"
+            Orientation="Horizontal">
+            <Button
+                Grid.Row="0"
+                Width="40"
+                Height="40"
+                Margin="5,5,2,2"
+                HorizontalAlignment="Right"
+                Background="Gray"
+                BorderThickness="0"
+                Command="{Binding AddProject}"
+                Style="{StaticResource ButtonHover}"
+                ToolTip="Start Learning">
+                <Image Margin="5" Source="{StaticResource Add}" />
+            </Button>
+        </StackPanel>
         <ScrollViewer
             Grid.Row="1"
             IsTabStop="True"

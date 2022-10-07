@@ -1,17 +1,8 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.MVVM.Model;
+using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using Brushes = System.Windows.Media.Brushes;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -38,10 +29,17 @@ namespace PocketLearn.Win.MVVM.ViewModel
             throw new NotImplementedException();
         });
 
+        public RelayCommand AddProject { get; set; }
+
         public HomeVM(ProjectManager projectManager)
         {
             UpdateView(projectManager);
             projectManager.ProjectsChanged += ProjectsChanged;
+
+            AddProject = new RelayCommand(_ =>
+            {
+                new NewProjectPopUp(projectManager).Show();
+            });
         }
 
         private void ProjectsChanged(object sender)

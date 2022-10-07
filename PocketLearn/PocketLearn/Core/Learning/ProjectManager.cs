@@ -38,7 +38,7 @@ namespace PocketLearn.Core.Learning
 
         public static ProjectManager Create(string JsonContent)
         {
-            if (JsonContent == null)
+            if (JsonContent == string.Empty)
             {
                 instance = new ProjectManager();
                 return instance;

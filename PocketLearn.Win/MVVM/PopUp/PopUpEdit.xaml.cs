@@ -37,38 +37,40 @@ namespace PocketLearn.Win.MVVM.PopUp
             InitializeComponent();
             foreach (object obj in learnCard.CardContent1.Items)
             {
-                if (obj is string question)
+                CardContentItem<object> item = (CardContentItem<object>)obj;
+                if (item.Type == CardContentItemType.Text)
                 {
-                    if (learnCard.CardContent1.Items.Where(x => ((object)x).GetType() == typeof(string)).Last() == obj)
+                    if (learnCard.CardContent1.Items.Where(x => ((CardContentItem<object>)x).Type == CardContentItemType.Text).Last() == obj)
                     {
-                        QuestionText.Text += $"{question}";
+                        QuestionText.Text += $"{item.Content}";
                     }
                     else
                     {
-                        QuestionText.Text += $"{question}\n";
+                        QuestionText.Text += $"{item.Content}\n";
                     }
                 }
-                else if (obj is Bitmap bmp)
+                else if (item.Type == CardContentItemType.Image)
                 {
-                    QuestionImages.Items.Add(bmp.ToBitmapImage());
+                    QuestionImages.Items.Add(new Bitmap((string)item.Content).ToBitmapImage());
                 }
             }
             foreach (object obj in learnCard.CardContent2.Items)
             {
-                if (obj is string answer)
+                CardContentItem<object> item = (CardContentItem<object>)obj;
+                if (item.Type == CardContentItemType.Text)
                 {
-                    if (learnCard.CardContent2.Items.Where(x => ((object)x).GetType() == typeof(string)).Last() == obj)
+                    if (learnCard.CardContent2.Items.Where(x => ((CardContentItem<object>)x).Type == CardContentItemType.Text).Last() == obj)
                     {
-                        AnswerText.Text += $"{answer}";
+                        AnswerText.Text += $"{item.Content}";
                     }
                     else
                     {
-                        AnswerText.Text += $"{answer}\n";
+                        AnswerText.Text += $"{item.Content}\n";
                     }
                 }
-                else if (obj is Bitmap bmp)
+                else if (item.Type == CardContentItemType.Image)
                 {
-                    AnswerImages.Items.Add(bmp.ToBitmapImage());
+                    AnswerImages.Items.Add(new Bitmap((string)item.Content).ToBitmapImage());
                 }
             }
         }
@@ -102,20 +104,28 @@ namespace PocketLearn.Win.MVVM.PopUp
             ActiveCard.CardContent2.Items.Clear();
             foreach (string part in QuestionText.Text.Split('\n'))
             {
-                ActiveCard.CardContent1.Items.Add(part);
+                ActiveCard.CardContent1.Items.Add(new CardContentItem<string>(part, CardContentItemType.Text));
             }
-            foreach (BitmapImage bmp in QuestionImages.Items)
+            foreach (Image bmp in QuestionImages.Items)
             {
-                ActiveCard.CardContent1.Items.Add(bmp.ToBitmap());
+                Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
+                Guid imageGuid = Guid.NewGuid();
+                image.Save(System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"));
+
+                ActiveCard.CardContent1.Items.Add(new CardContentItem<string>(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
 
             foreach (string part in AnswerText.Text.Split('\n'))
             {
-                ActiveCard.CardContent2.Items.Add(part);
+                ActiveCard.CardContent2.Items.Add(new CardContentItem<string>(part, CardContentItemType.Text));
             }
-            foreach (BitmapImage bmp in AnswerImages.Items)
+            foreach (Image bmp in AnswerImages.Items)
             {
-                ActiveCard.CardContent2.Items.Add(bmp.ToBitmap());
+                Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
+                Guid imageGuid = Guid.NewGuid();
+                image.Save(System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"));
+
+                ActiveCard.CardContent2.Items.Add(new CardContentItem<string>(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();

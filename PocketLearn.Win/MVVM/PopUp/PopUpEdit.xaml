@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:PocketLearn.Win.MVVM.PopUp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EditPopUp"
-    Width="450"
-    Height="350"
+    Width="650"
+    Height="550"
     Background="DimGray"
     MouseDown="Window_MouseDown"
     WindowStyle="None"
@@ -36,8 +36,8 @@
                     Text="Question" />
                 <TextBox
                     x:Name="QuestionText"
-                    Width="334"
-                    Height="40"
+                    Width="450"
+                    Height="50"
                     Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Vertical">
@@ -98,8 +98,8 @@
                     Text="Answer   " />
                 <TextBox
                     x:Name="AnswerText"
-                    Width="334"
-                    Height="40"
+                    Width="450"
+                    Height="50"
                     Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Vertical">

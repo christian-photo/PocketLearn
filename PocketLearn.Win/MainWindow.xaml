@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:PocketLearn.Win.MVVM.ViewModel"
     Title="PocketLearn"
-    Width="800"
-    Height="450"
+    Width="1280"
+    Height="720"
     Background="DimGray"
     DataContext="{x:Static viewmodel:MainWindowVM.Instance}"
     mc:Ignorable="d">

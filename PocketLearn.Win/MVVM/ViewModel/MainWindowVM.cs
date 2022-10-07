@@ -56,7 +56,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             {
                 return ProjectManager.Create(File.ReadAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json")));
             }
-            return ProjectManager.Create("");
+            return ProjectManager.Create(string.Empty);
         }
     }
 }
