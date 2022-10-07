@@ -15,8 +15,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public HomeVM HomeVM { get; private set; }
         public EditVM EditVM { get; private set; }
-        public QuestionVM QuestionVM { get; private set; }
-        public AnswerVM AnswerVM { get; private set; }
+        public QuestionVM QuestionVM { get; set; }
+        public AnswerVM AnswerVM { get; set; }
 
         public ProjectManager ProjectManager { get; private set; }
         public WebAPI API { get; private set; }

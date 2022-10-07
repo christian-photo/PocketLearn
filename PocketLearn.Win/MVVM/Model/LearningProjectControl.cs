@@ -148,7 +148,9 @@ namespace PocketLearn.Win.MVVM.Model
 
             Learn = new RelayCommand(_ =>
             {
-                throw new NotImplementedException();
+                MainWindowVM.Instance.QuestionVM = new QuestionVM(project);
+                MainWindowVM.Instance.AnswerVM = new AnswerVM(project);
+                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.QuestionVM;
             });
             Edit = new RelayCommand(_ =>
             {
