@@ -10,7 +10,7 @@ namespace PocketLearn.Core.Learning
         public DateTime CreationTime { get; set; }
         public DateTime HasToBeCompleted { get; set; }
         public DateTime LastLearnedTime { get; set; }
-        public List<(TimeSpan, TimeSpan)> LearnTimes { get; set; }
+        public static List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>() { (new TimeSpan(0, 0, 0), new TimeSpan(24, 0, 0)) };
 
         private List<LearnCard> _cards;
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }

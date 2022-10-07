@@ -48,12 +48,18 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void Accept(object sender, RoutedEventArgs e)
         {
-            new LearnProject() 
+            LearnProject project = new LearnProject()
             { 
                 CreationTime = DateTime.Now,
-                
+                HasToBeCompleted = TargetDate.DisplayDate,
+                LastLearnedTime = DateTime.Now,
+                LearnSubject = (LearnSubject)Enum.GetValues(typeof(LearnSubject)).GetValue(Subject.SelectedIndex),
+                ProjectName = ProjectName.Text,
+                ProjectConfig = new ProjectConfig(),
+                Cards = new List<LearnCard>()
             };
-            MainWindowVM.Instance.HomeVM.UpdateView(projectManager);
+            project.InitCards();
+            projectManager.AddProject(project);
             Close();
         }
     }

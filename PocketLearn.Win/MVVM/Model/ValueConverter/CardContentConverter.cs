@@ -21,7 +21,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             };
             foreach (object item in content.Items)
             {
-                if (((CardContentItem<object>)item).Type == CardContentItemType.Image)
+                if (((CardContentItem<string>)item).Type == CardContentItemType.Image)
                 {
                     Image image = new()
                     {
@@ -30,7 +30,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     };
                     container.Children.Add(image);
                 }
-                else if (((CardContentItem<object>)item).Type == CardContentItemType.Text)
+                else if (((CardContentItem<string>)item).Type == CardContentItemType.Text)
                 {
                     TextBlock textBlock = new()
                     {

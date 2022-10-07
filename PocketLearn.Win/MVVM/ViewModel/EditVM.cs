@@ -1,5 +1,6 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.MVVM.Model;
+using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
 
@@ -28,12 +29,11 @@ namespace PocketLearn.Win.MVVM.ViewModel
             {
                 LearnCard card = new()
                 {
-                    CardContent1 = new CardContent(new List<dynamic>() { "test" }),
-                    CardContent2 = new CardContent(new List<dynamic>() { "test2" }),
                     CardType = CardType.OneWay,
                     Difficulty = CardDifficulty.NotLearned,
                     LastLearnedTime = DateTime.Now
                 };
+                new PopUpEdit(project, card).Show();
                 project.Cards.Add(card);
                 project.InitCards();
                 UpdateView(project);
