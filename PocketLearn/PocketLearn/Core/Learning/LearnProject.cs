@@ -139,7 +139,8 @@ namespace PocketLearn.Core.Learning
             switch (activeCard.CardType)
             {
                 case CardType.OneWay:
-                    return (activeCard.CardContent1, activeCard.CardContent2);
+                    activeContents = (activeCard.CardContent1, activeCard.CardContent2);
+                    break;
                 case CardType.TwoWay:
                     Random random = new Random();
                     if (random.Next(0, 2) == 0)
