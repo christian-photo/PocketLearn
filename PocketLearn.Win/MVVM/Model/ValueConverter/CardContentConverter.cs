@@ -14,27 +14,28 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             CardContent content = (CardContent)value;
             StackPanel container = new()
             {
                 Orientation = Orientation.Vertical
             };
-            foreach (object item in content.Items)
+            foreach (CardContentItem item in content.Items)
             {
-                if (((CardContentItem)item).Type == CardContentItemType.Image)
+                if ((item).Type == CardContentItemType.Image)
                 {
                     Image image = new()
                     {
-                        Source = new Bitmap(((CardContentItem)item).Content).ToBitmapImage(),
+                        Source = new Bitmap(System.IO.Path.Combine(directory, item.Content)).ToBitmapImage(),
                         Margin = new System.Windows.Thickness(2),
                     };
                     container.Children.Add(image);
                 }
-                else if (((CardContentItem)item).Type == CardContentItemType.Text)
+                else if ((item).Type == CardContentItemType.Text)
                 {
                     TextBlock textBlock = new()
                     {
-                        Text = ((CardContentItem)item).Content,
+                        Text = item.Content,
                         FontSize = 14,
                         Margin = new System.Windows.Thickness(2),
                     };

@@ -26,10 +26,10 @@
                 <view:EditView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodel:QuestionVM}">
-                <view:QuestionView/>
+                <view:QuestionView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodel:AnswerVM}">
-                <view:AnswerView/>
+                <view:AnswerView />
             </DataTemplate>
 
         </ResourceDictionary>

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,9 +122,20 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             foreach (Image bmp in AnswerImages.Items)
             {
+
+
+
+
+                // TODO: Check if images is already saved
+
+
+
+
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                image.Save(System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"));
+                string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
+                if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+                image.Save(System.IO.Path.Combine(directory, imageGuid.ToString() + ".jpg"));
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }

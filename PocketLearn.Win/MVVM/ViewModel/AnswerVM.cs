@@ -49,7 +49,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
         }
         public void Update()
         {
-            var cardContents = Project.GetActiveCardContents();
+            (CardContent, CardContent) cardContents = Project.GetActiveCardContents();
             QuestionContent = cardContents.Item1;
             AnswerContent = cardContents.Item2;
         }

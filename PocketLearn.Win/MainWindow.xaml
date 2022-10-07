@@ -18,6 +18,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="0" Background="#424242" />
+
         <ContentControl
             Grid.Column="1"
             Margin="5"
