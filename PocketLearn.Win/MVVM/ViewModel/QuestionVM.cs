@@ -16,10 +16,11 @@ namespace PocketLearn.Win.MVVM.ViewModel
             MainWindowVM.Instance.AnswerVM.Update();
         });
 
-        public CardContent QuestionContent { get => QuestionContent;
+        private CardContent _questionContent;
+        public CardContent QuestionContent { get => _questionContent;
             set
             {
-                QuestionContent = value;
+                _questionContent = value;
                 RaisePropertyChanged();
             }
         }

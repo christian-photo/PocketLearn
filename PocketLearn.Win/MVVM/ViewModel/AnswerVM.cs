@@ -9,14 +9,16 @@ namespace PocketLearn.Win.MVVM.ViewModel
 {
     public class AnswerVM : ObservableObject
     {
-        public CardContent QuestionContent { get => QuestionContent; set
+        private CardContent _questionContent;
+        public CardContent QuestionContent { get => _questionContent; set
             {
-                QuestionContent = value;
+                _questionContent = value;
                 RaisePropertyChanged();
             }
         }
-        public CardContent AnswerContent { get => AnswerContent; set { 
-                AnswerContent = value;
+        private CardContent _answerContent;
+        public CardContent AnswerContent { get => _answerContent; set { 
+                _answerContent = value;
                 RaisePropertyChanged();
             } 
         }
