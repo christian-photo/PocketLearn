@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PocketLearn.Core.Learning
 {
@@ -14,8 +13,8 @@ namespace PocketLearn.Core.Learning
 
         public LearnCard()
         {
-            CardContent1 = new CardContent(new List<dynamic>());
-            CardContent2 = new CardContent(new List<dynamic>());
+            CardContent1 = new CardContent(new List<CardContentItem>());
+            CardContent2 = new CardContent(new List<CardContentItem>());
         }
     }
 }

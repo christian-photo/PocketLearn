@@ -12,8 +12,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public LearnProject Project { get; set; }
         public RelayCommand ShowAnswer { get; set; } = new RelayCommand(_ =>
         {
-            MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.AnswerVM;
             MainWindowVM.Instance.AnswerVM.Update();
+            MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.AnswerVM;
         });
 
         private CardContent _questionContent;
@@ -28,13 +28,10 @@ namespace PocketLearn.Win.MVVM.ViewModel
         {
             QuestionContent = Project.ShowNextCard().Item1;
         }
-        public QuestionVM()
-        {
-
-        }
         public QuestionVM(LearnProject project)
         {
             Project = project;
+            NextCard();
         }
     }
 }

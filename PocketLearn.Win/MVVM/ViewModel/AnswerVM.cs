@@ -54,10 +54,6 @@ namespace PocketLearn.Win.MVVM.ViewModel
             AnswerContent = cardContents.Item2;
         }
         LearnProject Project { get; set; }
-        public AnswerVM()
-        {
-
-        }
         public AnswerVM(LearnProject project)
         {
             Project = project;
