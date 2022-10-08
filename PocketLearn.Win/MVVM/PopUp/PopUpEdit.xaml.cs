@@ -101,8 +101,9 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void Accept(object sender, RoutedEventArgs e)
         {
-            ActiveCard.CardContent1.Items.Clear();
-            ActiveCard.CardContent2.Items.Clear();
+            string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
+            ActiveCard.CardContent1.ClearItems(directory);
+            ActiveCard.CardContent2.ClearItems(directory);
             foreach (string part in QuestionText.Text.Split('\n'))
             {
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(part, CardContentItemType.Text));
@@ -122,18 +123,8 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             foreach (Image bmp in AnswerImages.Items)
             {
-
-
-
-
-                // TODO: Check if images is already saved
-
-
-
-
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
                 if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
                 image.Save(System.IO.Path.Combine(directory, imageGuid.ToString() + ".jpg"));
 

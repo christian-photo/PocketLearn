@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
 using Image = System.Windows.Controls.Image;
 
 namespace PocketLearn.Win.MVVM.Model.ValueConverter
@@ -24,10 +23,11 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             {
                 if ((item).Type == CardContentItemType.Image)
                 {
+                    Bitmap bmp = new Bitmap(System.IO.Path.Combine(directory, item.Content));
                     Image image = new()
                     {
-                        Source = new Bitmap(System.IO.Path.Combine(directory, item.Content)).ToBitmapImage(),
-                        Margin = new System.Windows.Thickness(2),
+                        Source = bmp.ToBitmapImage(),
+                        Margin = new System.Windows.Thickness(2)
                     };
                     container.Children.Add(image);
                 }
