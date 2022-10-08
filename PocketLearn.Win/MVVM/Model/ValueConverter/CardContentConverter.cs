@@ -23,7 +23,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             {
                 if ((item).Type == CardContentItemType.Image)
                 {
-                    Bitmap bmp = new Bitmap(System.IO.Path.Combine(directory, item.Content));
+                    Bitmap bmp = new(System.IO.Path.Combine(directory, item.Content));
                     Image image = new()
                     {
                         Source = bmp.ToBitmapImage(),

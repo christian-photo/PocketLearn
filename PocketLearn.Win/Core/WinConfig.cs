@@ -21,6 +21,10 @@ namespace PocketLearn.Public.Core.Config
                 instance = JsonConvert.DeserializeObject<WinConfig>(File.ReadAllText(path));
                 return instance;
             }
+            if (instance is not null)
+            {
+                return instance;
+            }
 
             instance = new WinConfig();
             return instance;

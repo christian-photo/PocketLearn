@@ -17,6 +17,10 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public EditVM EditVM { get; private set; }
         public QuestionVM QuestionVM { get; set; }
         public AnswerVM AnswerVM { get; set; }
+        public OptionsVM OptionsVM { get; set; }
+
+        public RelayCommand HomeVMCommand { get; set; }
+        public RelayCommand OptionsVMCommand { get; set; }
 
         public ProjectManager ProjectManager { get; private set; }
         public WebAPI API { get; private set; }
@@ -43,9 +47,21 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
             HomeVM = new HomeVM(ProjectManager);
             EditVM = new EditVM();
+            OptionsVM = new OptionsVM();
 
             API = new WebAPI(WinConfig.Get());
+
             CurrentView = HomeVM;
+
+            HomeVMCommand = new RelayCommand(_ =>
+            {
+                CurrentView = HomeVM;
+            });
+
+            OptionsVMCommand = new RelayCommand(_ =>
+            {
+                CurrentView = OptionsVM;
+            });
         }
 
         private ProjectManager CreateProjectManager()

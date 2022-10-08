@@ -6,7 +6,6 @@ using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.IO;
 using System.Windows;
-using Windows.Foundation.Collections;
 
 namespace PocketLearn.Win
 {

@@ -14,11 +14,63 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Background="#424242" />
+        <Grid Grid.Column="0" Background="#424242">
+            <StackPanel Orientation="Vertical">
+                <RadioButton
+                    x:Name="Home"
+                    Height="100"
+                    HorizontalContentAlignment="Left"
+                    Command="{Binding HomeVMCommand}"
+                    FontSize="14"
+                    Foreground="White"
+                    IsChecked="True"
+                    Style="{StaticResource RadioButtonTheme}">
+                    <StackPanel Orientation="Vertical">
+                        <Image
+                            Width="40"
+                            Height="40"
+                            Margin="10"
+                            Source="{StaticResource HomeIcon}" />
+                        <TextBlock
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="Home"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    Height="100"
+                    HorizontalContentAlignment="Left"
+                    Command="{Binding OptionsVMCommand}"
+                    FontSize="14"
+                    Foreground="White"
+                    Style="{StaticResource RadioButtonTheme}">
+                    <StackPanel Orientation="Vertical">
+                        <Image
+                            Width="40"
+                            Height="40"
+                            Margin="10"
+                            Source="{StaticResource EditWhite}" />
+                        <TextBlock
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="Options"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </Grid>
 
         <ContentControl
             Grid.Column="1"

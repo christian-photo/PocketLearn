@@ -52,6 +52,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ApplicationIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\OptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\QuestionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +154,7 @@
     <Compile Include="MVVM\ViewModel\EditVM.cs" />
     <Compile Include="MVVM\ViewModel\HomeVM.cs" />
     <Compile Include="MVVM\ViewModel\MainWindowVM.cs" />
+    <Compile Include="MVVM\ViewModel\OptionsVM.cs" />
     <Compile Include="MVVM\ViewModel\QuestionVM.cs" />
     <Compile Include="MVVM\View\AnswerView.xaml.cs">
       <DependentUpon>AnswerView.xaml</DependentUpon>
@@ -156,6 +164,9 @@
     </Compile>
     <Compile Include="MVVM\View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\QuestionView.xaml.cs">
       <DependentUpon>QuestionView.xaml</DependentUpon>
@@ -234,6 +245,9 @@
     <PackageReference Include="ZXing.Net">
       <Version>0.16.8</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ApplicationIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

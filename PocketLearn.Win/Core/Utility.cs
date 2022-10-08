@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Win32;
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using System;
 
 namespace PocketLearn.Win.Core
 {
@@ -61,6 +62,16 @@ namespace PocketLearn.Win.Core
             List<string> list = new List<string>();
             list.AddRange(str);
             return list;
+        }
+
+        public static string BitmapToBase64(this Bitmap bmp)
+        {
+            Bitmap map = new(bmp);
+            using (MemoryStream memory = new())
+            {
+                map.Save(memory, ImageFormat.Jpeg);
+                return Convert.ToBase64String(memory.ToArray());
+            }
         }
     }
 }

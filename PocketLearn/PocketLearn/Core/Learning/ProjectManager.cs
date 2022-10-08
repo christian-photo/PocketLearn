@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace PocketLearn.Core.Learning
@@ -18,8 +17,8 @@ namespace PocketLearn.Core.Learning
 
         public void DeleteProject(LearnProject project) // Delete from List and json file
         {
+            LearnProjects.Remove(project);
             ProjectsChanged.Invoke(this);
-            throw new NotImplementedException();
         }
 
         public void AddProject(LearnProject project) // Add to List and serialize/save to json
