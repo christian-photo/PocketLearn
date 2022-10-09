@@ -12,7 +12,7 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="400" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <StackPanel
@@ -24,7 +24,7 @@
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Background="Transparent"
-                Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}}"
+                Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"
                 FontSize="30"
                 Foreground="White" />
             <ContentControl
@@ -32,7 +32,7 @@
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Background="Transparent"
-                Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}}"
+                Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"
                 FontSize="30"
                 Foreground="White" />
         </StackPanel>

@@ -63,13 +63,13 @@
                 </StackPanel>
                 <ListView
                     x:Name="QuestionImages"
+                    MinHeight="100"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     FlowDirection="LeftToRight"
                     Focusable="False"
-                    ItemsSource="{Binding LearningProjectsView}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
@@ -131,7 +131,6 @@
                     BorderBrush="Transparent"
                     FlowDirection="LeftToRight"
                     Focusable="False"
-                    ItemsSource="{Binding LearningProjectsView}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
