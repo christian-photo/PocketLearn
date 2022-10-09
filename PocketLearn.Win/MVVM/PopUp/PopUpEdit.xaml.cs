@@ -85,6 +85,7 @@ namespace PocketLearn.Win.MVVM.PopUp
         private void AddImage(object sender, RoutedEventArgs e)
         {
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
+            if (files == null) return;
             foreach (string file in files)
             {
                 QuestionImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
@@ -94,6 +95,7 @@ namespace PocketLearn.Win.MVVM.PopUp
         private void AddImageAnswer(object sender, RoutedEventArgs e)
         {
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
+            if (files == null) return;
             foreach (string file in files)
             {
                 AnswerImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });

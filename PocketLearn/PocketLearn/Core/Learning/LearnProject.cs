@@ -39,6 +39,11 @@ namespace PocketLearn.Core.Learning
 
         public void InitCards()
         {
+            hardCards = new List<LearnCard>();
+            mediumCards = new List<LearnCard>();
+            okCards = new List<LearnCard>();
+            easyCards = new List<LearnCard>();
+            notLearnedCards = new List<LearnCard>();
             foreach (var card in Cards)
             {
                 switch (card.Difficulty)
@@ -82,7 +87,8 @@ namespace PocketLearn.Core.Learning
             if (!learnTime) { return false; }
 
             if (easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
-            if ((Cards.Count - easyCards.Count) / ((HasToBeCompleted.Day-CreationTime.Day-1)/Cards.Count) > 1) { return false; }
+            
+            if (((Cards.Count/(HasToBeCompleted.Day-1-CreationTime.Day))*DateTime.Now.Day-CreationTime.Day) > easyCards.Count) { return false; }
             return true;
         }
 
