@@ -9,6 +9,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 {
     public class AnswerVM : ObservableObject
     {
+        LearnProject Project { get; set; }
         private CardContent _questionContent;
         public CardContent QuestionContent { get => _questionContent; set
             {
@@ -41,10 +42,15 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public void Answer(CardDifficulty difficulty)
         {
             Project.CardInput(difficulty);
-            if(Project.ShouldLearn())
+            bool p = Project.ShouldLearn();
+            if(p)
             {
                 MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.QuestionVM;
                 MainWindowVM.Instance.QuestionVM.NextCard();
+            } else
+            {
+                 MainWindowVM.Instance.HomeVM.UpdateView(MainWindowVM.Instance.ProjectManager);
+                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.HomeVM;
             }
         }
         public void Update()
@@ -53,7 +59,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             QuestionContent = cardContents.Item1;
             AnswerContent = cardContents.Item2;
         }
-        LearnProject Project { get; set; }
+        
         public AnswerVM(LearnProject project)
         {
             Project = project;
