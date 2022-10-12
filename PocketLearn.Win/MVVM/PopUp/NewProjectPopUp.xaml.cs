@@ -48,10 +48,8 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void Accept(object sender, RoutedEventArgs e)
         {
-            LearnProject project = new LearnProject()
+            LearnProject project = new LearnProject(DateTime.Now, (DateTime)TargetDate.SelectedDate)
             { 
-                CreationTime = DateTime.Now,
-                HasToBeCompleted = TargetDate.DisplayDate,
                 LastLearnedTime = DateTime.Now,
                 LearnSubject = (LearnSubject)Enum.GetValues(typeof(LearnSubject)).GetValue(Subject.SelectedIndex),
                 ProjectName = ProjectName.Text,

@@ -26,6 +26,12 @@ namespace PocketLearn.Core.Learning
         private LearnCard activeCard;
         private (CardContent, CardContent) activeContents;
 
+        public LearnProject(DateTime CreationDate, DateTime HasToBeCompletet)
+        {
+            this.CreationTime = CreationDate;
+            this.HasToBeCompleted = HasToBeCompletet;
+        }
+
         public void SetCards(List<LearnCard> cards)
         {
             Cards = cards;
@@ -39,11 +45,11 @@ namespace PocketLearn.Core.Learning
 
         public void InitCards()
         {
-            hardCards = new List<LearnCard>();
-            mediumCards = new List<LearnCard>();
-            okCards = new List<LearnCard>();
-            easyCards = new List<LearnCard>();
-            notLearnedCards = new List<LearnCard>();
+            hardCards.Clear();
+            mediumCards.Clear();
+            okCards.Clear();
+            easyCards.Clear();
+            notLearnedCards.Clear();
             foreach (var card in Cards)
             {
                 switch (card.Difficulty)
@@ -70,6 +76,7 @@ namespace PocketLearn.Core.Learning
 
         public bool ShouldLearn()
         {
+            /*
             bool learnTime = false;
             TimeSpan now = DateTime.Now.TimeOfDay;
             foreach (var i in LearnTimes)
@@ -87,8 +94,11 @@ namespace PocketLearn.Core.Learning
             if (!learnTime) { return false; }
 
             if (easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
-            
-            if (((Cards.Count/(HasToBeCompleted.Day-1-CreationTime.Day))*DateTime.Now.Day-CreationTime.Day) > easyCards.Count) { return false; }
+            */
+            double learnedDays = new TimeSpan(DateTime.Now.Ticks).TotalDays-new TimeSpan(CreationTime.Ticks).TotalDays+1;
+            double totoalLearnDays = new TimeSpan(HasToBeCompleted.Ticks).TotalDays- new TimeSpan(CreationTime.Ticks).TotalDays+1;
+            Console.WriteLine(((Cards.Count/ totoalLearnDays)*  learnedDays));
+            if ((Cards.Count / totoalLearnDays) * learnedDays <= easyCards.Count) { return false; }
             return true;
         }
 
@@ -176,9 +186,11 @@ namespace PocketLearn.Core.Learning
 
         public void CardInput(CardDifficulty difficulty)
         {
+            Cards.Remove(activeCard);
             activeCard.Difficulty = difficulty;
             activeCard.LastLearnedTime = DateTime.Now;
             LastLearnedTime = DateTime.Now;
+            Cards.Add(activeCard);
             InitCards();
         }
     }
