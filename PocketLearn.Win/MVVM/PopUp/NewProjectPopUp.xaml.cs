@@ -49,8 +49,8 @@ namespace PocketLearn.Win.MVVM.PopUp
         private void Accept(object sender, RoutedEventArgs e)
         {
             string name = ProjectName.Text;
-            if(MainWindowVM.Instance.ProjectManager.ProjectNameExists(ProjectName.Text)) { name = name+"_"; }
-            LearnProject project = new LearnProject(DateTime.Now, (DateTime)TargetDate.SelectedDate)
+            if(MainWindowVM.Instance.ProjectManager.ProjectNameExists(ProjectName.Text)) { name += "_"; }
+            LearnProject project = new LearnProject(DateTime.Now, (DateTime)TargetDate.SelectedDate, Guid.NewGuid())
             { 
                 LastLearnedTime = DateTime.Now,
                 LearnSubject = (LearnSubject)Enum.GetValues(typeof(LearnSubject)).GetValue(Subject.SelectedIndex),

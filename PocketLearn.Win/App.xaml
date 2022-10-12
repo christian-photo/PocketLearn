@@ -17,6 +17,7 @@
                 <util:SharedResourceDictionary Source="/PocketLearn.Win;component/MVVM/Model/ValueConverter/Converters.xaml" />
                 <ResourceDictionary Source="/PocketLearn.Win;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/PocketLearn.Win;component/Themes/CardControl.xaml" />
+                <ResourceDictionary Source="/PocketLearn.Win;component/Themes/Slider.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
