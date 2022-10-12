@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
+using Brush = System.Windows.Media.Brush;
 using Image = System.Windows.Controls.Image;
 
 namespace PocketLearn.Win.MVVM.Model.ValueConverter
@@ -13,6 +15,16 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            int font = 14;
+            int width = 400;
+            int height = 200;
+            if (parameter != null)
+            {
+                string[] split = parameter.ToString().Split('-'); // 20&400&200 (font, width, height)
+                font = int.Parse(split[0]);
+                width = int.Parse(split[1]);
+                height = int.Parse(split[2]);
+            }
             string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             CardContent content = (CardContent)value;
             StackPanel container = new()
@@ -24,10 +36,18 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                 if ((item).Type == CardContentItemType.Image)
                 {
                     Bitmap bmp = new(System.IO.Path.Combine(directory, item.Content));
+                    int factor = Utility.GetSizeFactor(bmp.Height, height);
+                    int targetwidth = bmp.Width / factor;
+                    if (targetwidth > width)
+                    {
+                        factor = Utility.GetSizeFactor(bmp.Width, width);
+                    }
                     Image image = new()
                     {
                         Source = bmp.ToBitmapImage(),
-                        Margin = new System.Windows.Thickness(2)
+                        Margin = new System.Windows.Thickness(2),
+                        MaxHeight = bmp.Height / factor,
+                        MaxWidth = bmp.Width / factor
                     };
                     container.Children.Add(image);
                 }
@@ -36,8 +56,9 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     TextBlock textBlock = new()
                     {
                         Text = item.Content,
-                        FontSize = 14,
+                        FontSize = font,
                         Margin = new System.Windows.Thickness(2),
+                        Foreground = (Brush)new BrushConverter().ConvertFromString("#FFF")
                     };
                     container.Children.Add(textBlock);
                 }

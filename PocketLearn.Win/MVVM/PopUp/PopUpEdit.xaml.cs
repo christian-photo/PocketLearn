@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Image = System.Windows.Controls.Image;
+using Path = System.IO.Path;
 
 namespace PocketLearn.Win.MVVM.PopUp
 {
@@ -52,7 +53,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
-                    QuestionImages.Items.Add(new Bitmap(item.Content).ToBitmapImage());
+                    QuestionImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }
             foreach (object obj in learnCard.CardContent2.Items)
@@ -71,7 +72,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
-                    AnswerImages.Items.Add(new Bitmap(item.Content).ToBitmapImage());
+                    AnswerImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }
         }
@@ -87,7 +88,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             if (files == null) return;
             foreach (string file in files)
             {
-                AnswerImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
+                QuestionImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
             }
         }
 

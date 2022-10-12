@@ -73,5 +73,10 @@ namespace PocketLearn.Win.Core
                 return Convert.ToBase64String(memory.ToArray());
             }
         }
+
+        public static int GetSizeFactor(int dimension, int targetDimension)
+        {
+            return dimension / targetDimension;
+        }
     }
 }

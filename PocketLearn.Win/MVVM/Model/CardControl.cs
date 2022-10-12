@@ -119,7 +119,6 @@ namespace PocketLearn.Win.MVVM.Model
                 SetValue(LastLearnedTimeProperty, value);
             }
         }
-
         static CardControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CardControl), new FrameworkPropertyMetadata(typeof(CardControl)));
@@ -140,6 +139,13 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 throw new NotImplementedException();
             });
+        }
+
+        private new void PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }
