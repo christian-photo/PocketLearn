@@ -19,16 +19,6 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
         }
 
-        public RelayCommand Learn { get; set; } = new RelayCommand(_ =>
-        {
-            throw new NotImplementedException();
-        });
-
-        public RelayCommand Edit { get; set; } = new RelayCommand(_ =>
-        {
-            throw new NotImplementedException();
-        });
-
         public RelayCommand AddProject { get; set; }
 
         public HomeVM(ProjectManager projectManager)

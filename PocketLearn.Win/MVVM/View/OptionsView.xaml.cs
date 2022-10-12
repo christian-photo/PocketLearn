@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PocketLearn.Win.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace PocketLearn.Win.MVVM.View
         public OptionsView()
         {
             InitializeComponent();
+        }
+
+        private void UpdateProjectSettings(object sender, SelectionChangedEventArgs e)
+        {
+            MainWindowVM.Instance.OptionsVM.UpdateSettings();
+        }
+
+        private void NotLearnedChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MainWindowVM.Instance.OptionsVM.SettingsChanged();
         }
     }
 }

@@ -37,7 +37,8 @@ namespace PocketLearn.Core
                     
                 }
             }
-            notification.SendNotification("Learn now " + learnCount.ToString() + " Projects!", NotificationArguments.LEARN);
+            if (learnCount > 0)
+                notification.SendNotification("Learn now " + learnCount.ToString() + " Projects!", NotificationArguments.LEARN);
             _timer.Start();
         }
     }

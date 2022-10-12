@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PocketLearn.Core.Learning
+﻿namespace PocketLearn.Core.Learning
 {
     public class ProjectConfig
     {
-        public float HardFactor { get; set; }
-        public float MediumFactor { get; set; }
-        public float OKFactor { get; set; }
-        public float EasyFactor { get; set; }
-        public float NotLearnedFactor { get;set; }
+        public float HardFactor { get; set; } = 1f;
+        public float MediumFactor { get; set; } = 2f;
+        public float OKFactor { get; set; } = 5f;
+        public float EasyFactor { get; set; } = 20f;
+        public float NotLearnedFactor { get; set; } = 1.5f;
 
     }
 }
