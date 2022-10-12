@@ -51,6 +51,15 @@ namespace PocketLearn.Core.Learning
             return instance;
         }
 
+        public bool ProjectNameExists(string text)
+        {
+            foreach(var p in LearnProjects)
+            {
+                if(p.ProjectName == text) { return true; }
+            }
+            return false;
+        }
+
         public static LearnProject GetProjectByID(Guid projectID) => instance.LearnProjects.Where(x => x.ProjectID == projectID).FirstOrDefault();
 
         public string Serialize() => JsonConvert.SerializeObject(LearnProjects, Formatting.Indented);
