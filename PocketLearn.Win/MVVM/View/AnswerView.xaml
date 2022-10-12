@@ -42,6 +42,7 @@
             Orientation="Horizontal">
             <Button
                 Grid.Row="1"
+                Foreground="White"
                 Width="120"
                 Height="40"
                 Margin="5,5,2,2"
@@ -53,6 +54,7 @@
                 Style="{StaticResource ButtonHover}" />
             <Button
                 Grid.Row="1"
+                Foreground="White"
                 Width="120"
                 Height="40"
                 Margin="5,5,2,2"
@@ -64,6 +66,7 @@
                 Style="{StaticResource ButtonHover}" />
             <Button
                 Grid.Row="1"
+                Foreground="White"
                 Width="120"
                 Height="40"
                 Margin="5,5,2,2"
@@ -75,6 +78,7 @@
                 Style="{StaticResource ButtonHover}" />
             <Button
                 Grid.Row="1"
+                Foreground="White"
                 Width="120"
                 Height="40"
                 Margin="5,5,2,2"

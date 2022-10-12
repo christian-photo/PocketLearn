@@ -15,7 +15,7 @@ namespace PocketLearn.Core.Learning
         private List<LearnCard> _cards;
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
-        public Guid ProjectID { get; private set; } = Guid.NewGuid();
+        public Guid ProjectID { get; private set; };
 
         private List<LearnCard> hardCards = new List<LearnCard>();
         private List<LearnCard> mediumCards = new List<LearnCard>();
@@ -30,6 +30,7 @@ namespace PocketLearn.Core.Learning
         {
             this.CreationTime = CreationDate;
             this.HasToBeCompleted = HasToBeCompletet;
+            ProjectID = Guid.NewGuid();
         }
 
         public void SetCards(List<LearnCard> cards)
