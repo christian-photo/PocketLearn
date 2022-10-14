@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
 
@@ -26,7 +27,7 @@ namespace PocketLearn.Win.MVVM.PopUp
     /// <summary>
     /// Interaktionslogik für EditPopUp.xaml
     /// </summary>
-    public partial class PopUpEdit : Window
+    public partial class PopUpEdit : UiWindow
     {
         public LearnCard ActiveCard { get; set; }
         public LearnProject LearnProject { get; set; }

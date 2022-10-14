@@ -138,10 +138,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Slider.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Model\LearningProjectControl.cs" />
@@ -226,6 +222,9 @@
     <PackageReference Include="EmbedIO">
       <Version>3.5.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting">
+      <Version>6.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.1.2</Version>
     </PackageReference>
@@ -247,6 +246,9 @@
     <PackageReference Include="Unosquare.Swan.Lite">
       <Version>3.1.0</Version>
     </PackageReference>
+    <PackageReference Include="WPF-UI">
+      <Version>2.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>5.0.0.2515</Version>
     </PackageReference>
@@ -256,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ApplicationIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MVVM\PopUp\ApplicationIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

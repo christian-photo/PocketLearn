@@ -7,6 +7,10 @@ using Microsoft.Win32;
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using System;
+using System.Windows.Navigation;
+using System.Windows;
+using PocketLearn.Win.MVVM.View;
+using Application = System.Windows.Application;
 
 namespace PocketLearn.Win.Core
 {
@@ -77,6 +81,16 @@ namespace PocketLearn.Win.Core
         public static int GetSizeFactor(int dimension, int targetDimension)
         {
             return dimension / targetDimension;
+        }
+
+        /// <summary>
+        /// Sets Active Page
+        /// </summary>
+        /// <param name="pageUri">The URI to the page, e.g. "PocketLearn.Win;component/MVVM/View/HomeView.xaml"</param>
+        public static void NavigateToPage(string pageUri)
+        {
+            NavigationService nav = (Application.Current.MainWindow as MainWindow).RootFrame.NavigationService;
+            nav.Navigate(new Uri(pageUri, UriKind.RelativeOrAbsolute));
         }
     }
 }

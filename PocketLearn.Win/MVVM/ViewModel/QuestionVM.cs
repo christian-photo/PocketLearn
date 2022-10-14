@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public RelayCommand ShowAnswer { get; set; } = new RelayCommand(_ =>
         {
             MainWindowVM.Instance.AnswerVM.Update();
-            MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.AnswerVM;
+            Utility.NavigateToPage(ApplicationConstants.AnswerViewURI);
         });
 
         private CardContent _questionContent;

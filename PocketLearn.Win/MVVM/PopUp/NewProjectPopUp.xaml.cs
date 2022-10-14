@@ -15,13 +15,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace PocketLearn.Win.MVVM.PopUp
 {
     /// <summary>
     /// Interaktionslogik für NewProjectPopUp.xaml
     /// </summary>
-    public partial class NewProjectPopUp : Window
+    public partial class NewProjectPopUp : UiWindow
     {
         ProjectManager projectManager;
         public NewProjectPopUp(ProjectManager manager)

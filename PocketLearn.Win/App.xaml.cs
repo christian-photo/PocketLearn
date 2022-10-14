@@ -1,10 +1,12 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Toolkit.Uwp.Notifications;
 using PocketLearn.Public.Core.Config;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.Core.Notification;
 using PocketLearn.Win.MVVM.ViewModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace PocketLearn.Win
 {

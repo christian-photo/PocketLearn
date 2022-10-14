@@ -29,13 +29,9 @@
             Height="40"
             Margin="5,5,2,2"
             HorizontalAlignment="Center"
-            Background="Gray"
-            BorderThickness="0"
             Command="{Binding ShowAnswer}"
-            FontSize="30"
-            Foreground="White"
-            Style="{StaticResource ButtonHover}">
-            Show Answer
-        </Button>
+            Content="Show Answer"
+            FontSize="25"
+            Foreground="White" />
     </Grid>
 </UserControl>

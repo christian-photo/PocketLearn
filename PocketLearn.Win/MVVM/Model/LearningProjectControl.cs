@@ -1,10 +1,13 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.View;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Xamarin.Forms;
 
 namespace PocketLearn.Win.MVVM.Model
@@ -150,12 +153,13 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 MainWindowVM.Instance.QuestionVM = new QuestionVM(project);
                 MainWindowVM.Instance.AnswerVM = new AnswerVM(project);
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.QuestionVM;
+
+                Utility.NavigateToPage(ApplicationConstants.QuestionViewURI);
             });
             Edit = new RelayCommand(_ =>
             {
                 MainWindowVM.Instance.EditVM.UpdateView(project);
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.EditVM;
+                Utility.NavigateToPage(ApplicationConstants.EditViewURI);
             });
             UUID = project.ProjectID;
         }

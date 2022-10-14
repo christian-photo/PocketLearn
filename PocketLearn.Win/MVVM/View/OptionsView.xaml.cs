@@ -9,9 +9,11 @@ namespace PocketLearn.Win.MVVM.View
     /// </summary>
     public partial class OptionsView : UserControl
     {
+        public static DependencyObject obj;
         public OptionsView()
         {
             InitializeComponent();
+            obj = this;
         }
 
         private void UpdateProjectSettings(object sender, SelectionChangedEventArgs e)
