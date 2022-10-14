@@ -6,41 +6,6 @@
     xmlns:model="clr-namespace:PocketLearn.Win.MVVM.Model"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
-    <Style
-        x:Key="RadioButtonTheme"
-        BasedOn="{StaticResource {x:Type ToggleButton}}"
-        TargetType="{x:Type RadioButton}">
-
-        <Style.Setters>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
-                        <Grid
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="{TemplateBinding Background}">
-
-                            <ContentControl Content="{TemplateBinding Content}" />
-
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
-
-        </Style.Setters>
-
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#333333" />
-            </Trigger>
-        </Style.Triggers>
-
-    </Style>
-
-
     <Style TargetType="{x:Type model:LearningProjectControl}">
         <Style.Resources>
             <converter:DateTimeConverter x:Key="DateTimeConverter" />

@@ -85,6 +85,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public ProjectManager Manager;
 
+        private LearnProject active;
+
 
         public OptionsVM(ProjectManager manager)
         {
@@ -100,22 +102,27 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public void UpdateSettings()
         {
-            LearnProject project = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).First();
-            NotLearnedFactor = project.ProjectConfig.NotLearnedFactor;
-            EasyFactor = project.ProjectConfig.EasyFactor;
-            OKFactor = project.ProjectConfig.OKFactor;
-            MediumFactor = project.ProjectConfig.MediumFactor;
-            HardFactor = project.ProjectConfig.HardFactor;
+            if (active is not null)
+            {
+                SettingsChanged();
+                Manager.LearnProjects.RemoveAll(proj => proj.ProjectID == active.ProjectID);
+                Manager.LearnProjects.Add(active);
+            }
+            active = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).First();
+            NotLearnedFactor = active.ProjectConfig.NotLearnedFactor;
+            EasyFactor = active.ProjectConfig.EasyFactor;
+            OKFactor = active.ProjectConfig.OKFactor;
+            MediumFactor = active.ProjectConfig.MediumFactor;
+            HardFactor = active.ProjectConfig.HardFactor;
         }
 
         public void SettingsChanged()
         {
-            LearnProject project = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).First();
-            project.ProjectConfig.NotLearnedFactor = NotLearnedFactor;
-            project.ProjectConfig.EasyFactor = EasyFactor;
-            project.ProjectConfig.OKFactor = OKFactor;
-            project.ProjectConfig.MediumFactor = MediumFactor;
-            project.ProjectConfig.HardFactor = HardFactor;
+            active.ProjectConfig.NotLearnedFactor = NotLearnedFactor;
+            active.ProjectConfig.EasyFactor = EasyFactor;
+            active.ProjectConfig.OKFactor = OKFactor;
+            active.ProjectConfig.MediumFactor = MediumFactor;
+            active.ProjectConfig.HardFactor = HardFactor;
         }
     }
 }
