@@ -1,5 +1,4 @@
 ﻿using PocketLearn.Win.MVVM.ViewModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace PocketLearn.Win.MVVM.View
@@ -9,11 +8,9 @@ namespace PocketLearn.Win.MVVM.View
     /// </summary>
     public partial class OptionsView : UserControl
     {
-        public static DependencyObject obj;
         public OptionsView()
         {
             InitializeComponent();
-            obj = this;
         }
 
         private void UpdateProjectSettings(object sender, SelectionChangedEventArgs e)
@@ -21,7 +18,7 @@ namespace PocketLearn.Win.MVVM.View
             MainWindowVM.Instance.OptionsVM.UpdateSettings();
         }
 
-        private void NotLearnedChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindowVM.Instance.OptionsVM.SettingsChanged();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace PocketLearn.Core.Learning
@@ -16,7 +17,8 @@ namespace PocketLearn.Core.Learning
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
 
-        public Guid ProjectID { get; set; }
+        [JsonProperty]
+        public Guid ProjectID { get; private set; }
 
         private List<LearnCard> hardCards = new List<LearnCard>();
         private List<LearnCard> mediumCards = new List<LearnCard>();

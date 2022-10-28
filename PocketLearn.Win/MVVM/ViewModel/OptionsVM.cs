@@ -87,6 +87,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         private LearnProject active;
 
+        private ProjectConfig activeConfig;
+
 
         public OptionsVM(ProjectManager manager)
         {
@@ -105,24 +107,31 @@ namespace PocketLearn.Win.MVVM.ViewModel
             if (active is not null)
             {
                 SettingsChanged();
-                Manager.LearnProjects.RemoveAll(proj => proj.ProjectID == active.ProjectID);
-                Manager.LearnProjects.Add(active);
+                active.ProjectConfig = activeConfig;
             }
             active = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).First();
-            NotLearnedFactor = active.ProjectConfig.NotLearnedFactor;
-            EasyFactor = active.ProjectConfig.EasyFactor;
-            OKFactor = active.ProjectConfig.OKFactor;
-            MediumFactor = active.ProjectConfig.MediumFactor;
-            HardFactor = active.ProjectConfig.HardFactor;
+            activeConfig = new ProjectConfig()
+            {
+                EasyFactor = active.ProjectConfig.EasyFactor,
+                HardFactor = active.ProjectConfig.HardFactor,
+                MediumFactor = active.ProjectConfig.MediumFactor,
+                NotLearnedFactor = active.ProjectConfig.OKFactor,
+                OKFactor = active.ProjectConfig.OKFactor
+            };
+            NotLearnedFactor = activeConfig.NotLearnedFactor;
+            EasyFactor = activeConfig.EasyFactor;
+            OKFactor = activeConfig.OKFactor;
+            MediumFactor = activeConfig.MediumFactor;
+            HardFactor = activeConfig.HardFactor;
         }
 
         public void SettingsChanged()
         {
-            active.ProjectConfig.NotLearnedFactor = NotLearnedFactor;
-            active.ProjectConfig.EasyFactor = EasyFactor;
-            active.ProjectConfig.OKFactor = OKFactor;
-            active.ProjectConfig.MediumFactor = MediumFactor;
-            active.ProjectConfig.HardFactor = HardFactor;
+            activeConfig.NotLearnedFactor = NotLearnedFactor;
+            activeConfig.EasyFactor = EasyFactor;
+            activeConfig.OKFactor = OKFactor;
+            activeConfig.MediumFactor = MediumFactor;
+            activeConfig.HardFactor = HardFactor;
         }
     }
 }
