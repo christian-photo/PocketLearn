@@ -15,10 +15,6 @@ namespace PocketLearn.Core.Learning
         private List<LearnCard> _cards;
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
-<<<<<<< HEAD
-=======
-
->>>>>>> 00e93d22dba5256841522ea9ad6aafb5dc5c9ee8
         public Guid ProjectID { get; private set; }
 
         private List<LearnCard> hardCards = new List<LearnCard>();
