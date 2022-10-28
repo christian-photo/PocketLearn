@@ -1,8 +1,11 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
+using PocketLearn.Win.MVVM.View;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {

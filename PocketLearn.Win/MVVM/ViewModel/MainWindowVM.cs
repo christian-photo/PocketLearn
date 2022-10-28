@@ -3,14 +3,9 @@ using PocketLearn.Win.Core;
 using PocketLearn.Win.API;
 using System.IO;
 using PocketLearn.Public.Core.Config;
-using System.Collections.Generic;
 using PocketLearn.Core.Interfaces.Classes;
 using PocketLearn.Core;
-using Wpf.Ui.Common;
-using Wpf.Ui.Controls;
-using System.Collections.ObjectModel;
-using Wpf.Ui.Controls.Interfaces;
-using PocketLearn.Win.MVVM.View;
+using System;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {

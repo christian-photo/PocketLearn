@@ -1,21 +1,12 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
     public class QuestionVM : ObservableObject
     {
         public LearnProject Project { get; set; }
-        public RelayCommand ShowAnswer { get; set; } = new RelayCommand(_ =>
-        {
-            MainWindowVM.Instance.AnswerVM.Update();
-            Utility.NavigateToPage(ApplicationConstants.AnswerViewURI);
-        });
+        public RelayCommand ShowAnswer { get; set; }
 
         private CardContent _questionContent;
         public CardContent QuestionContent { get => _questionContent;
@@ -31,6 +22,11 @@ namespace PocketLearn.Win.MVVM.ViewModel
         }
         public QuestionVM(LearnProject project)
         {
+            ShowAnswer = new RelayCommand(_ =>
+            {
+                MainWindowVM.Instance.AnswerVM.Update();
+                Utility.NavigateToPage(ApplicationConstants.AnswerViewURI);
+            });
             Project = project;
             NextCard();
         }

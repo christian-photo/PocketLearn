@@ -11,6 +11,8 @@ using System.Windows.Navigation;
 using System.Windows;
 using PocketLearn.Win.MVVM.View;
 using Application = System.Windows.Application;
+using PocketLearn.Win.MVVM.ViewModel;
+using static Xamarin.Essentials.Permissions;
 
 namespace PocketLearn.Win.Core
 {
@@ -45,6 +47,34 @@ namespace PocketLearn.Win.Core
 
                 return new Bitmap(bitmap);
             }
+        }
+
+        /// <summary>
+        /// 1L = Lowest Quality
+        /// 25L = Low Quality
+        /// 50L = Medium Quality
+        /// 75L = High Quality
+        /// 100L = Highest Quality
+        /// </summary>
+        /// <returns></returns>
+        public static EncoderParameters GetCompression(long quality = 50L)
+        {
+            var encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+            return encoderParameters;
+        }
+
+        public static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            var codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (var codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
 
         public static List<string> FileDialog(string filter, string title)
@@ -91,6 +121,12 @@ namespace PocketLearn.Win.Core
         {
             NavigationService nav = (Application.Current.MainWindow as MainWindow).RootFrame.NavigationService;
             nav.Navigate(new Uri(pageUri, UriKind.RelativeOrAbsolute));
+        }
+
+        public static void NavigateToPage(Uri pageUri)
+        {
+            NavigationService nav = (Application.Current.MainWindow as MainWindow).RootFrame.NavigationService;
+            nav.Navigate(pageUri);
         }
     }
 }
