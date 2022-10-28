@@ -1,5 +1,6 @@
 ﻿using PocketLearn.Core.Learning;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.View;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
@@ -68,6 +69,19 @@ namespace PocketLearn.Win.MVVM.Model
             set
             {
                 SetValue(EditProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SyncProperty = DependencyProperty.Register(nameof(Sync), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public ICommand Sync
+        {
+            get
+            {
+                return (ICommand)GetValue(SyncProperty);
+            }
+            set
+            {
+                SetValue(SyncProperty, value);
             }
         }
 
@@ -160,6 +174,10 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 MainWindowVM.Instance.EditVM.UpdateView(project);
                 Utility.NavigateToPage(ApplicationConstants.EditViewURI);
+            });
+            Sync = new RelayCommand(_ =>
+            {
+                new SyncPopUp(project).ShowDialog();
             });
             UUID = project.ProjectID;
         }

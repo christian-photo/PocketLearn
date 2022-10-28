@@ -125,6 +125,13 @@
                                     Command="{Binding Edit}"
                                     Icon="Edit16"
                                     ToolTip="Edit" />
+                                <ui:Button
+                                    Width="40"
+                                    Height="40"
+                                    Margin="2,5,2,5"
+                                    Command="{Binding Sync}"
+                                    Icon="Phone16"
+                                    ToolTip="Sync" />
                             </StackPanel>
                         </StackPanel>
                     </Border>

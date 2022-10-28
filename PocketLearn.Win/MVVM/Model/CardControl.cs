@@ -133,7 +133,7 @@ namespace PocketLearn.Win.MVVM.Model
 
             Edit = new RelayCommand(_ =>
             {
-                new PopUpEdit(project, card).Show();
+                new PopUpEdit(project, card).ShowDialog();
             });
             Delete = new RelayCommand(_ =>
             {

@@ -1,5 +1,8 @@
-﻿namespace PocketLearn.Core.Learning
+﻿using System;
+
+namespace PocketLearn.Core.Learning
 {
+    [Serializable]
     public class CardContentItem
     {
         public CardContentItemType Type { get; set; }

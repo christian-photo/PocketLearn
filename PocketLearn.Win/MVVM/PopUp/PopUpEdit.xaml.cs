@@ -79,11 +79,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void AddImage(object sender, RoutedEventArgs e)
         {
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
@@ -137,11 +132,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace PocketLearn.Core.Learning
 {
+    [Serializable]
     public class LearnProject
     {
         public string ProjectName { get; set; }

@@ -13,6 +13,11 @@ using PocketLearn.Win.MVVM.View;
 using Application = System.Windows.Application;
 using PocketLearn.Win.MVVM.ViewModel;
 using static Xamarin.Essentials.Permissions;
+using System.Windows.Media.Animation;
+using System.Runtime.Serialization.Formatters.Binary;
+using QRCoder;
+using System.Net.Sockets;
+using System.Net;
 
 namespace PocketLearn.Win.Core
 {
@@ -127,6 +132,40 @@ namespace PocketLearn.Win.Core
         {
             NavigationService nav = (Application.Current.MainWindow as MainWindow).RootFrame.NavigationService;
             nav.Navigate(pageUri);
+        }
+
+        public static T MakeDeepCopy<T>(this T obj)
+        {
+            T o;
+            using (MemoryStream ms = new())
+            {
+                new BinaryFormatter().Serialize(ms, obj);
+                ms.Seek(0, SeekOrigin.Begin);
+                o = (T)new BinaryFormatter().Deserialize(ms);
+            }
+            return o;
+        }
+
+        public static Bitmap CreateQRCode(string content)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            return qrCode.GetGraphic(20);
+        }
+
+        public static string GetIPv4Address()
+        {
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return null;
         }
     }
 }

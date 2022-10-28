@@ -110,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\PopUp\SyncPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\AnswerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +155,9 @@
     </Compile>
     <Compile Include="MVVM\PopUp\PopUpEdit.xaml.cs">
       <DependentUpon>PopUpEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\PopUp\SyncPopUp.xaml.cs">
+      <DependentUpon>SyncPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\SharedResourceDictionary.cs" />

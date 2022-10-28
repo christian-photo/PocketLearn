@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace PocketLearn.Core.Learning
 {
+    [Serializable]
     public class LearnCard
     {
         public CardContent CardContent1 { get; set; }

@@ -1,11 +1,7 @@
 ﻿using PocketLearn.Core.Learning;
-using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
-using PocketLearn.Win.MVVM.View;
-using System;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -31,7 +27,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             AddProject = new RelayCommand(_ =>
             {
-                new NewProjectPopUp(projectManager).Show();
+                new NewProjectPopUp(projectManager).ShowDialog();
             });
         }
 

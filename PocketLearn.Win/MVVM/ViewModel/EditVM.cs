@@ -33,7 +33,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                     Difficulty = CardDifficulty.NotLearned,
                     LastLearnedTime = DateTime.Now
                 };
-                new PopUpEdit(project, card).Show();
+                new PopUpEdit(project, card).ShowDialog();
                 project.Cards.Add(card);
                 project.InitCards();
                 UpdateView(project);
