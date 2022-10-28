@@ -24,6 +24,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public ProjectManager ProjectManager { get; private set; }
         public WebAPI API { get; private set; }
+        public BackgroundTask BackgroundTask { get; set; }
 
         private object _currentView;
         public object CurrentView
@@ -50,6 +51,9 @@ namespace PocketLearn.Win.MVVM.ViewModel
             OptionsVM = new OptionsVM(ProjectManager);
 
             API = new WebAPI(WinConfig.Get());
+
+            BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
+            BackgroundTask.Start();
 
             CurrentView = HomeVM;
 
