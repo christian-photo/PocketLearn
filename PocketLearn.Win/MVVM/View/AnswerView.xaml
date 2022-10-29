@@ -17,8 +17,9 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.49*" />
+            <ColumnDefinition Width="0.005*" />
+            <ColumnDefinition Width="0.49*" />
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0" Margin="0,20,0,0">
             <ContentControl
@@ -29,7 +30,12 @@
                 FontSize="30"
                 Foreground="White" />
         </ScrollViewer>
-        <ScrollViewer Grid.Column="1" Margin="0,20,0,0">
+        <Rectangle
+            Grid.Column="1"
+            Width="1"
+            VerticalAlignment="Stretch"
+            Fill="DimGray" />
+        <ScrollViewer Grid.Column="2" Margin="0,20,0,0">
             <ContentControl
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
@@ -40,7 +46,7 @@
         </ScrollViewer>
         <StackPanel
             Grid.Row="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             Margin="0,0,0,5"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
