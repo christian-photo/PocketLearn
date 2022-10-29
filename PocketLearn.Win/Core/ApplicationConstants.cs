@@ -22,5 +22,11 @@ namespace PocketLearn.Win.Core
                 return version;
             }
         }
+
+        public static string AnswerViewURI = "PocketLearn.Win;component/MVVM/View/AnswerView.xaml";
+        public static string QuestionViewURI = "PocketLearn.Win;component/MVVM/View/QuestionView.xaml";
+        public static string EditViewURI = "PocketLearn.Win;component/MVVM/View/EditView.xaml";
+        public static string HomeViewURI = "PocketLearn.Win;component/MVVM/View/HomeView.xaml";
+        public static string OptionsViewURI = "PocketLearn.Win;component/MVVM/View/OptionsView.xaml";
     }
 }

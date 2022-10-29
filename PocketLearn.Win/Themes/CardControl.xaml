@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="clr-namespace:PocketLearn.Win.MVVM.Model.ValueConverter"
     xmlns:local="clr-namespace:PocketLearn.Win"
-    xmlns:model="clr-namespace:PocketLearn.Win.MVVM.Model">
+    xmlns:model="clr-namespace:PocketLearn.Win.MVVM.Model"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
     <Style TargetType="{x:Type model:CardControl}">
         <Style.Resources>
@@ -21,17 +22,17 @@
                 x:Key="dropShadow"
                 BlurRadius="13"
                 Direction="315"
-                Color="#636363" />
+                Color="#343434" />
         </Style.Resources>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:CardControl}">
                     <Border
-                        Height="200"
+                        Height="220"
                         Margin="5,5,5,5"
                         HorizontalAlignment="Stretch"
-                        Background="#575757"
+                        Background="#444444"
                         BorderThickness="0"
                         CornerRadius="10"
                         Effect="{StaticResource dropShadow}"
@@ -43,8 +44,14 @@
                             VerticalScrollBarVisibility="Auto">
                             <StackPanel Focusable="False" Orientation="Vertical">
                                 <StackPanel Focusable="False" Orientation="Horizontal">
-                                    <ContentControl Background="Transparent" Content="{Binding CardContent1, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
-                                    <ContentControl Background="Transparent" Content="{Binding CardContent2, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
+                                    <ContentControl
+                                        Margin="10,5,0,0"
+                                        Background="Transparent"
+                                        Content="{Binding CardContent1, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
+                                    <ContentControl
+                                        Margin="20,5,0,0"
+                                        Background="Transparent"
+                                        Content="{Binding CardContent2, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -65,19 +72,24 @@
 
                                 <StackPanel
                                     Margin="3,0,5,5"
+                                    HorizontalAlignment="Stretch"
                                     Focusable="False"
                                     Orientation="Horizontal">
-                                    <Button
-                                        Width="25"
-                                        Height="25"
+                                    <ui:Button
+                                        Width="40"
+                                        Height="40"
                                         Margin="2,5,2,5"
-                                        Background="Gray"
-                                        BorderThickness="0"
                                         Command="{Binding Edit}"
-                                        Style="{StaticResource ButtonHover}"
-                                        ToolTip="Edit">
-                                        <Image Margin="5" Source="{StaticResource Edit}" />
-                                    </Button>
+                                        Icon="Edit16"
+                                        ToolTip="Edit" />
+                                    <ui:Button
+                                        Width="40"
+                                        Height="40"
+                                        Margin="2,5,2,5"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding Delete}"
+                                        Icon="BinFull20"
+                                        ToolTip="Delete" />
                                 </StackPanel>
                             </StackPanel>
                         </ScrollViewer>

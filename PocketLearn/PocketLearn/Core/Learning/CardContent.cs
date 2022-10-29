@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace PocketLearn.Core.Learning
 {
+    [Serializable]
     public class CardContent
     {
         public List<CardContentItem> Items { get; private set; }

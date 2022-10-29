@@ -3,6 +3,7 @@ using PocketLearn.Win.Core;
 using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -25,7 +26,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                 width = int.Parse(split[1]);
                 height = int.Parse(split[2]);
             }
-            string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
+            string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             CardContent content = (CardContent)value;
             StackPanel container = new()
             {
@@ -33,9 +34,13 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             };
             foreach (CardContentItem item in content.Items)
             {
-                if ((item).Type == CardContentItemType.Image)
+                if (((item).Type == CardContentItemType.Image))
                 {
-                    Bitmap bmp = new(System.IO.Path.Combine(directory, item.Content));
+                    if (!File.Exists(Path.Combine(directory, item.Content)))
+                    {
+                        continue;
+                    }
+                    Bitmap bmp = new(Path.Combine(directory, item.Content));
                     int factor = Utility.GetSizeFactor(bmp.Height, height);
                     int targetwidth = bmp.Width / factor;
                     if (targetwidth > width)
