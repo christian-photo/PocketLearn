@@ -3,7 +3,6 @@ using System.Windows;
 using Wpf.Ui.Controls;
 using PocketLearn.Win.Core;
 using PocketLearn.Public.Core.Config;
-using PocketLearn.Win.MVVM.ViewModel;
 using PocketLearn.Win.API;
 
 namespace PocketLearn.Win.MVVM.PopUp
@@ -32,12 +31,12 @@ namespace PocketLearn.Win.MVVM.PopUp
                     card.CardContent2.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
                 }
                 APIHandler.ProjectToSync = tempProject;
-                QrCode.Source = Utility.CreateQRCode($"http://{Utility.GetIPv4Address()}:{WinConfig.Get().Port}/api/GetProject&images=false").ToBitmapImage();
+                QrCode.Source = Utility.CreateQRCode($"http://{Utility.GetIPv4Address()}:{WinConfig.Get().Port}/api/GetProject?images=false").ToBitmapImage();
             }
             else
             {
                 APIHandler.ProjectToSync = syncProject;
-                QrCode.Source = Utility.CreateQRCode($"http://{Utility.GetIPv4Address()}:{WinConfig.Get().Port}/api/GetProject&images=true").ToBitmapImage();
+                QrCode.Source = Utility.CreateQRCode($"http://{Utility.GetIPv4Address()}:{WinConfig.Get().Port}/api/GetProject?images=true").ToBitmapImage();
             }
         }
     }
