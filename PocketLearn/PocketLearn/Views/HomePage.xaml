@@ -1,12 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PocketLearn.Views.HomePage">
+             x:Class="PocketLearn.Views.HomePage"
+             xmlns:model="clr-namespace:PocketLearn.Models">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <CollectionView x:Name="ProjectItemCiew"
+                            ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout x:DataType="model:ProjectItem">
+                            <Label Text="{Binding ProjectName}"/>
+                            <Label Text="{Binding ShouldLearn}"/>
+                            <Label Text="{Binding Subject}"/>
+                            <Label Text="{Binding CreationDate}"/>
+                            <Label Text="{Binding HasToBeCompletesDate}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
