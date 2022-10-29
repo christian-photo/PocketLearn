@@ -69,7 +69,6 @@
                                     TextWrapping="Wrap" />
 
                                 <TextBlock
-                                    Margin="3,2,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -95,7 +94,7 @@
                                     Text="{Binding Subject, Converter={StaticResource LearnSubjectConverter}, ConverterParameter='Subject'}"
                                     TextWrapping="Wrap" />
 
-                                <TextBlock
+                                <!--<TextBlock
                                     Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
@@ -103,8 +102,8 @@
                                     Focusable="False"
                                     FontSize="14"
                                     Foreground="#B0B0B0"
-                                    Text="{Binding ShouldLearn, StringFormat='Should be learned: {0}'}"
-                                    TextWrapping="Wrap" />
+                                    Text="{Binding ShouldLearn, StringFormat='; Should be learned: {0}'}"
+                                    TextWrapping="Wrap" />-->
                             </StackPanel>
 
                             <StackPanel
