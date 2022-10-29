@@ -85,6 +85,19 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
+        public static readonly DependencyProperty DeleteProperty = DependencyProperty.Register(nameof(Delete), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public ICommand Delete
+        {
+            get
+            {
+                return (ICommand)GetValue(DeleteProperty);
+            }
+            set
+            {
+                SetValue(DeleteProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty ProjectNameProperty = DependencyProperty.Register(nameof(ProjectName), typeof(string), typeof(LearningProjectControl), new UIPropertyMetadata(null));
         public string ProjectName
         {
@@ -155,7 +168,7 @@ namespace PocketLearn.Win.MVVM.Model
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
         }
 
-        public LearningProjectControl(LearnProject project)
+        public LearningProjectControl(LearnProject project, ProjectManager manager)
         {
             ProjectName = project.ProjectName;
             CreationTime = project.CreationTime;
@@ -178,6 +191,11 @@ namespace PocketLearn.Win.MVVM.Model
             Sync = new RelayCommand(_ =>
             {
                 new SyncPopUp(project).ShowDialog();
+            });
+            Delete = new RelayCommand(_ =>
+            {
+                project.DeleteAssets();
+                manager.DeleteProject(project);
             });
             UUID = project.ProjectID;
         }

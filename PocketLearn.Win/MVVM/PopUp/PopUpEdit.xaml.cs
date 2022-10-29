@@ -55,6 +55,10 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
+                    if (!File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)))
+                    {
+                        learnCard.CardContent1.Items.Remove(item);
+                    }
                     QuestionImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }
@@ -74,6 +78,10 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
+                    if (!File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)))
+                    {
+                        learnCard.CardContent2.Items.Remove(item);
+                    }
                     AnswerImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }

@@ -41,7 +41,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             List<object> view = new List<object>();
             foreach (LearnProject project in projectManager.LearnProjects)
             {
-                view.Add(new LearningProjectControl(project));
+                view.Add(new LearningProjectControl(project, projectManager));
             }
             LearningProjectsView = view;
         }

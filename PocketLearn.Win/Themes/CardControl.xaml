@@ -44,8 +44,14 @@
                             VerticalScrollBarVisibility="Auto">
                             <StackPanel Focusable="False" Orientation="Vertical">
                                 <StackPanel Focusable="False" Orientation="Horizontal">
-                                    <ContentControl Background="Transparent" Content="{Binding CardContent1, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
-                                    <ContentControl Background="Transparent" Content="{Binding CardContent2, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
+                                    <ContentControl
+                                        Margin="10,5,0,0"
+                                        Background="Transparent"
+                                        Content="{Binding CardContent1, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
+                                    <ContentControl
+                                        Margin="20,5,0,0"
+                                        Background="Transparent"
+                                        Content="{Binding CardContent2, Converter={StaticResource CardContentConverter}, ConverterParameter='14-400-90'}" />
                                 </StackPanel>
 
                                 <StackPanel
@@ -66,6 +72,7 @@
 
                                 <StackPanel
                                     Margin="3,0,5,5"
+                                    HorizontalAlignment="Stretch"
                                     Focusable="False"
                                     Orientation="Horizontal">
                                     <ui:Button
@@ -75,6 +82,14 @@
                                         Command="{Binding Edit}"
                                         Icon="Edit16"
                                         ToolTip="Edit" />
+                                    <ui:Button
+                                        Width="40"
+                                        Height="40"
+                                        Margin="2,5,2,5"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding Delete}"
+                                        Icon="BinFull20"
+                                        ToolTip="Delete" />
                                 </StackPanel>
                             </StackPanel>
                         </ScrollViewer>

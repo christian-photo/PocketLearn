@@ -12,11 +12,36 @@ using System.Runtime.Serialization.Formatters.Binary;
 using QRCoder;
 using System.Net.Sockets;
 using System.Net;
+using PocketLearn.Core.Learning;
 
 namespace PocketLearn.Win.Core
 {
     public static class Utility
     {
+
+        public static void DeleteAssets(this LearnProject proj)
+        {
+            proj.Cards.ForEach(x => x.DeleteAssets());
+        }
+
+        public static void DeleteAssets(this LearnCard card)
+        {
+            foreach (CardContentItem item in card.CardContent1.Items)
+            {
+                if (item.Type != CardContentItemType.Text)
+                {
+                    File.Delete(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                }
+            }
+            foreach (CardContentItem item in card.CardContent2.Items)
+            {
+                if (item.Type != CardContentItemType.Text)
+                {
+                    File.Delete(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                }
+            }
+        }
+
         public static BitmapImage ToBitmapImage(this Bitmap bitmap)
         {
             using (var memory = new MemoryStream())

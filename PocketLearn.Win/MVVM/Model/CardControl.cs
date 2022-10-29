@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
@@ -137,15 +138,9 @@ namespace PocketLearn.Win.MVVM.Model
             });
             Delete = new RelayCommand(_ =>
             {
-                throw new NotImplementedException();
+                card.DeleteAssets();
+                project.Cards.Remove(card);
             });
-        }
-
-        private new void PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            ScrollViewer scv = (ScrollViewer)sender;
-            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
-            e.Handled = true;
         }
     }
 }

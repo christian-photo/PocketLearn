@@ -29,7 +29,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:LearningProjectControl}">
                     <Border
-                        Height="150"
+                        Height="170"
                         Margin="5,15,5,5"
                         HorizontalAlignment="Stretch"
                         Background="#444444"
@@ -56,7 +56,7 @@
                             <StackPanel
                                 Margin="5,2,5,5"
                                 Focusable="False"
-                                Orientation="Horizontal">
+                                Orientation="Vertical">
                                 <TextBlock
                                     Margin="0,0,2,0"
                                     HorizontalAlignment="Left"
@@ -69,7 +69,7 @@
                                     TextWrapping="Wrap" />
 
                                 <TextBlock
-                                    Margin="3,0,0,0"
+                                    Margin="3,2,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -109,6 +109,7 @@
 
                             <StackPanel
                                 Margin="3,0,5,5"
+                                HorizontalAlignment="Stretch"
                                 Focusable="False"
                                 Orientation="Horizontal">
                                 <ui:Button
@@ -132,6 +133,14 @@
                                     Command="{Binding Sync}"
                                     Icon="Phone16"
                                     ToolTip="Sync" />
+                                <ui:Button
+                                    Width="40"
+                                    Height="40"
+                                    Margin="2,5,2,5"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding Delete}"
+                                    Icon="BinFull20"
+                                    ToolTip="Delete" />
                             </StackPanel>
                         </StackPanel>
                     </Border>

@@ -14,13 +14,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
-        <StackPanel
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Stretch"
-            Orientation="Vertical">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" Margin="0,20,0,0">
             <ContentControl
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
@@ -28,17 +28,20 @@
                 Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"
                 FontSize="30"
                 Foreground="White" />
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1" Margin="0,20,0,0">
             <ContentControl
-                Margin="0,30,0,0"
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Background="Transparent"
                 Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"
                 FontSize="30"
                 Foreground="White" />
-        </StackPanel>
+        </ScrollViewer>
         <StackPanel
             Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="0,0,0,5"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <ui:Button

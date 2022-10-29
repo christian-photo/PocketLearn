@@ -23,7 +23,6 @@
             Height="40"
             Margin="5,5,2,2"
             HorizontalAlignment="Left"
-            Background="Gray"
             BorderThickness="0"
             Command="{Binding AddCard}"
             Icon="Add28"
