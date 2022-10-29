@@ -49,6 +49,7 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void Accept(object sender, RoutedEventArgs e)
         {
+            if( new TimeSpan(((DateTime)TargetDate.SelectedDate).Ticks).TotalDays <= new TimeSpan(DateTime.Now.Ticks).TotalDays) { return; }
             string name = ProjectName.Text;
             if(MainWindowVM.Instance.ProjectManager.ProjectNameExists(ProjectName.Text)) { name += "_"; }
             LearnProject project = new LearnProject(DateTime.Now, (DateTime)TargetDate.SelectedDate, Guid.NewGuid())
