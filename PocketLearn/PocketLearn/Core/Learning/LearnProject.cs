@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PocketLearn.Core.Learning
 {
+    [Serializable]
     public class LearnProject
     {
         public string ProjectName { get; set; }

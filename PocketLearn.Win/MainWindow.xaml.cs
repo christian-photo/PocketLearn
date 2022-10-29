@@ -20,6 +20,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
+using Wpf.Ui.Controls.Interfaces;
+using Wpf.Ui.Mvvm.Contracts;
 using Path = System.IO.Path;
 
 namespace PocketLearn.Win
@@ -27,12 +30,14 @@ namespace PocketLearn.Win
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UiWindow
     {
+        public static DependencyObject DepObject;
         public MainWindow()
         {
             new MainWindowVM();
             InitializeComponent();
+            DepObject = this;
 
             this.PreviewKeyDown += MainWindow_PreviewKeyDown;
         }

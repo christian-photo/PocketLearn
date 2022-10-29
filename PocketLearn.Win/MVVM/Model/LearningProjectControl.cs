@@ -1,10 +1,14 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.PopUp;
+using PocketLearn.Win.MVVM.View;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Xamarin.Forms;
 
 namespace PocketLearn.Win.MVVM.Model
@@ -65,6 +69,32 @@ namespace PocketLearn.Win.MVVM.Model
             set
             {
                 SetValue(EditProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SyncProperty = DependencyProperty.Register(nameof(Sync), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public ICommand Sync
+        {
+            get
+            {
+                return (ICommand)GetValue(SyncProperty);
+            }
+            set
+            {
+                SetValue(SyncProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty DeleteProperty = DependencyProperty.Register(nameof(Delete), typeof(ICommand), typeof(LearningProjectControl), new UIPropertyMetadata(null));
+        public ICommand Delete
+        {
+            get
+            {
+                return (ICommand)GetValue(DeleteProperty);
+            }
+            set
+            {
+                SetValue(DeleteProperty, value);
             }
         }
 
@@ -138,7 +168,7 @@ namespace PocketLearn.Win.MVVM.Model
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LearningProjectControl), new FrameworkPropertyMetadata(typeof(LearningProjectControl)));
         }
 
-        public LearningProjectControl(LearnProject project)
+        public LearningProjectControl(LearnProject project, ProjectManager manager)
         {
             ProjectName = project.ProjectName;
             CreationTime = project.CreationTime;
@@ -150,12 +180,22 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 MainWindowVM.Instance.QuestionVM = new QuestionVM(project);
                 MainWindowVM.Instance.AnswerVM = new AnswerVM(project);
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.QuestionVM;
+
+                Utility.NavigateToPage(ApplicationConstants.QuestionViewURI);
             });
             Edit = new RelayCommand(_ =>
             {
                 MainWindowVM.Instance.EditVM.UpdateView(project);
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.EditVM;
+                Utility.NavigateToPage(ApplicationConstants.EditViewURI);
+            });
+            Sync = new RelayCommand(_ =>
+            {
+                new SyncPopUp(project).ShowDialog();
+            });
+            Delete = new RelayCommand(_ =>
+            {
+                project.DeleteAssets();
+                manager.DeleteProject(project);
             });
             UUID = project.ProjectID;
         }

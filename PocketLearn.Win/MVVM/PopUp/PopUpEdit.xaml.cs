@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
 
@@ -26,7 +28,7 @@ namespace PocketLearn.Win.MVVM.PopUp
     /// <summary>
     /// Interaktionslogik für EditPopUp.xaml
     /// </summary>
-    public partial class PopUpEdit : Window
+    public partial class PopUpEdit : UiWindow
     {
         public LearnCard ActiveCard { get; set; }
         public LearnProject LearnProject { get; set; }
@@ -53,6 +55,10 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
+                    if (!File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)))
+                    {
+                        learnCard.CardContent1.Items.Remove(item);
+                    }
                     QuestionImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }
@@ -72,14 +78,13 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 else if (item.Type == CardContentItemType.Image)
                 {
+                    if (!File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)))
+                    {
+                        learnCard.CardContent2.Items.Remove(item);
+                    }
                     AnswerImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
                 }
             }
-        }
-
-        private void CloseWindow(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void AddImage(object sender, RoutedEventArgs e)
@@ -115,7 +120,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                image.Save(System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"));
+                image.Save(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
 
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
@@ -129,17 +134,12 @@ namespace PocketLearn.Win.MVVM.PopUp
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
                 if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
-                image.Save(System.IO.Path.Combine(directory, imageGuid.ToString() + ".jpg"));
+                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
     }
 }

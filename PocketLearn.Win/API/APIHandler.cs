@@ -3,7 +3,6 @@ using EmbedIO.Routing;
 using EmbedIO.WebApi;
 using PocketLearn.Core.Learning;
 using PocketLearn.Win.Core;
-using PocketLearn.Win.MVVM.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,29 +13,35 @@ namespace PocketLearn.Win.API
 {
     public class APIHandler : WebApiController
     {
-        [Route(HttpVerbs.Get, "/GetData")] // http://localhost:{WinConfig.Get().Port}4242/api + /GetData
-        public List<LearnProject> GetLearnProjects()
+        public static LearnProject ProjectToSync { get; set; }
+
+        [Route(HttpVerbs.Get, "/GetProject")] // http://localhost:{WinConfig.Get().Port}/api + /GetProject
+        public object GetLearnProject([QueryField] bool images = false)
         {
-            return MainWindowVM.Instance.ProjectManager.LearnProjects;
+            if (ProjectToSync is null)
+            {
+                return new Hashtable() { { "Error", "NO-PROJECT" } };
+            }
+            if (images)
+            {
+                return new List<object>() { ProjectToSync, GetImages(ProjectToSync) };
+            }
+            return ProjectToSync;
         }
 
-        [Route(HttpVerbs.Get, "/GetImages")]
-        public Hashtable GetImages() // returns a hashtable of the image name and images base64 encoded
+        public Hashtable GetImages(LearnProject project) // returns a hashtable of the image name and images base64 encoded
         {
             string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             Hashtable images = new();
-            foreach (LearnProject project in MainWindowVM.Instance.ProjectManager.LearnProjects)
+            foreach (LearnCard card in project.Cards)
             {
-                foreach (LearnCard card in project.Cards)
+                foreach (CardContentItem item in card.CardContent1.Items.Where(x => x.Type == CardContentItemType.Image))
                 {
-                    foreach (CardContentItem item in card.CardContent1.Items.Where(x => x.Type == CardContentItemType.Image))
-                    {
-                        images.Add(item.Content, new Bitmap(Path.Combine(directory, item.Content)).BitmapToBase64());
-                    }
-                    foreach (CardContentItem item in card.CardContent2.Items.Where(x => x.Type == CardContentItemType.Image))
-                    {
-                        images.Add(item.Content, new Bitmap(Path.Combine(directory, item.Content)).BitmapToBase64());
-                    }
+                    images.Add(item.Content, new Bitmap(Path.Combine(directory, item.Content)).BitmapToBase64());
+                }
+                foreach (CardContentItem item in card.CardContent2.Items.Where(x => x.Type == CardContentItemType.Image))
+                {
+                    images.Add(item.Content, new Bitmap(Path.Combine(directory, item.Content)).BitmapToBase64());
                 }
             }
             return images;

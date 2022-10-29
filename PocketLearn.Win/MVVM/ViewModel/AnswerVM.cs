@@ -1,9 +1,11 @@
 ﻿using PocketLearn.Core.Learning;
+using PocketLearn.Win.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -45,12 +47,12 @@ namespace PocketLearn.Win.MVVM.ViewModel
             bool p = Project.ShouldLearn();
             if(p)
             {
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.QuestionVM;
+                Utility.NavigateToPage(ApplicationConstants.QuestionViewURI);
                 MainWindowVM.Instance.QuestionVM.NextCard();
             } else
             {
-                 MainWindowVM.Instance.HomeVM.UpdateView(MainWindowVM.Instance.ProjectManager);
-                MainWindowVM.Instance.CurrentView = MainWindowVM.Instance.HomeVM;
+                MainWindowVM.Instance.HomeVM.UpdateView(MainWindowVM.Instance.ProjectManager);
+                Utility.NavigateToPage(ApplicationConstants.HomeViewURI);
             }
         }
         public void Update()
