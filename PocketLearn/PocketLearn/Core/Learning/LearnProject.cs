@@ -104,7 +104,7 @@ namespace PocketLearn.Core.Learning
             double learnedDays = new TimeSpan(DateTime.Now.Ticks).TotalDays-new TimeSpan(CreationTime.Ticks).TotalDays+1;
             double totoalLearnDays = new TimeSpan(HasToBeCompleted.Ticks).TotalDays- new TimeSpan(CreationTime.Ticks).TotalDays+1;
             Console.WriteLine(((Cards.Count/ totoalLearnDays)*  learnedDays));
-            if ((Cards.Count / totoalLearnDays) * learnedDays <= easyCards.Count) { return false; }
+            if ((Cards.Count / totoalLearnDays) * learnedDays <= easyCards.Count + okCards.Count/2) { return false; }
             return true;
         }
 
