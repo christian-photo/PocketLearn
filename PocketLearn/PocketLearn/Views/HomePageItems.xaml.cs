@@ -1,21 +1,20 @@
-﻿using PocketLearn.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PocketLearn.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class HomePageItems : ContentPage
     {
-        public LoginPage()
+        public HomePageItems()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }
