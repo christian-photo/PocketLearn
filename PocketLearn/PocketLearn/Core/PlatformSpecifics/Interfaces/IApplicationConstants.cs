@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PocketLearn.Core.Interfaces
+namespace PocketLearn.Core.PlatformSpecifics.Interfaces
 {
     public interface IApplicationConstants
     {

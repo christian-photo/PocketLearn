@@ -11,8 +11,8 @@ using System.Text;
 using Xamarin.Forms;
 using static Android.Telephony.CarrierConfigManager;
 using System.IO;
-using PocketLearn.Core.Interfaces;
-using PocketLearn.Droid;
+using PocketLearn.Core.PlatformSpecifics.Interfaces;
+using PocketLearn.Core.PlatformSpecifics;
 
 namespace PocketLearn.ViewModels
 {
@@ -24,7 +24,6 @@ namespace PocketLearn.ViewModels
 
         public HomeViewModel Instance { get; }
 
-        public IApplicationConstants ApplicationConstants { get; }
         public BackgroundTask BackgroundTask { get; }
         public ProjectManager ProjectManager { get; }
 
@@ -36,16 +35,16 @@ namespace PocketLearn.ViewModels
 
             Instance = this;
 
-            ApplicationConstants = new AndroidConstants();
-
             ProjectManager = CreateProjectManager();
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
                 project.InitCards();
             }
 
-            BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
+            BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
             BackgroundTask.Start();
+
+            App.PlatformMediator.NotificationSender.SendNotification("asf", NotificationArguments.LEARN);
         }
 
         void OnItemTapped(ProjectItem item)
@@ -57,9 +56,9 @@ namespace PocketLearn.ViewModels
 
         private ProjectManager CreateProjectManager()
         {
-            if (File.Exists(Path.Combine(ApplicationConstants.GetDataPath(), "Projects.json")))
+            if (File.Exists(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")))
             {
-                return ProjectManager.Create(File.ReadAllText(Path.Combine(ApplicationConstants.GetDataPath(), "Projects.json")));
+                return ProjectManager.Create(File.ReadAllText(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")));
             }
             return ProjectManager.Create(string.Empty);
         }
