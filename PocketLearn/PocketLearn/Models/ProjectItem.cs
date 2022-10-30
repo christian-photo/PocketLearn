@@ -13,5 +13,6 @@ namespace PocketLearn.Models
         public bool ShouldLearn { get; set; }
         public string ProjectName { get; set; }
 
+        public LearnProject Project { get; set; }
     }
 }
