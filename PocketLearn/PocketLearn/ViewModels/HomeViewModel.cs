@@ -23,7 +23,7 @@ namespace PocketLearn.ViewModels
         public Command<ProjectItem> ProjectItemTapped { get; }
 
         public HomeViewModel Instance { get; }
-
+        public LearnProject abc { get; set; }
         public BackgroundTask BackgroundTask { get; }
         public ProjectManager ProjectManager { get; }
 
@@ -39,6 +39,11 @@ namespace PocketLearn.ViewModels
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
                 project.InitCards();
+                ProjectItems.Add(new ProjectItem()
+                {
+                    Project = project,
+                    ShouldLearn = project.ShouldLearn()
+                });
             }
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
@@ -49,7 +54,7 @@ namespace PocketLearn.ViewModels
         {
             if (item == null)
                 return;
-            //TODO got to learn view
+            //TODO go to learn view
         }
 
         private ProjectManager CreateProjectManager()

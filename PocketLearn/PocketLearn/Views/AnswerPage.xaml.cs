@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace PocketLearn.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePageItems : ContentPage
+    public partial class AnswerPage : ContentPage
     {
-        public HomePageItems()
+        public AnswerPage()
         {
             InitializeComponent();
         }

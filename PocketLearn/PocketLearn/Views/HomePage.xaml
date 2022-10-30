@@ -10,11 +10,11 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout x:DataType="model:ProjectItem">
-                            <Label Text="{Binding ProjectName}"/>
+                            <Label Text="{Binding Project.ProjectName}"/>
                             <Label Text="{Binding ShouldLearn}"/>
-                            <Label Text="{Binding Subject}"/>
-                            <Label Text="{Binding CreationDate}"/>
-                            <Label Text="{Binding HasToBeCompletesDate}"/>
+                            <Label Text="{Binding Project.LearnSubject}"/>
+                            <Label Text="{Binding Project.CreationTime}"/>
+                            <Label Text="{Binding Project.HasToBeCompleted}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
