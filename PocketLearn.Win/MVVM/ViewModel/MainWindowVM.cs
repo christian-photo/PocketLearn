@@ -5,6 +5,8 @@ using PocketLearn.Public.Core.Config;
 using PocketLearn.Core.Interfaces.Classes;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Shared.Core;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -22,9 +24,12 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public WebAPI API { get; private set; }
         public BackgroundTask BackgroundTask { get; set; }
 
+        public static TaskScheduler UIContext;
+
         public MainWindowVM()
         {
             Instance = this;
+            UIContext = TaskScheduler.FromCurrentSynchronizationContext();
 
             ProjectManager = CreateProjectManager();
             foreach (LearnProject project in ProjectManager.LearnProjects)
@@ -38,7 +43,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             API = new WebAPI(WinConfig.Get());
 
             BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
-            BackgroundTask.Start();
+            BackgroundTask.Start(1);
         }
 
         private ProjectManager CreateProjectManager()

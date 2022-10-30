@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using Environment = System.Environment;
 
-namespace PocketLearn.Core.PlatformSpecifics
+namespace PocketLearn.Droid.Platform
 {
     public class AndroidConstants : IApplicationConstants
     {
