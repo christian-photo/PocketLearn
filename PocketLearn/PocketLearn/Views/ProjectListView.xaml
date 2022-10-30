@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:PocketLearn.Models" xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+             x:Class="PocketLearn.Views.ProjectListView"
+             x:DataType="viewmodel:ProjectListViewModel">
+  <ContentView.Content>
+      <StackLayout>
+            <Label Text="tasg"/>
+            <CollectionView x:Name="ProjectItem"
+                            ItemsSource="{Binding ProjectItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout x:DataType="model:ProjectItem">
+                            <Label Text="{Binding Project.ProjectName}"/>
+                            <Label Text="{Binding ShouldLearn}"/>
+                            <Label Text="{Binding Project.LearnSubject}"/>
+                            <Label Text="{Binding Project.CreationTime}"/>
+                            <Label Text="{Binding Project.HasToBeCompleted}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
