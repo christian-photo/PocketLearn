@@ -1,4 +1,4 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using System;
 using System.Drawing;

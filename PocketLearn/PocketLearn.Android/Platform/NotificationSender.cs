@@ -1,13 +1,10 @@
-﻿using PocketLearn.Core.Interfaces;
-using PocketLearn.Core;
-using Android.App;
-using Android.Media;
+﻿using Android.App;
 using System;
-using PocketLearn.Droid;
-using Android.Content;
 using Android.Support.V4.App;
+using PocketLearn.Shared.Core.Interfaces;
+using PocketLearn.Shared.Core;
 
-namespace PlatformMediator.PocketLearn.Droid.Platform
+namespace PocketLearn.Droid.Platform
 {
     public class AndroidNotificationSender : INotificationSender
     {

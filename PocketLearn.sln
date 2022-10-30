@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketLearn", "PocketLearn\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Win", "PocketLearn.Win\PocketLearn.Win.csproj", "{ED28D556-5AE4-40E3-A830-58276F033748}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Shared", "PocketLearn.Shared\PocketLearn.Shared.csproj", "{B22B4137-CE78-492B-9C61-D264AB9473DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,22 @@ Global
 		{ED28D556-5AE4-40E3-A830-58276F033748}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{ED28D556-5AE4-40E3-A830-58276F033748}.Release|x64.Win.ActiveCfg = Release|x64
 		{ED28D556-5AE4-40E3-A830-58276F033748}.Release|x64.Win.Build.0 = Release|x64
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|x64.Win.ActiveCfg = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Debug|x64.Win.Build.0 = Debug|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|iPhone.Build.0 = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|x64.Win.ActiveCfg = Release|Any CPU
+		{B22B4137-CE78-492B-9C61-D264AB9473DE}.Release|x64.Win.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

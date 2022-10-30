@@ -1,11 +1,9 @@
-﻿using PocketLearn.Core.Interfaces;
-using PocketLearn.Core.Learning;
-using System;
+﻿using PocketLearn.Shared.Core.Interfaces;
+using PocketLearn.Shared.Core.Learning;
 using System.Collections.Generic;
-using System.Text;
 using System.Timers;
 
-namespace PocketLearn.Core
+namespace PocketLearn.Shared.Core
 {
     public class BackgroundTask
     {
@@ -18,9 +16,9 @@ namespace PocketLearn.Core
             manager = projectmanager;
         }
 
-        public void Start()
+        public void Start(int interval = 5)
         {
-            _timer = new Timer(5 * 60 * 1000); // every 5 minutes
+            _timer = new Timer(interval * 60 * 1000); // every 5 minutes
             _timer.Elapsed += RequestLearnIfNeeded;
             _timer.Start();
         }
@@ -28,16 +26,16 @@ namespace PocketLearn.Core
         private void RequestLearnIfNeeded(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
-            int learnCount = 0;
+            List<LearnProject> projects = new List<LearnProject>();
             foreach (LearnProject project in manager.LearnProjects)
             {
                 if (project.ShouldLearn())
                 {
-                    learnCount++;
+                    projects.Add(project);
                 }
             }
-            if (learnCount > 0)
-                notification.SendNotification("Learn now " + learnCount.ToString() + " Projects!", NotificationArguments.LEARN);
+            foreach (LearnProject proj in projects)
+                notification.SendNotification($"Learn now {proj.ProjectName}!", NotificationArguments.LEARN, proj.ProjectID);
             _timer.Start();
         }
 

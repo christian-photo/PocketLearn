@@ -1,7 +1,7 @@
 ﻿using EmbedIO;
 using EmbedIO.Routing;
 using EmbedIO.WebApi;
-using PocketLearn.Core.Learning;
+using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using System.Collections;
 using System.Collections.Generic;

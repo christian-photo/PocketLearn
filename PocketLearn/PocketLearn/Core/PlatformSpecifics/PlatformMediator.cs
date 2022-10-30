@@ -1,9 +1,5 @@
-﻿using PocketLearn.Core.Interfaces;
-using PocketLearn.Core.PlatformSpecifics.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using PocketLearn.Core.PlatformSpecifics.Interfaces;
+using PocketLearn.Shared.Core.Interfaces;
 
 namespace PocketLearn.Core.PlatformSpecifics
 {

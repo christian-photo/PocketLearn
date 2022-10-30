@@ -1,7 +1,5 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PocketLearn.Models
 {

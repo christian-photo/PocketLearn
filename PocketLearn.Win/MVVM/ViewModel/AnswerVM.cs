@@ -1,11 +1,5 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {

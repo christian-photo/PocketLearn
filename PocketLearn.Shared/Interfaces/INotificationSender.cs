@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PocketLearn.Core.Interfaces
+namespace PocketLearn.Shared.Core.Interfaces
 {
     public interface INotificationSender
     {

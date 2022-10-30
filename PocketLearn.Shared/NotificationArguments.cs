@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PocketLearn.Core
+namespace PocketLearn.Shared.Core
 {
     public class NotificationArguments
     {

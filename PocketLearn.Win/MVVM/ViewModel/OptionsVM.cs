@@ -1,4 +1,4 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PocketLearn.Core.Learning
+namespace PocketLearn.Shared.Core.Learning
 {
     public enum LearnSubject
     {

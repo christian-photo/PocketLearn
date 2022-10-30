@@ -1,15 +1,11 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.PopUp;
-using PocketLearn.Win.MVVM.View;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using Xamarin.Forms;
 
 namespace PocketLearn.Win.MVVM.Model
 {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using PocketLearn.Shared.Core;
+using PocketLearn.Shared.Core.Interfaces;
 using System;
 
 namespace PocketLearn.Core.Interfaces.Classes

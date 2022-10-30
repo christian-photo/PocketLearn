@@ -1,18 +1,9 @@
-﻿using Android.Icu.Text;
-using Android.Net.Vcn;
-using Android.Net.Wifi.Hotspot2.Pps;
-using PocketLearn.Core.Learning;
-using PocketLearn.Core;
-using PocketLearn.Models;
-using System;
-using System.Collections.Generic;
+﻿using PocketLearn.Models;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
-using static Android.Telephony.CarrierConfigManager;
 using System.IO;
-using PocketLearn.Core.PlatformSpecifics.Interfaces;
-using PocketLearn.Core.PlatformSpecifics;
+using PocketLearn.Shared.Core;
+using PocketLearn.Shared.Core.Learning;
 
 namespace PocketLearn.ViewModels
 {

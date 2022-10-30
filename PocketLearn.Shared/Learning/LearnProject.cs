@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PocketLearn.Core.Learning
+namespace PocketLearn.Shared.Core.Learning
 {
     [Serializable]
     public class LearnProject
