@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PocketLearn.Core.Learning
+namespace PocketLearn.Shared.Core.Learning
 {
     public enum CardDifficulty
     {

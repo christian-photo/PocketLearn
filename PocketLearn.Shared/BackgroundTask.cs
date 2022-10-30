@@ -1,11 +1,8 @@
-﻿using PocketLearn.Core.Interfaces;
-using PocketLearn.Core.Learning;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PocketLearn.Shared.Core.Interfaces;
+using PocketLearn.Shared.Core.Learning;
 using System.Timers;
 
-namespace PocketLearn.Core
+namespace PocketLearn.Shared.Core
 {
     public class BackgroundTask
     {

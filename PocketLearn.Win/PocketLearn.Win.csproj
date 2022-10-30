@@ -228,12 +228,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PocketLearn\PocketLearn\PocketLearn.csproj">
-      <Project>{2cba5d59-ff85-46cf-9add-ce7198d78e03}</Project>
-      <Name>PocketLearn</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 und x64%29</ProductName>
@@ -279,6 +273,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MVVM\PopUp\ApplicationIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PocketLearn.Shared\PocketLearn.Shared.csproj">
+      <Project>{b22b4137-ce78-492b-9c61-d264ab9473de}</Project>
+      <Name>PocketLearn.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

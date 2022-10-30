@@ -1,4 +1,4 @@
-﻿using PocketLearn.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
 using System;

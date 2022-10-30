@@ -1,6 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
-using PocketLearn.Core;
-using PocketLearn.Core.Learning;
+using PocketLearn.Shared.Core;
+using PocketLearn.Shared.Core.Learning;
 using System;
 
 namespace PocketLearn.Win.Core.Notification

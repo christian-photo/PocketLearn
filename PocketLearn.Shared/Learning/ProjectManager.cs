@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PocketLearn.Core.Learning
+namespace PocketLearn.Shared.Core.Learning
 {
     public class ProjectManager
     {

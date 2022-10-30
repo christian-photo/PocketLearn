@@ -1,11 +1,10 @@
-﻿using PocketLearn.Core.Learning;
-using PocketLearn.Win.Core;
+﻿using PocketLearn.Win.Core;
 using PocketLearn.Win.API;
 using System.IO;
 using PocketLearn.Public.Core.Config;
 using PocketLearn.Core.Interfaces.Classes;
-using PocketLearn.Core;
-using System;
+using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Shared.Core;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {

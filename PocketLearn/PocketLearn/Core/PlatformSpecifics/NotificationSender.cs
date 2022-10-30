@@ -1,11 +1,6 @@
-﻿using Android.App;
-using Android.Content;
-using Android.Media;
-using Android;
-using PocketLearn.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using PocketLearn.Shared.Core.Interfaces;
+using PocketLearn.Shared.Core;
 
 namespace PocketLearn.Core.PlatformSpecifics
 {

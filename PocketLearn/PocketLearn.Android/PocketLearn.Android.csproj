@@ -116,6 +116,10 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PocketLearn.Shared\PocketLearn.Shared.csproj">
+      <Project>{B22B4137-CE78-492B-9C61-D264AB9473DE}</Project>
+      <Name>PocketLearn.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PocketLearn\PocketLearn.csproj">
       <Project>{45D00915-2516-43ED-8AB4-8E2061E28F42}</Project>
       <Name>PocketLearn</Name>

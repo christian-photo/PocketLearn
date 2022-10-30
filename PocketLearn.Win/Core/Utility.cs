@@ -12,7 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using QRCoder;
 using System.Net.Sockets;
 using System.Net;
-using PocketLearn.Core.Learning;
+using PocketLearn.Shared.Core.Learning;
 
 namespace PocketLearn.Win.Core
 {

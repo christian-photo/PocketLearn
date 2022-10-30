@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace PocketLearn.Core.Learning
+namespace PocketLearn.Shared.Core.Learning
 {
     [Serializable]
     public class CardContent
