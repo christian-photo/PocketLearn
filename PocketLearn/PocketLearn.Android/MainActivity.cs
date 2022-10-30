@@ -13,6 +13,7 @@ using AndroidX.Core.App;
 using Android.Media;
 using PocketLearn.Core.PlatformSpecifics;
 using PlatformMediator.PocketLearn.Droid.Platform;
+using PocketLearn.Core;
 
 namespace PocketLearn.Droid
 {
@@ -41,6 +42,8 @@ namespace PocketLearn.Droid
             {
                 GetCameraPermissionAsync();
             }
+
+            App.PlatformMediator.NotificationSender.SendNotification("asf", NotificationArguments.LEARN);
         }
 
         void GetCameraPermissionAsync()

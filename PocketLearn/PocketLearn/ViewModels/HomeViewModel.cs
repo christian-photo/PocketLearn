@@ -43,8 +43,6 @@ namespace PocketLearn.ViewModels
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
             BackgroundTask.Start();
-
-            App.PlatformMediator.NotificationSender.SendNotification("asf", NotificationArguments.LEARN);
         }
 
         void OnItemTapped(ProjectItem item)
