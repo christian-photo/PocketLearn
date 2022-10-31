@@ -4,9 +4,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android;
 using AndroidX.Core.App;
-using PocketLearn.Core.PlatformSpecifics;
-using PocketLearn.Shared.Core;
 using PocketLearn.Droid.Platform;
+using Xamarin.Essentials;
+using PocketLearn.Shared.Core;
 
 namespace PocketLearn.Droid
 {

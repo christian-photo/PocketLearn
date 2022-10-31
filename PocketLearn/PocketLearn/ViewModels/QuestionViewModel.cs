@@ -14,7 +14,7 @@ namespace PocketLearn.ViewModels
 
         public QuestionViewModel()
         {
-            ShowAnswer = new Command();
+            ShowAnswer = new Command(OnShowAnswerClicked);
         }
 
         private void OnShowAnswerClicked(object obj)
