@@ -1,4 +1,5 @@
-﻿using PocketLearn.Shared.Core.Learning;
+﻿using PocketLearn.Shared.Core;
+using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using System;
 using System.Drawing;
@@ -41,11 +42,11 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                         continue;
                     }
                     Bitmap bmp = new(Path.Combine(directory, item.Content));
-                    int factor = Utility.GetSizeFactor(bmp.Height, height);
+                    int factor = SharedUtility.GetSizeFactor(bmp.Height, height);
                     int targetwidth = bmp.Width / factor;
                     if (targetwidth > width)
                     {
-                        factor = Utility.GetSizeFactor(bmp.Width, width);
+                        factor = SharedUtility.GetSizeFactor(bmp.Width, width);
                     }
                     Image image = new()
                     {
