@@ -11,7 +11,12 @@ namespace PocketLearn.ViewModels
 {
     public class ProjectListViewModel : BaseViewModel
     {
-        public ObservableCollection<ProjectItem> ProjectItems { get; }
+        private ObservableCollection<ProjectItem> _projectItems;
+        public ObservableCollection<ProjectItem> ProjectItems
+        {
+            get => _projectItems;
+            set => SetProperty(ref _projectItems, value);
+        }
         public Command<ProjectItem> ProjectItemTapped { get; }
 
         

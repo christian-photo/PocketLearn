@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PocketLearn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Xamarin.Forms;
@@ -14,7 +15,7 @@ namespace PocketLearn.Views.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value.ToString())
+            switch (((BaseViewModel)value).Title)
             {
                 case "Home": return new ProjectListView();
                 case "AnswerVM": return new AnswerView();

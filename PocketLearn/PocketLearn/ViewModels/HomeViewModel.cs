@@ -1,12 +1,4 @@
-﻿using PocketLearn.Models;
-using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using System.IO;
-using PocketLearn.Shared.Core;
-using PocketLearn.Shared.Core.Learning;
-using System;
-
-namespace PocketLearn.ViewModels
+﻿namespace PocketLearn.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
@@ -31,8 +23,7 @@ namespace PocketLearn.ViewModels
 
         public HomeViewModel()
         {
-            Console.WriteLine("HD");
-            _current = new ProjectListViewModel();
+            Current = new ProjectListViewModel();
         }
     }
 }
