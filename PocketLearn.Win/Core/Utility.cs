@@ -133,11 +133,6 @@ namespace PocketLearn.Win.Core
             }
         }
 
-        public static int GetSizeFactor(int dimension, int targetDimension)
-        {
-            return dimension / targetDimension;
-        }
-
         /// <summary>
         /// Sets Active Page
         /// </summary>
