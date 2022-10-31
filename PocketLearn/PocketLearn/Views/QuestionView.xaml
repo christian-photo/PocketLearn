@@ -4,7 +4,7 @@
              x:Class="PocketLearn.Views.QuestionView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
+            <Label Text="{Binding QuestionContent}"/>
+        </StackLayout>
   </ContentView.Content>
 </ContentView>
