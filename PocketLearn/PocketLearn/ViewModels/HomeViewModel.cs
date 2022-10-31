@@ -1,4 +1,7 @@
-﻿namespace PocketLearn.ViewModels
+﻿using PocketLearn.Core;
+using System.Windows.Input;
+
+namespace PocketLearn.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
@@ -7,6 +10,7 @@
         public ProjectListViewModel ProjectListViewModel { get; set; }
         public QuestionViewModel QuestionViewModel { get; set; }
         public AnswerViewModel AnswerViewModel { get; set; }
+        public ScanQrViewModel ScanQrViewModel { get; set; }
 
         private string _test = "hadsfo";
         public string Test
@@ -23,10 +27,19 @@
             set => SetProperty(ref _current, value);
         }
 
+        public ICommand btn { get; set; }
+
         public HomeViewModel()
         {
             Instance = this;
             Current = new ProjectListViewModel();
+
+            ScanQrViewModel = new ScanQrViewModel();
+
+            btn = new RelayCommand(async _ =>
+            {
+                await ScanQrViewModel.StartScan();
+            });
         }
     }
 }

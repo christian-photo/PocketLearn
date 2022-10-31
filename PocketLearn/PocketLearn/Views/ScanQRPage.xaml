@@ -2,13 +2,12 @@
 <ContentPage
     x:Class="PocketLearn.Views.ScannQRPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    BindingContext="{Binding ScanQrViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
+            <Image Aspect="AspectFit" Source="{Binding Image}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
