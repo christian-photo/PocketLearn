@@ -32,7 +32,8 @@ namespace PocketLearn.ViewModels
         public HomeViewModel()
         {
             Instance = this;
-            Current = new ProjectListViewModel();
+            ProjectListViewModel = new ProjectListViewModel();
+            Current = ProjectListViewModel;
 
             ScanQrViewModel = new ScanQrViewModel();
 

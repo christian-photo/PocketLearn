@@ -36,8 +36,6 @@ namespace PocketLearn.Droid
             {
                 GetCameraPermissionAsync();
             }
-
-            App.PlatformMediator.NotificationSender.SendNotification("asf", NotificationArguments.LEARN);
         }
 
         void GetCameraPermissionAsync()

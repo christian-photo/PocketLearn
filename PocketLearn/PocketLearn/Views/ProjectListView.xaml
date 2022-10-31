@@ -5,9 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:PocketLearn.Models"
     xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    Background="{StaticResource ApplicationBackgroundBrush}"
     BindingContext="{Binding ProjectListViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
-
-   
 
     <ContentView.Content>
         <StackLayout>
@@ -16,11 +15,21 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout x:DataType="model:ProjectItem">
-                            <Label Text="{Binding Project.ProjectName}" />
-                            <Label Text="{Binding ShouldLearn}" />
-                            <Label Text="{Binding Project.LearnSubject}" />
-                            <Label Text="{Binding Project.CreationTime, Converter={StaticResource dateTimeConverter}}" />
-                            <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}}" />
+                            <Frame
+                                Margin="2,5,2,2"
+                                BackgroundColor="{StaticResource ButtonSelected}"
+                                CornerRadius="4"
+                                HeightRequest="100">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Project.ProjectName}" TextColor="White" />
+
+                                    <Label Text="{Binding Project.CreationTime, Converter={StaticResource dateTimeConverter}, ConverterParameter='Creation Date'}" TextColor="White" />
+                                    <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}, ConverterParameter='Has to be completed'}" TextColor="White" />
+
+                                    <Label Text="{Binding Project.LearnSubject, Converter={StaticResource learnSubjectConverter}, ConverterParameter='Subject'}" TextColor="White" />
+                                </StackLayout>
+
+                            </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
