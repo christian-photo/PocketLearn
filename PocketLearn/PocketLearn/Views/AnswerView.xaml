@@ -2,7 +2,9 @@
 <ContentView
     x:Class="PocketLearn.Views.AnswerView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    BindingContext="{Binding AnswerViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
         <StackLayout>
             <Label Text="Hello Xamarin.Forms!" />
