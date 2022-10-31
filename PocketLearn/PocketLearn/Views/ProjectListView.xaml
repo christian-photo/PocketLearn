@@ -20,8 +20,8 @@
                             <Label Text="{Binding Project.ProjectName}" />
                             <Label Text="{Binding ShouldLearn}" />
                             <Label Text="{Binding Project.LearnSubject}" />
-                            <Label Text="{Binding Project.CreationTime}" />
-                            <Label Text="{Binding Project.HasToBeCompleted}" />
+                            <Label Text="{Binding Project.CreationTime, Converter={StaticResource dateTimeConverter}}" />
+                            <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}}" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
