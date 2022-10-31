@@ -1,7 +1,4 @@
-﻿using PocketLearn.ViewModels;
-using PocketLearn.Views;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Xamarin.Forms;
 
 namespace PocketLearn
@@ -11,8 +8,6 @@ namespace PocketLearn
         public AppShell()
         {
             InitializeComponent();
-            
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Platform\AndroidConstants.cs" />
+    <Compile Include="Platform\Collection.cs" />
     <Compile Include="Platform\NotificationSender.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

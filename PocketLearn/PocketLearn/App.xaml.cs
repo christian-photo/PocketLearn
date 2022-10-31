@@ -1,9 +1,5 @@
 ﻿using PocketLearn.Core.PlatformSpecifics;
-using PocketLearn.Services;
-using PocketLearn.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace PocketLearn
 {
@@ -15,7 +11,6 @@ namespace PocketLearn
         {
             InitializeComponent();
             PlatformMediator = platform;
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
