@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PocketLearn.App">
+<Application
+    x:Class="PocketLearn.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:PocketLearn.Views.Converter"
+    xmlns:view="clr-namespace:PocketLearn.Views">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -9,7 +12,7 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -27,6 +30,12 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+
+            <converter:DataTemplateToViewConverter x:Key="dataTemplateToViewConverter" />
+
+            <DataTemplate x:Key="ProjectView">
+                <view:ProjectListView />
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

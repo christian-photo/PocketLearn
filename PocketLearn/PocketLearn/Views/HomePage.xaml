@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PocketLearn.Views.HomePage"
-             xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
-             xmlns:model="clr-namespace:PocketLearn.Models" x:DataType="viewmodel:HomeViewModel">
+<ContentPage
+    x:Class="PocketLearn.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:PocketLearn.Models"
+    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodel:HomeViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <ContentView Content="{Binding Current}"/>
+            <ContentView Content="{Binding Current, Converter={StaticResource dataTemplateToViewConverter}}" />
+            <Label Text="{Binding Test}" />
 
         </StackLayout>
     </ContentPage.Content>

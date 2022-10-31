@@ -28,6 +28,7 @@ namespace PocketLearn.ViewModels
 
 
             ProjectManager = CreateProjectManager();
+            ProjectManager.LearnProjects.Add(new LearnProject(DateTime.Now, new DateTime(2023, 1, 1), Guid.NewGuid()) { LearnSubject = LearnSubject.Art, ProjectName = "hf" });
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
                 project.InitCards();
