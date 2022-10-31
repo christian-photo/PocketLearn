@@ -23,6 +23,7 @@ using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
+using MenuItem = Wpf.Ui.Controls.MenuItem;
 using Path = System.IO.Path;
 
 namespace PocketLearn.Win
@@ -48,6 +49,33 @@ namespace PocketLearn.Win
             {
                 e.Handled = true;
             }
+        }
+
+        private void TrayMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is not MenuItem menuItem)
+                return;
+
+            switch (menuItem.Tag.ToString())
+            {
+                case "Open": Show(); WindowState = WindowState.Normal; break;
+                case "Close": Application.Current.Shutdown(); break;
+                default:
+                    break;
+            }
+        }
+
+        private void UiWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if (Keyboard.GetKeyStates(Key.LeftShift) == KeyStates.Down)
+            {
+                Application.Current.Shutdown();
+                return;
+            }
+            e.Cancel = true;
+            Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            WindowState = WindowState.Minimized;
+            Hide();
         }
     }
 }

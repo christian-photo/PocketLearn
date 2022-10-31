@@ -12,6 +12,7 @@
     Width="1280"
     Height="720"
     Background="DimGray"
+    Closing="UiWindow_Closing"
     DataContext="{x:Static viewmodel:MainWindowVM.Instance}"
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
@@ -29,23 +30,38 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+
         <ui:TitleBar
             Title="PocketLearn"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Icon="ApplicationIcon.ico">
+            ForceShutdown="False"
+            Icon="ApplicationIcon.ico"
+            MinimizeToTray="False"
+            ShowClose="True"
+            ShowMaximize="True"
+            ShowMinimize="True"
+            UseSnapLayout="True">
             <ui:TitleBar.Tray>
                 <ui:NotifyIcon
                     FocusOnLeftClick="True"
+                    Icon="ApplicationIcon.ico"
                     MenuOnRightClick="True"
                     TooltipText="PocketLearn">
                     <ui:NotifyIcon.Menu>
                         <ContextMenu>
                             <ui:MenuItem
-                                Header="Home"
+                                Click="TrayMenuItem_OnClick"
+                                Header="Open"
                                 SymbolIcon="Library28"
-                                Tag="home" />
+                                Tag="Open" />
+                            <Separator />
+                            <ui:MenuItem
+                                Click="TrayMenuItem_OnClick"
+                                Header="Close"
+                                SymbolIcon="ClosedCaption24"
+                                Tag="Close" />
                         </ContextMenu>
                     </ui:NotifyIcon.Menu>
                 </ui:NotifyIcon>
@@ -103,4 +119,6 @@
             </Grid>
         </Border>
     </Grid>
+
+
 </ui:UiWindow>

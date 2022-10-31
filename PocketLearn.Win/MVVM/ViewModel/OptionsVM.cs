@@ -99,7 +99,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 t.Add(proj.ProjectName);
             }
             Projects = t;
-            UpdateSettings();
+            if (Projects.Count > 0)
+                UpdateSettings();
         }
 
         public void UpdateSettings()
@@ -109,7 +110,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 SettingsChanged();
                 active.ProjectConfig = activeConfig;
             }
-            active = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).First();
+            active = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).FirstOrDefault();
             activeConfig = new ProjectConfig()
             {
                 EasyFactor = active.ProjectConfig.EasyFactor,
