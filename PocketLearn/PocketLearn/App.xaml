@@ -32,6 +32,7 @@
             </Style>
 
             <converter:DataTemplateToViewConverter x:Key="dataTemplateToViewConverter" />
+            <converter:DateTimeConverter x:Key="dateTimeConverter" />
 
             <DataTemplate x:Key="ProjectView">
                 <view:ProjectListView />
