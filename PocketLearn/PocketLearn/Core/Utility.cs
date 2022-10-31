@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Xamarin.Forms;
+using Color = Xamarin.Forms.Color;
 
 namespace PocketLearn.Core
 {
@@ -16,6 +18,11 @@ namespace PocketLearn.Core
                 ms.Position = 0;
                 return ms;
             });
+        }
+
+        public static SolidColorBrush GetColorFromHex(string hexaColor)
+        {
+            return new SolidColorBrush(Color.FromHex(hexaColor));
         }
     }
 }

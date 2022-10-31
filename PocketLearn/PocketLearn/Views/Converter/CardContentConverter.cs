@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Core;
+using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using Xamarin.Forms;
+using Brush = Xamarin.Forms.Brush;
 
 namespace PocketLearn.Views.Converter
 {
@@ -40,29 +42,29 @@ namespace PocketLearn.Views.Converter
                         continue;
                     }
                     Bitmap bmp = new(Path.Combine(directory, item.Content));
-                    int factor = Utility.GetSizeFactor(bmp.Height, height);
+                    int factor = SharedUtility.GetSizeFactor(bmp.Height, height);
                     int targetwidth = bmp.Width / factor;
                     if (targetwidth > width)
                     {
-                        factor = Utility.GetSizeFactor(bmp.Width, width);
+                        factor = SharedUtility.GetSizeFactor(bmp.Width, width);
                     }
                     Xamarin.Forms.Image image = new()
                     {
                         Source = bmp.ToBitmapImage(),
-                        Margin = new System.Windows.Thickness(2),
-                        MaxHeight = bmp.Height / factor,
-                        MaxWidth = bmp.Width / factor
+                        Margin = new Thickness(2),
+                        HeightRequest = bmp.Height / factor,
+                        WidthRequest = bmp.Width / factor
                     };
                     container.Children.Add(image);
                 }
                 else if ((item).Type == CardContentItemType.Text)
                 {
-                    TextBlock textBlock = new()
+                    Label textBlock = new()
                     {
                         Text = item.Content,
                         FontSize = font,
-                        Margin = new System.Windows.Thickness(2),
-                        Foreground = (Brush)new BrushConverter().ConvertFromString("#FFF")
+                        Margin = new Thickness(2),
+                        TextColor = Utility.GetColorFromHex("#FFF").Color
                     };
                     container.Children.Add(textBlock);
                 }
