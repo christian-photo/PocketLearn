@@ -18,13 +18,13 @@ namespace PocketLearn.Shared.Core.Learning
         public void DeleteProject(LearnProject project) // Delete from List and json file
         {
             LearnProjects.Remove(project);
-            ProjectsChanged.Invoke(this);
+            ProjectsChanged?.Invoke(this);
         }
 
         public void AddProject(LearnProject project) // Add to List and serialize/save to json
         {
             LearnProjects.Add(project);
-            ProjectsChanged.Invoke(this);
+            ProjectsChanged?.Invoke(this);
         }
 
         private ProjectManager()

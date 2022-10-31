@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PocketLearn.ViewModels
@@ -28,16 +27,26 @@ namespace PocketLearn.ViewModels
 
 
             ProjectManager = CreateProjectManager();
-            ProjectManager.LearnProjects.Add(new LearnProject(DateTime.Now, new DateTime(2023, 1, 1), Guid.NewGuid()) { LearnSubject = LearnSubject.Art, ProjectName = "hf" });
+            ProjectManager.AddProject(new LearnProject(DateTime.Now, new DateTime(2023, 1, 1), Guid.NewGuid())
+            {
+                LastLearnedTime = DateTime.Now,
+                LearnSubject = LearnSubject.Art,
+                ProjectName = "asdf",
+                ProjectConfig = new ProjectConfig(),
+                Cards = new List<LearnCard>()
+            });
+
+            ObservableCollection<ProjectItem> items = new();
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
                 project.InitCards();
-                ProjectItems.Add(new ProjectItem()
+                items.Add(new ProjectItem()
                 {
                     Project = project,
                     ShouldLearn = project.ShouldLearn()
                 });
             }
+            ProjectItems = items;
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
             BackgroundTask.Start();

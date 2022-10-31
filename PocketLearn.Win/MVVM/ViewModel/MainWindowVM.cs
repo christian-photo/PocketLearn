@@ -43,7 +43,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             API = new WebAPI(WinConfig.Get());
 
             BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
-            BackgroundTask.Start(1);
+            BackgroundTask.Start();
         }
 
         private ProjectManager CreateProjectManager()
