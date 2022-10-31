@@ -8,18 +8,34 @@ namespace PocketLearn.ViewModels
 {
     public class QuestionViewModel : BaseViewModel
     {
-        public Command ShowAnswer { get; }
+        public LearnProject Project { get; set; }
+        public Command ShowAnswer { get; private set; }
         private CardContent _questionContent;
         public CardContent QuestionContent { get => _questionContent; set => SetProperty(ref _questionContent, value); }
 
         public QuestionViewModel()
         {
-            ShowAnswer = new Command();
+            Init();
+        }
+        public QuestionViewModel(LearnProject project)
+        {
+            Project = project;
+            Init();
+        }
+        void Init()
+        {
+            Title = "QuestionVM";
+            ShowAnswer = new Command(OnShowAnswerClicked);
+        }
+
+        public void NextCard()
+        {
+
         }
 
         private void OnShowAnswerClicked(object obj)
         {
-
+            HomeViewModel.Instance.Current = HomeViewModel.Instance.AnswerViewModel;
         }
     }
 }

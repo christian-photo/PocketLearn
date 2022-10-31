@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
-             x:Class="PocketLearn.Views.QuestionView">
-    <ContentView.BindingContext>
-        <viewmodel:QuestionViewModel/>
-    </ContentView.BindingContext>
-  <ContentView.Content>
+             x:Class="PocketLearn.Views.QuestionView"
+              BindingContext="{Binding QuestionViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
+    <ContentView.Content>
       <StackLayout>
-            <Label Text="{Binding QuestionContent}"/>
+            <Label Text="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"/>
+            <!--Parameter isnt updated for mobile-->
+
             <Button Text="Show answer" Command="{Binding ShowAnswer}"/>
         </StackLayout>
   </ContentView.Content>

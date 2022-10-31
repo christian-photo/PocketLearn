@@ -7,7 +7,9 @@
     BindingContext="{Binding AnswerViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
         <StackLayout>
-            <Label Text="Hello Xamarin.Forms!" />
+            <Label Text="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"/> <!--Parameter isnt updated for mobile-->
+            
+            <Label Text="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>
