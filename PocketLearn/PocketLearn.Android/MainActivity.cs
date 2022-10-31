@@ -7,6 +7,7 @@ using AndroidX.Core.App;
 using PocketLearn.Droid.Platform;
 using Xamarin.Essentials;
 using PocketLearn.Shared.Core;
+using PocketLearn.Core.PlatformSpecifics;
 
 namespace PocketLearn.Droid
 {
@@ -23,7 +24,7 @@ namespace PocketLearn.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            PlatformMediator plat = new(DevicePlatform.Android);
+            PlatformMediator plat = new(Core.PlatformSpecifics.DevicePlatform.Android);
             plat.RegisterServices(new AndroidConstants(), new AndroidNotificationSender());
 
             LoadApplication(new App(plat));
