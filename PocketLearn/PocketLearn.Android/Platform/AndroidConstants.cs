@@ -7,6 +7,7 @@ using Android.Widget;
 using PocketLearn.Core.PlatformSpecifics.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Environment = System.Environment;
@@ -15,6 +16,6 @@ namespace PocketLearn.Droid.Platform
 {
     public class AndroidConstants : IApplicationConstants
     {
-        public string GetDataPath() => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        public string GetDataPath() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PocketLearn");
     }
 }

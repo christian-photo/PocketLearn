@@ -34,7 +34,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 CardContentItem item = (CardContentItem)obj;
                 if (item.Type == CardContentItemType.Text)
                 {
-                    if (learnCard.CardContent1.Items.Where(x => ((CardContentItem)x).Type == CardContentItemType.Text).Last() == obj)
+                    if (learnCard.CardContent1.Items.Last(x => x.Type == CardContentItemType.Text) == item)
                     {
                         QuestionText.Text += $"{item.Content}";
                     }
@@ -57,7 +57,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 CardContentItem item = (CardContentItem)obj;
                 if (item.Type == CardContentItemType.Text)
                 {
-                    if (learnCard.CardContent2.Items.Where(x => ((CardContentItem)x).Type == CardContentItemType.Text).Last() == obj)
+                    if (learnCard.CardContent2.Items.Last(x => x.Type == CardContentItemType.Text) == item)
                     {
                         AnswerText.Text += $"{item.Content}";
                     }
@@ -128,6 +128,7 @@ namespace PocketLearn.Win.MVVM.PopUp
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
+            ActiveCard.LastEdit = DateTime.Now;
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();
         }
