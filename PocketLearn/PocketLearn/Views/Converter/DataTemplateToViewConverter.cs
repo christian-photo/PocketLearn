@@ -19,7 +19,8 @@ namespace PocketLearn.Views.Converter
             {
                 case "Home": return new ProjectListView();
                 case "AnswerVM": return new AnswerView();
-                case "ScanVM": return new ScannQRPage();
+                case "QuestionVM": return new QuestionView();
+               // case "ScanVM": return new ScannQRPage();
                 default:
                     break;
             }

@@ -38,8 +38,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
         public void Answer(CardDifficulty difficulty)
         {
             Project.CardInput(difficulty);
-            bool p = Project.ShouldLearn();
-            if(p)
+            if(Project.ShouldLearn())
             {
                 Utility.NavigateToPage(ApplicationConstants.QuestionViewURI);
                 MainWindowVM.Instance.QuestionVM.NextCard();

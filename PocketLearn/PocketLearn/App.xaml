@@ -34,6 +34,7 @@
             <converter:DataTemplateToViewConverter x:Key="dataTemplateToViewConverter" />
             <converter:DateTimeConverter x:Key="dateTimeConverter" />
             <converter:LearnSubjectConverter x:Key="learnSubjectConverter" />
+            <converter:CardContentConverter x:Key="CardContentConverter"/>
 
             <DataTemplate x:Key="ProjectView">
                 <view:ProjectListView />
