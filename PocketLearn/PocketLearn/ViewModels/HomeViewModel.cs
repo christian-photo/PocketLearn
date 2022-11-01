@@ -1,5 +1,6 @@
 ﻿using PocketLearn.Core;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PocketLearn.ViewModels
 {
@@ -10,7 +11,6 @@ namespace PocketLearn.ViewModels
         public ProjectListViewModel ProjectListViewModel { get; set; }
         public QuestionViewModel QuestionViewModel { get; set; }
         public AnswerViewModel AnswerViewModel { get; set; }
-        public ScanQrViewModel ScanQrViewModel { get; set; }
 
         private string _test = "hadsfo";
         public string Test
@@ -27,20 +27,11 @@ namespace PocketLearn.ViewModels
             set => SetProperty(ref _current, value);
         }
 
-        public ICommand btn { get; set; }
-
         public HomeViewModel()
         {
             Instance = this;
             ProjectListViewModel = new ProjectListViewModel();
             Current = ProjectListViewModel;
-
-            ScanQrViewModel = new ScanQrViewModel();
-
-            btn = new RelayCommand(async _ =>
-            {
-                await ScanQrViewModel.StartScan();
-            });
         }
     }
 }

@@ -5,8 +5,6 @@ using Android.OS;
 using Android;
 using AndroidX.Core.App;
 using PocketLearn.Droid.Platform;
-using Xamarin.Essentials;
-using PocketLearn.Shared.Core;
 using PocketLearn.Core.PlatformSpecifics;
 
 namespace PocketLearn.Droid
@@ -24,8 +22,10 @@ namespace PocketLearn.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
+
             PlatformMediator plat = new(Core.PlatformSpecifics.DevicePlatform.Android);
-            plat.RegisterServices(new AndroidConstants(), new AndroidNotificationSender());
+            plat.RegisterServices(new AndroidConstants(), new AndroidNotificationSender(), new AndroidQrScanner());
 
             LoadApplication(new App(plat));
             Instance = this;

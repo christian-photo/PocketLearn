@@ -12,7 +12,6 @@
         <StackLayout>
 
             <ContentView Content="{Binding Current, Converter={StaticResource dataTemplateToViewConverter}}" />
-            <Label Text="{Binding Test}" />
 
         </StackLayout>
     </ContentPage.Content>

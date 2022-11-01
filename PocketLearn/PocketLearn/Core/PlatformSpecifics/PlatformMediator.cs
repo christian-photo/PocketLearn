@@ -8,6 +8,7 @@ namespace PocketLearn.Core.PlatformSpecifics
         public DevicePlatform DevicePlatform { get; private set; }
         public IApplicationConstants ApplicationConstants { get; private set; }
         public INotificationSender NotificationSender { get; private set; }
+        public IQrScanner QrScanner { get; private set; }
 
         public PlatformMediator(DevicePlatform platform)
         {
@@ -15,10 +16,12 @@ namespace PocketLearn.Core.PlatformSpecifics
         }
 
         public void RegisterServices(IApplicationConstants constants,
-                                     INotificationSender notification)
+                                     INotificationSender notification,
+                                     IQrScanner scanner)
         {
             ApplicationConstants = constants;
             NotificationSender = notification;
+            QrScanner = scanner;
         }
     }
 }
