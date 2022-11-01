@@ -26,6 +26,7 @@ namespace PocketLearn.ViewModels
 
         public ProjectListViewModel()
         {
+            IsBusy = true;
             Title = "Home";
             ProjectItems = new ObservableCollection<ProjectItem>();
             ProjectItemTapped = new Command<ProjectItem>(OnItemTapped);
@@ -38,7 +39,8 @@ namespace PocketLearn.ViewModels
                 LearnSubject = LearnSubject.Art,
                 ProjectName = "asdf",
                 ProjectConfig = new ProjectConfig(),
-                Cards = new List<LearnCard>()
+                Cards = new List<LearnCard>() { new LearnCard() { CardContent1 = new CardContent(new List<CardContentItem> { new CardContentItem("dffd", CardContentItemType.Text) })} }
+                
             });
 
             ObservableCollection<ProjectItem> items = new();
@@ -55,6 +57,7 @@ namespace PocketLearn.ViewModels
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
             BackgroundTask.Start();
+            IsBusy = false;
         }
 
         void OnItemTapped(ProjectItem item)
@@ -64,6 +67,7 @@ namespace PocketLearn.ViewModels
             HomeViewModel.Instance.QuestionViewModel = new QuestionViewModel(item.Project);
             HomeViewModel.Instance.QuestionViewModel.NextCard();
             HomeViewModel.Instance.AnswerViewModel = new AnswerViewModel(item.Project);
+            HomeViewModel.Instance.Current = HomeViewModel.Instance.QuestionViewModel;
         }
 
         private ProjectManager CreateProjectManager()

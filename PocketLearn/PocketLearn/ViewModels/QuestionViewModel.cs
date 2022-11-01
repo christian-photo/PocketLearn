@@ -30,11 +30,13 @@ namespace PocketLearn.ViewModels
 
         public void NextCard()
         {
-
+            
+            QuestionContent = Project.ShowNextCard().Item1;
         }
 
         private void OnShowAnswerClicked(object obj)
         {
+            HomeViewModel.Instance.AnswerViewModel.Update();
             HomeViewModel.Instance.Current = HomeViewModel.Instance.AnswerViewModel;
         }
     }

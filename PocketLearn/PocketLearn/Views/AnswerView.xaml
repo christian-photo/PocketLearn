@@ -7,9 +7,21 @@
     BindingContext="{Binding AnswerViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
         <StackLayout>
-            <Label Text="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"/> <!--Parameter isnt updated for mobile-->
             
-            <Label Text="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}"/>
+            <StackLayout>
+                <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center"/>
+                <!--Parameter isnt updated for mobile-->
+                <Rectangle WidthRequest="100" HeightRequest="3" Fill="DimGray"/>
+                <ContentView Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center"/>
+            </StackLayout>
+            
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+                <Button Text="Hard" Command="{Binding HardAnswer}"/>
+                <Button Text="Medium" Command="{Binding MediumAnswer}"/>
+                <Button Text="OK" Command="{Binding OKAnswer}"/>
+                <Button Text="Easy" Command="{Binding EasyAnswer}"/>
+            </StackLayout>
         </StackLayout>
     </ContentView.Content>
 </ContentView>
