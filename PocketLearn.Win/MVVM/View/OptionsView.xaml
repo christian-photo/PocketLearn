@@ -91,7 +91,7 @@
             <Button
                 Margin="15,15,0,0"
                 Command="{Binding DonateCoffee}"
-                Content="Donate a Coffee"
+                Content="Donate a Coffee &#x2615;"
                 Foreground="White" />
         </StackPanel>
 
