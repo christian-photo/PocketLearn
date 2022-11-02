@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketLearn", "PocketLearn\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Win", "PocketLearn.Win\PocketLearn.Win.csproj", "{ED28D556-5AE4-40E3-A830-58276F033748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Shared", "PocketLearn.Shared\PocketLearn.Shared.csproj", "{B22B4137-CE78-492B-9C61-D264AB9473DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketLearn.Shared", "PocketLearn.Shared\PocketLearn.Shared.csproj", "{B22B4137-CE78-492B-9C61-D264AB9473DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

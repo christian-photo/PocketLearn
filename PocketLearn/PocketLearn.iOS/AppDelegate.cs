@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using PocketLearn.Core.PlatformSpecifics;
 using UIKit;
 
 namespace PocketLearn.iOS
@@ -23,7 +24,7 @@ namespace PocketLearn.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new App(null));
 
             return base.FinishedLaunching(app, options);
         }

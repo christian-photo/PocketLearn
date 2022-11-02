@@ -45,7 +45,7 @@ namespace PocketLearn.Shared.Core.Learning
 
         private bool IsLastDay()
         {
-            return DateTime.Now.Day == HasToBeCompleted.Day-1;
+            return DateTime.Now.Day == HasToBeCompleted.Day - 1;
         }
 
         public void InitCards()
