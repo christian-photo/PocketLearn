@@ -13,5 +13,18 @@ namespace PocketLearn.Shared.Core.Learning
             this.Content = content;
             this.Type = type;
         }
+
+        public static bool operator !=(CardContentItem item1, CardContentItem item2)
+        {
+            return !(item1 == item2);
+        }
+
+        public static bool operator ==(CardContentItem item1, CardContentItem item2)
+        {
+            if (item1 == null || item2 == null) return false;
+
+            if ((!item1.Content.Equals(item2.Content)) || item1.Type != item2.Type) return false;
+            return true;
+        }
     }
 }

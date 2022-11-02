@@ -1,8 +1,10 @@
 ﻿using EmbedIO;
 using EmbedIO.Routing;
 using EmbedIO.WebApi;
+using Newtonsoft.Json;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -45,6 +47,13 @@ namespace PocketLearn.Win.API
                 }
             }
             return images;
+        }
+
+        [Route(HttpVerbs.Get, "/SetProject")]
+        public void RecieveProject()
+        {
+            MainWindowVM.Instance.ProjectManager.LearnProjects.Remove(ProjectToSync);
+            MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
         }
     }
 }

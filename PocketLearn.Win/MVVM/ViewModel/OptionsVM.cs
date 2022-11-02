@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Shared.Core.Learning;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -168,6 +169,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             activeConfig.OKFactor = OKFactor;
             activeConfig.MediumFactor = MediumFactor;
             activeConfig.HardFactor = HardFactor;
+            activeConfig.LastEdit = DateTime.Now;
         }
     }
 }

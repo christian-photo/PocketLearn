@@ -11,5 +11,6 @@ namespace PocketLearn.Shared.Core.Learning
         public float EasyFactor { get; set; } = 20f;
         public float NotLearnedFactor { get; set; } = 1.5f;
 
+        public DateTime LastEdit { get; set; }
     }
 }

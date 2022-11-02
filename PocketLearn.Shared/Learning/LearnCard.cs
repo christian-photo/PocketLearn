@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace PocketLearn.Shared.Core.Learning
@@ -10,7 +11,11 @@ namespace PocketLearn.Shared.Core.Learning
         public CardContent CardContent2 { get; set; }
         public CardType CardType { get; set; }
         public DateTime LastLearnedTime { get; set; }
+        public DateTime LastEdit { get; set; }
         public CardDifficulty Difficulty { get; set; }
+
+        [JsonProperty]
+        public Guid CardID { get; private set; } = Guid.NewGuid();
 
         public LearnCard()
         {
