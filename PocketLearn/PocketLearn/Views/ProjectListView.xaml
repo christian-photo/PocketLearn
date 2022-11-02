@@ -10,9 +10,6 @@
 
     <ContentView.Content>
         <StackLayout>
-            <Label Text="tasg" />
-
-
             <CollectionView x:Name="ProjectItem" ItemsSource="{Binding ProjectItems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
