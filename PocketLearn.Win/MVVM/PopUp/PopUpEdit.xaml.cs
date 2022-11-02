@@ -3,6 +3,7 @@ using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -27,8 +28,29 @@ namespace PocketLearn.Win.MVVM.PopUp
         {
             ActiveCard = learnCard;
             LearnProject = learnProject;
-
+            
             InitializeComponent();
+            ObservableCollection<string> data = new ObservableCollection<string>();
+            data.Add("twoway");
+            data.Add("oneway");
+            data.Add("reverse oneway");
+            CardTypeCombo.ItemsSource = data;
+            if(ActiveCard.CardType != null)
+            {
+                switch(ActiveCard.CardType)
+                {
+                    case CardType.TwoWay:
+                        CardTypeCombo.SelectedIndex = 0;
+                        break;
+                    case CardType.OneWay:
+                        CardTypeCombo.SelectedIndex=1;
+                        break;
+                    case CardType.ReverseOneWay:
+                        CardTypeCombo.SelectedIndex=2;
+                        break;
+
+                }
+            }
             foreach (object obj in learnCard.CardContent1.Items)
             {
                 CardContentItem item = (CardContentItem)obj;
@@ -102,6 +124,18 @@ namespace PocketLearn.Win.MVVM.PopUp
             string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             ActiveCard.CardContent1.ClearItems(directory);
             ActiveCard.CardContent2.ClearItems(directory);
+            switch(CardTypeCombo.Text) {
+                case "twoway":
+                    ActiveCard.CardType = CardType.TwoWay;
+                    break;
+                case "oneway":
+                    ActiveCard.CardType = CardType.OneWay;
+                    break;
+                case "reverse oneway":
+                    ActiveCard.CardType = CardType.ReverseOneWay;
+                    break;
+
+            }
             foreach (string part in QuestionText.Text.Split('\n'))
             {
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(part, CardContentItemType.Text));
@@ -130,6 +164,11 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             Close();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
