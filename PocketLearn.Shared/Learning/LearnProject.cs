@@ -97,9 +97,9 @@ namespace PocketLearn.Shared.Core.Learning
                 if (learnTime) { break; }
             }
             if (!learnTime) { return false; }
-
-            if (easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
             */
+            if (easyCards.Count == Cards.Count && !IsLastDay()) { return false; }
+            
             double learnedDays = new TimeSpan(DateTime.Now.Ticks).TotalDays-new TimeSpan(CreationTime.Ticks).TotalDays+1;
             double totoalLearnDays = new TimeSpan(HasToBeCompleted.Ticks).TotalDays- new TimeSpan(CreationTime.Ticks).TotalDays+1;
             Console.WriteLine(((Cards.Count/ totoalLearnDays)*  learnedDays));

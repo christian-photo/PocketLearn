@@ -49,6 +49,22 @@
             Grid.Row="1"
             VerticalAlignment="Stretch"
             Orientation="Vertical">
+            <StackPanel Margin="5"
+                        HorizontalAlignment="Stretch"
+                        Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Background="Transparent"
+                    FontSize="14"
+                    Foreground="White"
+                    Text="Select cardtype" />
+                <ComboBox
+                    Margin="10,6,0,0"
+                    HorizontalAlignment="Left"
+                    x:Name="CardTypeCombo"
+                    SelectionChanged="ComboBox_SelectionChanged" />
+            </StackPanel>
+            
             <StackPanel
                 Margin="5"
                 HorizontalAlignment="Stretch"
@@ -171,7 +187,6 @@
             </StackPanel>
 
         </StackPanel>
-
         <Button
             Grid.Row="2"
             Width="150"
