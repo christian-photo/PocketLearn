@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:PocketLearn.Models"
     xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
-    Background="{StaticResource ApplicationBackgroundBrush}"
+    Background="{StaticResource ApplicationBackgroundColor}"
     BindingContext="{Binding ProjectListViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
 
     <ContentView.Content>
@@ -33,11 +33,10 @@
 
                             </Frame>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}}, Path=ProjectItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                </TapGestureRecognizer>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}}, Path=ProjectItemTapped}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>

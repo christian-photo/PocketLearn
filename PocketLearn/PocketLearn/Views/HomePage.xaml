@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:PocketLearn.Models"
-    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels">
+    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}">
     <ContentPage.BindingContext>
         <viewmodel:HomeViewModel />
     </ContentPage.BindingContext>

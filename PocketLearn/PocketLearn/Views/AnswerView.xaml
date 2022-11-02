@@ -4,23 +4,30 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}"
     BindingContext="{Binding AnswerViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
         <StackLayout>
-            
-            <StackLayout>
-                <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center"/>
-                <!--Parameter isnt updated for mobile-->
-                <Rectangle WidthRequest="100" HeightRequest="3" Fill="DimGray"/>
-                <ContentView Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center"/>
-            </StackLayout>
-            
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
-                <Button Text="Hard" Command="{Binding HardAnswer}"/>
-                <Button Text="Medium" Command="{Binding MediumAnswer}"/>
-                <Button Text="OK" Command="{Binding OKAnswer}"/>
-                <Button Text="Easy" Command="{Binding EasyAnswer}"/>
+            <StackLayout>
+                <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
+                <!--  Parameter isnt updated for mobile  -->
+                <Rectangle
+                    Fill="DimGray"
+                    HeightRequest="3"
+                    WidthRequest="100" />
+                <ContentView Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
+            </StackLayout>
+
+
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <Button Command="{Binding HardAnswer}" Text="Hard" />
+                <Button Command="{Binding MediumAnswer}" Text="Medium" />
+                <Button Command="{Binding OKAnswer}" Text="OK" />
+                <Button Command="{Binding EasyAnswer}" Text="Easy" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

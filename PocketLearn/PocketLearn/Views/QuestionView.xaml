@@ -1,16 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
-             x:Class="PocketLearn.Views.QuestionView"
-             xmlns:converter="clr-namespace:PocketLearn.Views.Converter"
-              BindingContext="{Binding QuestionViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="PocketLearn.Views.QuestionView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:PocketLearn.Views.Converter"
+    xmlns:viewmodel="clr-namespace:PocketLearn.ViewModels"
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+    BindingContext="{Binding QuestionViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
-      <StackLayout>
-            <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center"/>
-            
-            <!--Parameter isnt updated for mobile-->
+        <StackLayout>
+            <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
 
-            <Button Text="Show answer" Command="{Binding ShowAnswer}"/>
+            <!--  Parameter isnt updated for mobile  -->
+
+            <Button Command="{Binding ShowAnswer}" Text="Show answer" />
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>
