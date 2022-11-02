@@ -7,6 +7,20 @@ namespace PocketLearn.Win.MVVM.ViewModel
 {
     public class OptionsVM : ObservableObject
     {
+
+        private List<object> _learnTimesView;
+        public List<object> LearnTimesView
+        {
+            get => _learnTimesView;
+            set
+            {
+                _learnTimesView = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public RelayCommand AddLearnTime { get; private set; }
+
         private List<string> _projects;
         public List<string> Projects
         {
@@ -105,7 +119,10 @@ namespace PocketLearn.Win.MVVM.ViewModel
             if (Projects.Count > 0)
                 UpdateSettings();
             Manager.ProjectsChanged += UpdateList;
+            AddLearnTime = new RelayCommand(_ =>
+            {
 
+            });
             DonateCoffee = new RelayCommand(_ =>
             {
                 string url = "";

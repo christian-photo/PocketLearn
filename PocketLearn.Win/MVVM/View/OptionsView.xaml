@@ -12,88 +12,129 @@
     DataContext="{Binding OptionsVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
     mc:Ignorable="d">
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <StackPanel Orientation="Vertical">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,5,5,0"
+                        FontSize="18"
+                        Foreground="White"
+                        Text="Select your learntimes"/>
+                        <ui:Button
+                        Grid.Row="0"
+                        Width="40"
+                        Height="40"
+                        Margin="5,2,2,2"
+                        Command="{Binding AddProject}"
+                        Icon="Add24"
+                        IconFilled="True"
+                        ToolTip="Create new Project" />
+                    </StackPanel>
+                    
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <ListView
+                             HorizontalAlignment="Stretch"
+                             HorizontalContentAlignment="Stretch"
+                             Background="Transparent"
+                             BorderBrush="Transparent"
+                             Focusable="False"
+                             ItemsSource="{Binding LearnTimeView}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Margin="15" Orientation="Vertical">
 
-        <StackPanel Orientation="Vertical">
-            <StackPanel Margin="15" Orientation="Vertical">
-                <ComboBox
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,4,10,0"
+                        FontSize="18"
+                        Foreground="White"
+                        Text="Select your Project"/>
+                        <ComboBox
                     Margin="0,0,0,30"
                     HorizontalAlignment="Left"
                     ItemsSource="{Binding Projects}"
                     SelectedIndex="{Binding Index}"
                     SelectionChanged="UpdateProjectSettings" />
 
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
+                    </StackPanel>
+
+
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock
                         Margin="0,4,5,0"
                         FontSize="18"
                         Foreground="White"
                         Text="Not learned factor" />
-                    <Slider
+                        <Slider
                         Maximum="40"
                         Minimum="1"
                         MouseLeftButtonUp="Slider_MouseLeftButtonUp"
                         Value="{Binding NotLearnedFactor}" />
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock
                         Margin="0,4,5,0"
                         FontSize="18"
                         Foreground="White"
                         Text="Easy factor" />
-                    <Slider
+                        <Slider
                         Maximum="40"
                         Minimum="1"
                         MouseLeftButtonUp="Slider_MouseLeftButtonUp"
                         Value="{Binding EasyFactor}" />
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock
                         Margin="0,4,5,0"
                         FontSize="18"
                         Foreground="White"
                         Text="OK factor" />
-                    <Slider
+                        <Slider
                         Maximum="40"
                         Minimum="1"
                         MouseLeftButtonUp="Slider_MouseLeftButtonUp"
                         Value="{Binding OKFactor}" />
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock
                         Margin="0,4,5,0"
                         FontSize="18"
                         Foreground="White"
                         Text="Medium factor" />
-                    <Slider
+                        <Slider
                         Maximum="40"
                         Minimum="1"
                         MouseLeftButtonUp="Slider_MouseLeftButtonUp"
                         Value="{Binding MediumFactor}" />
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock
                         Margin="0,4,5,0"
                         FontSize="18"
                         Foreground="White"
                         Text="Hard factor" />
-                    <Slider
+                        <Slider
                         Maximum="40"
                         Minimum="1"
                         MouseLeftButtonUp="Slider_MouseLeftButtonUp"
                         Value="{Binding HardFactor}" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <Separator Margin="15,15,15,0" />
-            <Button
+                <Separator Margin="15,15,15,0" />
+                <Button
                 Margin="15,15,0,0"
                 Command="{Binding DonateCoffee}"
                 Content="Donate a Coffee &#x2615;"
                 Foreground="White" />
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        
 
     </Grid>
 </UserControl>
