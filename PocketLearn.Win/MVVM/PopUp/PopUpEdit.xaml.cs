@@ -164,6 +164,12 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
             ActiveCard.LastEdit = DateTime.Now;
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
+            if (!Directory.Exists(ApplicationConstants.APPLICATION_DATA_PATH))
+            {
+                Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
+            }
+
+            File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
             Close();
         }
 
