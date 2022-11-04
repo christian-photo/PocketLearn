@@ -14,6 +14,8 @@
 
             <ContentView Content="{Binding Current, Converter={StaticResource dataTemplateToViewConverter}}" />
 
+            <Button Command="{Binding Sync}" Text="Sync" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

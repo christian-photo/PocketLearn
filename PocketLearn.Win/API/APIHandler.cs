@@ -52,7 +52,7 @@ namespace PocketLearn.Win.API
         [Route(HttpVerbs.Get, "/SetProject")]
         public void RecieveProject()
         {
-            MainWindowVM.Instance.ProjectManager.LearnProjects.Remove(ProjectToSync);
+            MainWindowVM.Instance.ProjectManager.LearnProjects.RemoveAll(x => x.ProjectID == ProjectToSync.ProjectID);
             MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
         }
     }
