@@ -1,10 +1,13 @@
-﻿using PocketLearn.Models;
+﻿using PocketLearn.Core;
+using PocketLearn.Models;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Net.Http;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PocketLearn.ViewModels
@@ -23,6 +26,7 @@ namespace PocketLearn.ViewModels
        // public LearnProject abc { get; set; }
         public BackgroundTask BackgroundTask { get; }
         public ProjectManager ProjectManager { get; }
+        public ICommand Sync { get; set; }
 
         public ProjectListViewModel()
         {
@@ -43,6 +47,50 @@ namespace PocketLearn.ViewModels
                 
             });
 
+            Sync = new Command(async () =>
+            {
+                ZXing.Result result = await App.PlatformMediator.QrScanner.StartScan();
+                string json = await new HttpClient().GetStringAsync(result.Text);
+                (LearnProject, bool) res = DesktopSync.SyncProject(json, json.Contains("images=true"), ProjectManager, App.PlatformMediator.ApplicationConstants);
+                if (res.Item2)
+                {
+                    ProjectManager.AddProject(res.Item1);
+
+                }
+                if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
+            });
+
+            ProjectManager.ProjectsChanged += ProjectManager_ProjectsChanged;
+
+            ObservableCollection<ProjectItem> items = new();
+            SetItems();
+
+            BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
+            BackgroundTask.Start();
+            IsBusy = false;
+        }
+
+        private string GetRawURL(string url)
+        {
+            string[] split = url.Split('/');
+            List<string> list = new List<string>();
+            list.AddRange(split);
+            list.RemoveAt(list.Count - 1);
+            string res = "";
+            foreach (string str in list)
+            {
+                res += str;
+            }
+            return res;
+        }
+
+        private void ProjectManager_ProjectsChanged(object sender)
+        {
+            SetItems();
+        }
+
+        private void SetItems()
+        {
             ObservableCollection<ProjectItem> items = new();
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
@@ -54,10 +102,6 @@ namespace PocketLearn.ViewModels
                 });
             }
             ProjectItems = items;
-
-            BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
-            BackgroundTask.Start();
-            IsBusy = false;
         }
 
         void OnItemTapped(ProjectItem item)

@@ -30,7 +30,7 @@ namespace PocketLearn.ViewModels
             set => SetProperty(ref _current, value);
         }
 
-        public ICommand Sync { get; set; }
+        
 
         public HomeViewModel()
         {
@@ -38,27 +38,9 @@ namespace PocketLearn.ViewModels
             ProjectListViewModel = new ProjectListViewModel();
             Current = ProjectListViewModel;
 
-            Sync = new Command(async () =>
-            {
-                ZXing.Result result = await App.PlatformMediator.QrScanner.StartScan();
-                string json = await new HttpClient().GetStringAsync(result.Text);
-                (LearnProject, bool) res = DesktopSync.SyncProject(json, json.Contains("images=true"), ProjectListViewModel.ProjectManager, App.PlatformMediator.ApplicationConstants);
-                if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
-            });
+           
         }
 
-        private string GetRawURL(string url)
-        {
-            string[] split = url.Split('/');
-            List<string> list = new List<string>();
-            list.AddRange(split);
-            list.RemoveAt(list.Count - 1);
-            string res = "";
-            foreach (string str in list)
-            {
-                res += str;
-            }
-            return res;
-        }
+       
     }
 }
