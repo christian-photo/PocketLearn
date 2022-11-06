@@ -7,134 +7,135 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:viewmodel="clr-namespace:PocketLearn.Win.MVVM.ViewModel"
-    d:DesignHeight="500"
+    d:DesignHeight="700"
     d:DesignWidth="800"
     DataContext="{Binding OptionsVM, Source={x:Static viewmodel:MainWindowVM.Instance}}"
     mc:Ignorable="d">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <StackPanel Orientation="Vertical">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="0,5,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Select your learntimes"/>
-                        <ui:Button
-                        Grid.Row="0"
-                        Width="40"
-                        Height="40"
-                        Margin="5,2,2,2"
-                        Command="{Binding AddProject}"
-                        Icon="Add24"
-                        IconFilled="True"
-                        ToolTip="Create new Project" />
-                    </StackPanel>
-                    
-                    <ScrollViewer VerticalScrollBarVisibility="Visible">
-                        <ListView
-                             HorizontalAlignment="Stretch"
-                             HorizontalContentAlignment="Stretch"
-                             Background="Transparent"
-                             BorderBrush="Transparent"
-                             Focusable="False"
-                             ItemsSource="{Binding LearnTimeView}"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                        </ListView>
-                    </ScrollViewer>
-                </StackPanel>
                 <StackPanel Margin="15" Orientation="Vertical">
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="0,4,10,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Select your Project"/>
+                        <TextBlock
+                            Margin="0,4,10,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Select your Project" />
                         <ComboBox
-                    Margin="0,0,0,30"
-                    HorizontalAlignment="Left"
-                    ItemsSource="{Binding Projects}"
-                    SelectedIndex="{Binding Index}"
-                    SelectionChanged="UpdateProjectSettings" />
+                            Margin="0,0,0,30"
+                            HorizontalAlignment="Left"
+                            ItemsSource="{Binding Projects}"
+                            SelectedIndex="{Binding Index}"
+                            SelectionChanged="UpdateProjectSettings" />
 
                     </StackPanel>
 
 
                     <StackPanel Margin="0,10,0,0">
                         <TextBlock
-                        Margin="0,4,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Not learned factor" />
+                            Margin="0,4,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Not learned factor" />
                         <Slider
-                        Maximum="40"
-                        Minimum="1"
-                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                        Value="{Binding NotLearnedFactor}" />
+                            Maximum="40"
+                            Minimum="1"
+                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                            Value="{Binding NotLearnedFactor}" />
                     </StackPanel>
 
                     <StackPanel Margin="0,10,0,0">
                         <TextBlock
-                        Margin="0,4,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Easy factor" />
+                            Margin="0,4,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Easy factor" />
                         <Slider
-                        Maximum="40"
-                        Minimum="1"
-                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                        Value="{Binding EasyFactor}" />
+                            Maximum="40"
+                            Minimum="1"
+                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                            Value="{Binding EasyFactor}" />
                     </StackPanel>
 
                     <StackPanel Margin="0,10,0,0">
                         <TextBlock
-                        Margin="0,4,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="OK factor" />
+                            Margin="0,4,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="OK factor" />
                         <Slider
-                        Maximum="40"
-                        Minimum="1"
-                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                        Value="{Binding OKFactor}" />
+                            Maximum="40"
+                            Minimum="1"
+                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                            Value="{Binding OKFactor}" />
                     </StackPanel>
 
                     <StackPanel Margin="0,10,0,0">
                         <TextBlock
-                        Margin="0,4,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Medium factor" />
+                            Margin="0,4,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Medium factor" />
                         <Slider
-                        Maximum="40"
-                        Minimum="1"
-                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                        Value="{Binding MediumFactor}" />
+                            Maximum="40"
+                            Minimum="1"
+                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                            Value="{Binding MediumFactor}" />
                     </StackPanel>
 
                     <StackPanel Margin="0,10,0,0">
                         <TextBlock
-                        Margin="0,4,5,0"
-                        FontSize="18"
-                        Foreground="White"
-                        Text="Hard factor" />
+                            Margin="0,4,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Hard factor" />
                         <Slider
-                        Maximum="40"
-                        Minimum="1"
-                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                        Value="{Binding HardFactor}" />
+                            Maximum="40"
+                            Minimum="1"
+                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                            Value="{Binding HardFactor}" />
                     </StackPanel>
                 </StackPanel>
-                <Separator Margin="15,15,15,0" />
+                <Separator Margin="15,15,15,15" />
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="15,5,5,0"
+                            FontSize="18"
+                            Foreground="White"
+                            Text="Select your learntimes" />
+                        <ui:Button
+                            Grid.Row="0"
+                            Width="40"
+                            Height="40"
+                            Margin="5,2,2,2"
+                            Command="{Binding AddProject}"
+                            Icon="Add24"
+                            IconFilled="True"
+                            ToolTip="Create new Project" />
+                    </StackPanel>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <ListView
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Focusable="False"
+                            ItemsSource="{Binding LearnTimeView}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                    </ScrollViewer>
+                </StackPanel>
                 <Button
-                Margin="15,15,0,0"
-                Command="{Binding DonateCoffee}"
-                Content="Donate a Coffee &#x2615;"
-                Foreground="White" />
+                    Margin="15,15,0,0"
+                    Command="{Binding DonateCoffee}"
+                    Content="Donate a Coffee &#x2615;"
+                    Foreground="White" />
             </StackPanel>
         </ScrollViewer>
-        
+
 
     </Grid>
 </UserControl>
