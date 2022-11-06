@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using PocketLearn.Core.PlatformSpecifics;
+using PocketLearn.iOS.Platform;
 using UIKit;
 
 namespace PocketLearn.iOS
@@ -24,7 +25,14 @@ namespace PocketLearn.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App(null));
+            var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+
+            app.RegisterUserNotificationSettings(notificationSettings);
+            PlatformMediator plat = new PlatformMediator(DevicePlatform.iOS);
+            plat.RegisterServices(new ApplicationConstants(), new NotificationSender(), new QrScanner());
+            LoadApplication(new App(plat));
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 
             return base.FinishedLaunching(app, options);
         }
