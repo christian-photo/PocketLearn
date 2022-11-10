@@ -43,21 +43,18 @@ namespace PocketLearn.ViewModels
                 
             });
 
-            ObservableCollection<ProjectItem> items = new();
-            foreach (LearnProject project in ProjectManager.LearnProjects)
-            {
-                project.InitCards();
-                items.Add(new ProjectItem(ProjectManager)
-                {
-                    Project = project,
-                    ShouldLearn = project.ShouldLearn()
-                });
-            }
-            ProjectItems = items;
+            ProjectManager.ProjectsChanged += ProjectsChanged;
+
+            UpdateView();
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
             BackgroundTask.Start();
             IsBusy = false;
+        }
+
+        private void ProjectsChanged(object sender)
+        {
+            UpdateView();
         }
 
         void OnItemTapped(ProjectItem item)
@@ -77,6 +74,21 @@ namespace PocketLearn.ViewModels
                 return ProjectManager.Create(File.ReadAllText(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")));
             }
             return ProjectManager.Create(string.Empty);
+        }
+
+        public void UpdateView()
+        {
+            ObservableCollection<ProjectItem> items = new();
+            foreach (LearnProject project in ProjectManager.LearnProjects)
+            {
+                project.InitCards();
+                items.Add(new ProjectItem(ProjectManager)
+                {
+                    Project = project,
+                    ShouldLearn = project.ShouldLearn()
+                });
+            }
+            ProjectItems = items;
         }
     }
 }
