@@ -123,6 +123,7 @@
             VerticalAlignment="Center"
             Content="Accept"
             FontSize="20"
-            Foreground="White" />
+            Foreground="White"
+            Click="Button_Click"/>
     </Grid>
 </ui:UiWindow>
