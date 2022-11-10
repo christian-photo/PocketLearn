@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\PopUp\DeleteProjectPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\PopUp\LearnTimePopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +179,9 @@
     <Compile Include="MVVM\Model\ValueConverter\CardContentConverter.cs" />
     <Compile Include="MVVM\Model\ValueConverter\LearnSubjectConverter.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
+    <Compile Include="MVVM\PopUp\DeleteProjectPopUp.xaml.cs">
+      <DependentUpon>DeleteProjectPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\PopUp\LearnTimePopUp.xaml.cs">
       <DependentUpon>LearnTimePopUp.xaml</DependentUpon>
     </Compile>

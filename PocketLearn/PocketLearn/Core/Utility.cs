@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using PocketLearn.Shared.Core.Learning;
+using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Xamarin.Forms;
@@ -22,6 +24,29 @@ namespace PocketLearn.Core
         public static SolidColorBrush GetColorFromHex(string hexaColor)
         {
             return new SolidColorBrush(Color.FromHex(hexaColor));
+        }
+
+        public static void DeleteAssets(this LearnProject proj)
+        {
+            proj.Cards.ForEach(x => x.DeleteAssets());
+        }
+
+        public static void DeleteAssets(this LearnCard card)
+        {
+            foreach (CardContentItem item in card.CardContent1.Items)
+            {
+                if (item.Type != CardContentItemType.Text)
+                {
+                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Images", item.Content));
+                }
+            }
+            foreach (CardContentItem item in card.CardContent2.Items)
+            {
+                if (item.Type != CardContentItemType.Text)
+                {
+                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Images", item.Content));
+                }
+            }
         }
     }
 }

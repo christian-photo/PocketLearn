@@ -30,7 +30,6 @@ namespace PocketLearn.Droid.Platform
                 .SetContentTitle("PocketLearn")
                 .SetSubText(parameter.Argument + "&" + projectID.ToString())
                 .SetContentText(message)
-                .SetSubText(parameter.Argument)
                 .SetSmallIcon(Resource.Drawable.ApplicationIcon_24px_A);
 
             // Build the notification:

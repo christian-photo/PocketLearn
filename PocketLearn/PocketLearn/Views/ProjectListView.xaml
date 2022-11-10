@@ -18,7 +18,7 @@
                                 Margin="2,5,2,2"
                                 BackgroundColor="{StaticResource ButtonSelected}"
                                 CornerRadius="4"
-                                HeightRequest="100">
+                                HeightRequest="140">
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Project.ProjectName}" TextColor="White" />
 
@@ -26,6 +26,12 @@
                                     <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}, ConverterParameter='Has to be completed'}" TextColor="White" />
 
                                     <Label Text="{Binding Project.LearnSubject, Converter={StaticResource learnSubjectConverter}, ConverterParameter='Subject'}" TextColor="White" />
+
+                                    <Button
+                                        Command="{Binding DeleteProject}"
+                                        HorizontalOptions="End"
+                                        Text="Delete"
+                                        WidthRequest="100" />
                                 </StackLayout>
 
                             </Frame>

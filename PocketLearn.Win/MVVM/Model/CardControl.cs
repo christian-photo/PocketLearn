@@ -1,6 +1,7 @@
 ﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.PopUp;
+using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -137,6 +138,7 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 card.DeleteAssets();
                 project.Cards.Remove(card);
+                MainWindowVM.Instance.EditVM.UpdateView(project);
             });
         }
     }

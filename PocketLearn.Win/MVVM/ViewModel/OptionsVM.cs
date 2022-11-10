@@ -155,6 +155,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 t.Add(proj.ProjectName);
             }
             Projects = t;
+            Index = 0;
         }
 
         public void UpdateSettings()
@@ -165,6 +166,15 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 active.ProjectConfig = activeConfig;
             }
             active = Manager.LearnProjects.Where(x => x.ProjectName == Projects[Index]).FirstOrDefault();
+            if (active is null)
+            {
+                NotLearnedFactor = 0;
+                EasyFactor = 0;
+                OKFactor = 0;
+                MediumFactor = 0;
+                HardFactor = 0;
+                return;
+            }
             activeConfig = new ProjectConfig()
             {
                 EasyFactor = active.ProjectConfig.EasyFactor,
@@ -182,6 +192,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public void SettingsChanged()
         {
+            if (active is null) return;
             activeConfig.NotLearnedFactor = NotLearnedFactor;
             activeConfig.EasyFactor = EasyFactor;
             activeConfig.OKFactor = OKFactor;
