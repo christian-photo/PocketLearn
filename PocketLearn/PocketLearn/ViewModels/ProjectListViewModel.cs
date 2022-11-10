@@ -60,6 +60,23 @@ namespace PocketLearn.ViewModels
                 if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
             });
 
+            ProjectManager.ProjectsChanged += ProjectManager_ProjectsChanged;
+
+            ObservableCollection<ProjectItem> items = new();
+            SetItems();
+
+            BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
+            BackgroundTask.Start();
+            IsBusy = false;
+        }
+
+        private void ProjectManager_ProjectsChanged(object sender)
+        {
+            SetItems();
+        }
+
+        private void SetItems()
+        {
             ObservableCollection<ProjectItem> items = new();
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
@@ -71,15 +88,6 @@ namespace PocketLearn.ViewModels
                 });
             }
             ProjectItems = items;
-
-            BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);
-            BackgroundTask.Start();
-            IsBusy = false;
-        }
-
-        private void ProjectsChanged(object sender)
-        {
-            UpdateView();
         }
 
         void OnItemTapped(ProjectItem item)
@@ -101,19 +109,18 @@ namespace PocketLearn.ViewModels
             return ProjectManager.Create(string.Empty);
         }
 
-        public void UpdateView()
+        private string GetRawURL(string url)
         {
-            ObservableCollection<ProjectItem> items = new();
-            foreach (LearnProject project in ProjectManager.LearnProjects)
+            string[] split = url.Split('/');
+            List<string> list = new List<string>();
+            list.AddRange(split);
+            list.RemoveAt(list.Count - 1);
+            string res = "";
+            foreach (string str in list)
             {
-                project.InitCards();
-                items.Add(new ProjectItem(ProjectManager)
-                {
-                    Project = project,
-                    ShouldLearn = project.ShouldLearn()
-                });
+                res += str;
             }
-            ProjectItems = items;
+            return res;
         }
     }
 }
