@@ -47,7 +47,7 @@ namespace PocketLearn.ViewModels
             foreach (LearnProject project in ProjectManager.LearnProjects)
             {
                 project.InitCards();
-                items.Add(new ProjectItem()
+                items.Add(new ProjectItem(ProjectManager)
                 {
                     Project = project,
                     ShouldLearn = project.ShouldLearn()

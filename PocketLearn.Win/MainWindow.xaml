@@ -30,7 +30,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
         <ui:TitleBar
             Title="PocketLearn"
             Grid.Row="0"
