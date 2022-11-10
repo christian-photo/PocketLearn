@@ -45,7 +45,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
+            <Button Command="{Binding Sync}" Text="Sync" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

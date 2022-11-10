@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,7 +122,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             Manager.ProjectsChanged += UpdateList;
             AddLearnTime = new RelayCommand(_ =>
             {
-
+                new LearnTimePopUp(manager).ShowDialog();
             });
             DonateCoffee = new RelayCommand(_ =>
             {

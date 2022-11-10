@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Model\LearningProjectControl.cs" />
+    <Compile Include="MVVM\Model\LearnTimeControl.cs" />
     <Compile Include="MVVM\Model\ValueConverter\DateTimeConverter.cs" />
     <Compile Include="MVVM\Model\CardControl.cs" />
     <Compile Include="MVVM\Model\ValueConverter\CardContentConverter.cs" />

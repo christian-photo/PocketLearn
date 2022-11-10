@@ -45,6 +45,23 @@ namespace PocketLearn.Shared.Core.Learning
             instance = new ProjectManager() { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
             return instance;
         }
+
+        public void AddLearntime(TimeSpan from, TimeSpan to)
+        {
+            LearnProject.LearnTimes.Add((from,to));
+        }
+        
+        public void RemoveLearnTime(TimeSpan from, TimeSpan to)
+        {
+            foreach(var s in LearnProject.LearnTimes)
+            {
+                if(s.Item1 == from && s.Item2 == to)
+                {
+                    LearnProject.LearnTimes.Remove(s);
+                }
+            }
+        }
+
         public static ProjectManager Create(List<LearnProject> projects)
         {
             instance = new ProjectManager() { LearnProjects = projects };

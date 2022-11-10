@@ -14,6 +14,36 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <StackPanel Orientation="Vertical">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,5,5,0"
+                        FontSize="18"
+                        Foreground="White"
+                        Text="Select your learntimes"/>
+                        <ui:Button
+                        Grid.Row="0"
+                        Width="40"
+                        Height="40"
+                        Margin="5,2,2,2"
+                        Command="{Binding AddLearnTime}"
+                        Icon="Add24"
+                        IconFilled="True"
+                        ToolTip="Create new Project" />
+                    </StackPanel>
+                    
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <ListView
+                             HorizontalAlignment="Stretch"
+                             HorizontalContentAlignment="Stretch"
+                             Background="Transparent"
+                             BorderBrush="Transparent"
+                             Focusable="False"
+                             ItemsSource="{Binding LearnTimeView}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
                 <StackPanel Margin="15" Orientation="Vertical">
 
                     <StackPanel Orientation="Horizontal">
