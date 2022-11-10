@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PocketLearn.Win.MVVM.Model
-{
+{/*
     public class LearnTimeControl : Control
     {
 
@@ -55,15 +55,16 @@ namespace PocketLearn.Win.MVVM.Model
 
         public LearnTimeControl(TimeSpan from, TimeSpan to)
         {
-            FromMinutes = from.Minutes;
-            FromHours = from.Hours;
+         //   FromMinutes = from.Minutes;
+           // FromHours = from.Hours;
 
-            ToMinutes = to.Minutes;
-            ToHours = to.Hours;
+            //ToMinutes = to.Minutes;
+            //ToHours = to.Hours;
 
             Delete = new RelayCommand(_ =>
             {
             });
         }
     }
+    */
 }
