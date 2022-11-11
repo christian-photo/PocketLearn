@@ -62,7 +62,6 @@ namespace PocketLearn.ViewModels
 
             ProjectManager.ProjectsChanged += ProjectManager_ProjectsChanged;
 
-            ObservableCollection<ProjectItem> items = new();
             SetItems();
 
             BackgroundTask = new(App.PlatformMediator.NotificationSender, ProjectManager);

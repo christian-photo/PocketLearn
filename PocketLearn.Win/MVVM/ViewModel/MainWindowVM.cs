@@ -26,6 +26,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public static TaskScheduler UIContext;
 
+        public RelayCommand SetHomeVM { get; set; }
+
         public MainWindowVM()
         {
             Instance = this;
@@ -44,6 +46,11 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
             BackgroundTask.Start();
+
+            SetHomeVM = new RelayCommand(_ =>
+            {
+                Utility.NavigateToPage(ApplicationConstants.HomeViewURI);
+            });
         }
 
         private ProjectManager CreateProjectManager()
