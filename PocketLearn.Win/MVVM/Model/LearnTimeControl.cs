@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PocketLearn.Win.MVVM.Model
-{/*
+{
     public class LearnTimeControl : Control
     {
 
@@ -22,31 +22,60 @@ namespace PocketLearn.Win.MVVM.Model
             }
         }
 
-        public static readonly DependencyProperty CardContent1Property = DependencyProperty.Register(nameof(CardContent1), typeof(CardContent), typeof(CardControl), new UIPropertyMetadata(null));
-        public CardContent CardContent1
+        public static readonly DependencyProperty FromMinutesProperty = DependencyProperty.Register(nameof(FromMinutes), typeof(int), typeof(CardControl), new UIPropertyMetadata(null));
+        public int FromMinutes
         {
             get
             {
-                return (CardContent)GetValue(CardContent1Property);
+                return (int)GetValue(FromMinutesProperty);
             }
             set
             {
-                SetValue(CardContent1Property, value);
+                SetValue(FromMinutesProperty, value);
             }
         }
 
-        public static readonly DependencyProperty CardContent2Property = DependencyProperty.Register(nameof(CardContent2), typeof(CardContent), typeof(CardControl), new UIPropertyMetadata(null));
-        public CardContent CardContent2
+        public static readonly DependencyProperty ToMinutesProperty = DependencyProperty.Register(nameof(ToMinutes), typeof(int), typeof(CardControl), new UIPropertyMetadata(null));
+        public int ToMinutes
         {
             get
             {
-                return (CardContent)GetValue(CardContent2Property);
+                return (int)GetValue(ToMinutesProperty);
             }
             set
             {
-                SetValue(CardContent2Property, value);
+                SetValue(ToMinutesProperty, value);
             }
         }
+
+
+
+        public static readonly DependencyProperty FromHoursProperty = DependencyProperty.Register(nameof(FromHours), typeof(int), typeof(CardControl), new UIPropertyMetadata(null));
+        public int FromHours
+        {
+            get
+            {
+                return (int)GetValue(FromHoursProperty);
+            }
+            set
+            {
+                SetValue(FromHoursProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ToHoursProperty = DependencyProperty.Register(nameof(ToHours), typeof(int), typeof(CardControl), new UIPropertyMetadata(null));
+        public int ToHours
+        {
+            get
+            {
+                return (int)GetValue(ToHoursProperty);
+            }
+            set
+            {
+                SetValue(ToHoursProperty, value);
+            }
+        }
+
 
         static LearnTimeControl()
         {
@@ -55,16 +84,16 @@ namespace PocketLearn.Win.MVVM.Model
 
         public LearnTimeControl(TimeSpan from, TimeSpan to)
         {
-         //   FromMinutes = from.Minutes;
-           // FromHours = from.Hours;
+            FromMinutes = from.Minutes;
+            FromHours = from.Hours;
 
-            //ToMinutes = to.Minutes;
-            //ToHours = to.Hours;
+            ToMinutes = to.Minutes;
+            ToHours = to.Hours;
 
             Delete = new RelayCommand(_ =>
             {
             });
         }
     }
-    */
+    
 }

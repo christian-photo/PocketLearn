@@ -49,6 +49,7 @@ namespace PocketLearn.Shared.Core.Learning
         public void AddLearntime(TimeSpan from, TimeSpan to)
         {
             LearnProject.LearnTimes.Add((from,to));
+            ProjectsChanged?.Invoke(this);
         }
         
         public void RemoveLearnTime(TimeSpan from, TimeSpan to)
@@ -60,6 +61,7 @@ namespace PocketLearn.Shared.Core.Learning
                     LearnProject.LearnTimes.Remove(s);
                 }
             }
+            ProjectsChanged?.Invoke(this);
         }
 
         public static ProjectManager Create(List<LearnProject> projects)

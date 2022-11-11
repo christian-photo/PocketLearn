@@ -41,6 +41,8 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 projectManager.AddLearntime(new TimeSpan(0, int.Parse(FromHourBox.Text) , int.Parse(FromMinutesBox.Text), 0), new TimeSpan(0, int.Parse(ToHourBox.Text), int.Parse(ToMinutesBox.Text), 0));
             }
+
+            Close();
         }
     }
 }

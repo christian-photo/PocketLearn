@@ -16,6 +16,7 @@ namespace PocketLearn.Shared.Core.Learning
         German,
         French,
         Latin,
-        Social_Studies
+        Social_Studies,
+        Maths
     }
 }

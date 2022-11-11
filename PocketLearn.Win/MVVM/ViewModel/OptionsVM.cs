@@ -1,4 +1,5 @@
 ﻿using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
@@ -110,6 +111,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public OptionsVM(ProjectManager manager)
         {
+            LearnTimesView = new();
             Manager = manager;
             List<string> t = new();
             foreach (LearnProject proj in manager.LearnProjects)
@@ -156,6 +158,14 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
             Projects = t;
             Index = 0;
+            List<object> l = new();
+            foreach (var lt in LearnProject.LearnTimes)
+            {
+
+                
+                l.Add(lt);
+            }
+            LearnTimesView = l;
         }
 
         public void UpdateSettings()
