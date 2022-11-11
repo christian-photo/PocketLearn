@@ -10,23 +10,25 @@
 
     <Style TargetType="{x:Type model:LearnTimeControl}">
         <Style.Resources>
-            <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
         </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:LearnTimeControl}">
-                    <Border Height="80"
-                            Width="600"
-                            HorizontalAlignment="Stretch"
-                            Margin="5,5,0,0"
-                            BorderThickness="0"
-                            CornerRadius="5"
-                            Background="#444444"
-                            Focusable="False">
+                    <Border
+                        Width="600"
+                        Height="80"
+                        Margin="5,5,0,0"
+                        HorizontalAlignment="Stretch"
+                        Background="#444444"
+                        BorderThickness="0"
+                        CornerRadius="5"
+                        Focusable="False">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
 
-                                <TextBlock Margin="3,0,0,0"
+                                <TextBlock
+                                    Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -34,8 +36,9 @@
                                     FontSize="14"
                                     Foreground="#B0B0B0"
                                     Text="{Binding FromHour, Converter={StaticResource DateTimeConverter}, ConverterParameter='From Hour'}"
-                                    TextWrapping="Wrap"/>
-                                <TextBlock Margin="3,0,0,0"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -43,10 +46,11 @@
                                     FontSize="14"
                                     Foreground="#B0B0B0"
                                     Text="{Binding FromMinute, Converter={StaticResource DateTimeConverter}, ConverterParameter='Minute'}"
-                                    TextWrapping="Wrap"/>
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="3,0,0,0"
+                                <TextBlock
+                                    Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -54,8 +58,9 @@
                                     FontSize="14"
                                     Foreground="#B0B0B0"
                                     Text="{Binding ToHour, Converter={StaticResource DateTimeConverter}, ConverterParameter='To Hour'}"
-                                    TextWrapping="Wrap"/>
-                                <TextBlock Margin="3,0,0,0"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    Margin="3,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Background="Transparent"
@@ -63,7 +68,7 @@
                                     FontSize="14"
                                     Foreground="#B0B0B0"
                                     Text="{Binding ToMinute, Converter={StaticResource DateTimeConverter}, ConverterParameter='Minute'}"
-                                    TextWrapping="Wrap"/>
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </StackPanel>
                     </Border>

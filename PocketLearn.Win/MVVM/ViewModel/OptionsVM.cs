@@ -161,9 +161,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             List<object> l = new();
             foreach (var lt in LearnProject.LearnTimes)
             {
-
-                
-                l.Add(lt);
+                l.Add(new LearnTimeControl(lt.Item1, lt.Item2));
             }
             LearnTimesView = l;
         }
