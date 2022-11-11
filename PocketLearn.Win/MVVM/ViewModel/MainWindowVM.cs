@@ -1,11 +1,10 @@
-﻿using PocketLearn.Win.Core;
-using PocketLearn.Win.API;
-using System.IO;
+﻿using PocketLearn.Core.Interfaces.Classes;
 using PocketLearn.Public.Core.Config;
-using PocketLearn.Core.Interfaces.Classes;
-using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Shared.Core;
-using System.Runtime.InteropServices;
+using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.API;
+using PocketLearn.Win.Core;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace PocketLearn.Win.MVVM.ViewModel
@@ -26,6 +25,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public static TaskScheduler UIContext;
 
+        public RelayCommand SetHomeVM { get; set; }
+
         public MainWindowVM()
         {
             Instance = this;
@@ -44,6 +45,11 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             BackgroundTask = new(new WindowsNotificationSender(), ProjectManager);
             BackgroundTask.Start();
+
+            SetHomeVM = new RelayCommand(_ =>
+            {
+                Utility.NavigateToPage(ApplicationConstants.HomeViewURI);
+            });
         }
 
         private ProjectManager CreateProjectManager()
