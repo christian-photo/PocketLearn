@@ -1,6 +1,7 @@
 ﻿using Android.OS;
 using Newtonsoft.Json;
 using PocketLearn.Core.PlatformSpecifics.Interfaces;
+using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System;
 using System.Collections.Generic;
@@ -82,9 +83,15 @@ namespace PocketLearn.Core
         }
 
         public static async Task SyncBack(string url, LearnProject project) // Send the updated project back to the computer
-        { 
+        {
+            LearnProject tempProject = project.MakeDeepCopy();
+            foreach (LearnCard card in tempProject.Cards)
+            {
+                card.CardContent1.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
+                card.CardContent2.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
+            }
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Project", JsonConvert.SerializeObject(project));
+            client.DefaultRequestHeaders.Add("Project", JsonConvert.SerializeObject(tempProject));
             await client.GetAsync(url);
         }
 

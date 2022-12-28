@@ -4,6 +4,7 @@ using PocketLearn.Win.Core;
 using PocketLearn.Public.Core.Config;
 using PocketLearn.Win.API;
 using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Shared.Core;
 
 namespace PocketLearn.Win.MVVM.PopUp
 {

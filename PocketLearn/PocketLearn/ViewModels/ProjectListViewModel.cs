@@ -113,8 +113,7 @@ namespace PocketLearn.ViewModels
             string[] split = url.Split('/');
             List<string> list = new List<string>();
             list.AddRange(split);
-            list.RemoveAt(list.Count - 1);
-            return $"{split[0]}//{split[1]}/"; ;
+            return $"{split[0]}//{split[2]}/api";
         }
     }
 }

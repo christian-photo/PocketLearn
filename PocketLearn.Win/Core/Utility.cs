@@ -149,18 +149,6 @@ namespace PocketLearn.Win.Core
             nav.Navigate(pageUri);
         }
 
-        public static T MakeDeepCopy<T>(this T obj)
-        {
-            T o;
-            using (MemoryStream ms = new())
-            {
-                new BinaryFormatter().Serialize(ms, obj);
-                ms.Seek(0, SeekOrigin.Begin);
-                o = (T)new BinaryFormatter().Deserialize(ms);
-            }
-            return o;
-        }
-
         public static Bitmap CreateQRCode(string content)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
