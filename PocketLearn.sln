@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketLearn.Shared", "Pocke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Test", "PocketLearn.Test\PocketLearn.Test.csproj", "{3F8035D3-5FE1-424E-9BFD-EA9B9CACC1AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketLearn.Tests", "PocketLearn.Tests\PocketLearn.Tests.csproj", "{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,22 +143,6 @@ Global
 		{3F8035D3-5FE1-424E-9BFD-EA9B9CACC1AF}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{3F8035D3-5FE1-424E-9BFD-EA9B9CACC1AF}.Release|x64.Win.ActiveCfg = Release|Any CPU
 		{3F8035D3-5FE1-424E-9BFD-EA9B9CACC1AF}.Release|x64.Win.Build.0 = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|x64.Win.ActiveCfg = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Debug|x64.Win.Build.0 = Debug|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|iPhone.Build.0 = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|x64.Win.ActiveCfg = Release|Any CPU
-		{7516C3BB-4AF9-4CB3-8B1F-85E67BE1FABC}.Release|x64.Win.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
