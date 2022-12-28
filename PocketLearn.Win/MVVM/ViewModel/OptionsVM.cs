@@ -119,13 +119,17 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 t.Add(proj.ProjectName);
             }
             Projects = t;
+
             if (Projects.Count > 0)
                 UpdateSettings();
+
             Manager.ProjectsChanged += UpdateList;
+
             AddLearnTime = new RelayCommand(_ =>
             {
                 new LearnTimePopUp(manager).ShowDialog();
             });
+
             DonateCoffee = new RelayCommand(_ =>
             {
                 string url = "";

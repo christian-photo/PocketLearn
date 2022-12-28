@@ -10,7 +10,7 @@
 
     <Style TargetType="{x:Type model:LearnTimeControl}">
         <Style.Resources>
-            <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
         </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>

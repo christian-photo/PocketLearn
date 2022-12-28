@@ -14,7 +14,7 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <StackPanel Orientation="Vertical">
-                
+
                 <StackPanel Margin="15" Orientation="Vertical">
 
                     <StackPanel Orientation="Horizontal">
@@ -114,20 +114,21 @@
                             Command="{Binding AddLearnTime}"
                             Icon="Add24"
                             IconFilled="True"
-                            ToolTip="Create new Project" />
+                            ToolTip="Configure Learntimes" />
                     </StackPanel>
 
-                    <ScrollViewer IsTabStop="True"
-                      VerticalScrollBarVisibility="Auto"
-                      Focusable="False">
-                        <ListView HorizontalAlignment="Left"
-                      HorizontalContentAlignment="Stretch"
-                      Background="Transparent"
-                      Focusable="False"
-                      ItemsSource="{Binding LearnTimesView}"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     >
+                    <ScrollViewer
+                        Focusable="False"
+                        IsTabStop="True"
+                        VerticalScrollBarVisibility="Auto">
+                        <ListView
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            Focusable="False"
+                            ItemsSource="{Binding LearnTimesView}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
 
@@ -156,12 +157,12 @@
 
 
 
-       
+
             </StackPanel>
 
 
 
-            
+
         </ScrollViewer>
 
 
