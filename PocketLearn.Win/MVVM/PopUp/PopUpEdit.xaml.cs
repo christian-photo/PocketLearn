@@ -173,6 +173,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             }
 
             File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
+            LearnProject.LastEdit = DateTime.Now;
             Close();
         }
 

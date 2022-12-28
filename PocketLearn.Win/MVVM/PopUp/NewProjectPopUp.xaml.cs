@@ -50,6 +50,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 Cards = new List<LearnCard>()
             };
             project.InitCards();
+            project.LastEdit = DateTime.Now;
             projectManager.AddProject(project);
             Close();
         }
