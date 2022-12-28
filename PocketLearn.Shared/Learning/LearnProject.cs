@@ -18,6 +18,8 @@ namespace PocketLearn.Shared.Core.Learning
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
 
+        public DateTime LastEdit { get; set; }
+
         [JsonProperty]
         public Guid ProjectID { get; private set; }
 
@@ -41,6 +43,7 @@ namespace PocketLearn.Shared.Core.Learning
         {
             Cards = cards;
             InitCards();
+            LastEdit = DateTime.Now;
         }
 
         private bool IsLastDay()
