@@ -54,11 +54,13 @@ namespace PocketLearn.Shared.Core.Learning
         
         public void RemoveLearnTime(TimeSpan from, TimeSpan to)
         {
+            
             foreach(var s in LearnProject.LearnTimes)
             {
                 if(s.Item1 == from && s.Item2 == to)
                 {
                     LearnProject.LearnTimes.Remove(s);
+                    break;
                 }
             }
             ProjectsChanged?.Invoke(this);

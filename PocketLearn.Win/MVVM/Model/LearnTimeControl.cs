@@ -1,4 +1,6 @@
 ﻿
+using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -92,6 +94,7 @@ namespace PocketLearn.Win.MVVM.Model
 
             Delete = new RelayCommand(_ =>
             {
+                MainWindowVM.Instance.ProjectManager.RemoveLearnTime(from, to);
             });
         }
     }

@@ -15,53 +15,94 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type model:LearnTimeControl}">
-                    <StackPanel Orientation="Vertical">
+                    <Border Height="40"
+                            Width="130"
+                            HorizontalAlignment="Stretch"
+                            Margin="5,5,0,0"
+                            BorderThickness="0"
+                            CornerRadius="5"
+                            Background="#444444"
+                            Focusable="False">
                         <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
 
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Focusable="False"
-                                FontSize="14"
-                                Foreground="#B0B0B0"
-                                Text="{Binding FromHour}"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Focusable="False"
-                                FontSize="14"
-                                Foreground="#B0B0B0"
-                                Text="{Binding FromMinute}"
-                                TextWrapping="Wrap" />
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text="{Binding FromHours}"
+                                    TextWrapping="Wrap"/>
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text=":"
+                                    TextWrapping="Wrap"/>
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text="{Binding FromMinutes}"
+                                    TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="25"
+                                    Foreground="White"
+                                    Text="-"
+                                    TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text="{Binding ToHours}"
+                                    TextWrapping="Wrap"/>
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text=":"
+                                    TextWrapping="Wrap"/>
+                                <TextBlock Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    FontSize="20"
+                                    Foreground="White"
+                                    Text="{Binding ToMinutes}"
+                                    TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <ui:Button
+                                    Width="40"
+                                    Height="40"
+                                    Margin="2,5,2,5"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding Delete}"
+                                    Background="#444444"
+                                    Icon="BinFull20"
+                                    ToolTip="Delete" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Focusable="False"
-                                FontSize="14"
-                                Foreground="#B0B0B0"
-                                Text="{Binding ToHour}"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Focusable="False"
-                                FontSize="14"
-                                Foreground="#B0B0B0"
-                                Text="{Binding ToMinute}"
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
