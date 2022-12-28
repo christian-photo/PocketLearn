@@ -22,7 +22,7 @@ namespace PocketLearn.Win
             base.OnStartup(e);
         }
 
-        private void Window_Closing(object sender, ExitEventArgs e)
+        public void Window_Closing(object sender, ExitEventArgs e)
         {
             if (!Directory.Exists(ApplicationConstants.APPLICATION_DATA_PATH))
             {

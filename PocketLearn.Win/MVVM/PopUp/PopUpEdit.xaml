@@ -64,6 +64,13 @@
                     Margin="10,6,0,0"
                     HorizontalAlignment="Left"
                     SelectionChanged="ComboBox_SelectionChanged" />
+                <TextBlock
+                    Margin="20,15,0,0"
+                    Background="Transparent"
+                    FontSize="14"
+                    Foreground="White"
+                    Text="Contains LaTeX" />
+                <ui:ToggleSwitch x:Name="ContainsLaTeX" Margin="15,5,0,0" />
             </StackPanel>
 
             <StackPanel

@@ -54,6 +54,7 @@ namespace PocketLearn.Win
         {
             if (Keyboard.GetKeyStates(Key.LeftShift) == KeyStates.Down)
             {
+                ((App)Application.Current).Window_Closing(this, null);
                 Application.Current.Shutdown();
                 return;
             }

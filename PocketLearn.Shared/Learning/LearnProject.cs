@@ -12,9 +12,14 @@ namespace PocketLearn.Shared.Core.Learning
         public DateTime CreationTime { get; set; }
         public DateTime HasToBeCompleted { get; set; }
         public DateTime LastLearnedTime { get; set; }
+
+        [JsonProperty]
         public static List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>() {  };
 
+        [JsonProperty]
         private List<LearnCard> _cards;
+
+        [JsonIgnore]
         public List<LearnCard> Cards { get => _cards; set { _cards = value; } }
         public ProjectConfig ProjectConfig { get; set; }
 
@@ -58,6 +63,11 @@ namespace PocketLearn.Shared.Core.Learning
             okCards.Clear();
             easyCards.Clear();
             notLearnedCards.Clear();
+            if (Cards == null)
+            {
+                Cards = new List<LearnCard>();
+                return;
+            }
             foreach (var card in Cards)
             {
                 switch (card.Difficulty)

@@ -54,6 +54,7 @@ namespace PocketLearn.Win.MVVM.PopUp
 
                 }
             }
+            ContainsLaTeX.IsChecked = learnCard.CardContent1.ContainsLaTeX;
             foreach (object obj in learnCard.CardContent1.Items)
             {
                 CardContentItem item = (CardContentItem)obj;
@@ -124,7 +125,7 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void Accept(object sender, RoutedEventArgs e)
         {
-            string directory = System.IO.Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
+            string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             ActiveCard.CardContent1.ClearItems(directory);
             ActiveCard.CardContent2.ClearItems(directory);
             switch(CardTypeCombo.Text) {
@@ -165,6 +166,9 @@ namespace PocketLearn.Win.MVVM.PopUp
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
+            ActiveCard.CardContent1.ContainsLaTeX = (bool)ContainsLaTeX.IsChecked;
+            ActiveCard.CardContent2.ContainsLaTeX = (bool)ContainsLaTeX.IsChecked;
+
             ActiveCard.LastEdit = DateTime.Now;
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
             if (!Directory.Exists(ApplicationConstants.APPLICATION_DATA_PATH))

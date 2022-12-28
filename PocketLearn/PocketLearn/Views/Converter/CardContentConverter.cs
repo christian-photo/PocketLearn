@@ -1,4 +1,5 @@
 ﻿using Android.Graphics;
+using CSharpMath.Forms;
 using PocketLearn.Core;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
@@ -17,14 +18,10 @@ namespace PocketLearn.Views.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int font = 14;
-            int width = 400;
-            int height = 200;
             if (parameter != null)
             {
                 string[] split = parameter.ToString().Split('-'); // 20&400&200 (font, width, height)
                 font = int.Parse(split[0]);
-                width = int.Parse(split[1]);
-                height = int.Parse(split[2]);
             }
             string directory = App.PlatformMediator.ApplicationConstants.GetDataPath();
             CardContent content = (CardContent)value;
@@ -50,15 +47,30 @@ namespace PocketLearn.Views.Converter
                 }
                 else if (item.Type == CardContentItemType.Text)
                 {
-                    Label textBlock = new()
+                    if (content.ContainsLaTeX)
                     {
-                        Text = item.Content,
-                        FontSize = font,
-                        Margin = new Thickness(2),
-                        TextColor = Utility.GetColorFromHex("#FFF").Color,
-                        HorizontalOptions = LayoutOptions.Center
-                    };
-                    container.Children.Add(textBlock);
+                        MathView latex = new MathView()
+                        {
+                            LaTeX = item.Content,
+                            FontSize = font,
+                            Margin = new Thickness(2),
+                            TextColor = Utility.GetColorFromHex("#FFF").Color,
+                            HorizontalOptions = LayoutOptions.CenterAndExpand
+                        };
+                        container.Children.Add(latex);
+                    }
+                    else 
+                    {
+                        Label textBlock = new()
+                        {
+                            Text = item.Content,
+                            FontSize = font,
+                            Margin = new Thickness(2),
+                            TextColor = Utility.GetColorFromHex("#FFF").Color,
+                            HorizontalOptions = LayoutOptions.Center
+                        };
+                        container.Children.Add(textBlock);
+                    }
                 }
             }
             return container;

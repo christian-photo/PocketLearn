@@ -10,6 +10,7 @@ namespace PocketLearn.Shared.Core.Learning
     public class CardContent
     {
         public List<CardContentItem> Items { get; private set; }
+        public bool ContainsLaTeX { get; set; } = false;
         public CardContent(List<CardContentItem> items)
         {
             Items = items;

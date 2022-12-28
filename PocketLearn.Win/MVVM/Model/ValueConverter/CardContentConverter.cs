@@ -5,9 +5,11 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using WpfMath.Controls;
 using Brush = System.Windows.Media.Brush;
 using Image = System.Windows.Controls.Image;
 
@@ -59,14 +61,30 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                 }
                 else if ((item).Type == CardContentItemType.Text)
                 {
-                    TextBlock textBlock = new()
+                    if (content.ContainsLaTeX)
                     {
-                        Text = item.Content,
-                        FontSize = font,
-                        Margin = new System.Windows.Thickness(2),
-                        Foreground = (Brush)new BrushConverter().ConvertFromString("#FFF")
-                    };
-                    container.Children.Add(textBlock);
+                        FormulaControl latex = new FormulaControl()
+                        {
+                            Formula = item.Content,
+                            FontSize = font,
+                            Margin = new Thickness(2),
+                            Foreground = System.Windows.Media.Brushes.White,
+                            HorizontalAlignment = HorizontalAlignment.Center
+                        };
+                        container.Children.Add(latex);
+                    }
+                    else
+                    {
+                        TextBlock textBlock = new()
+                        {
+                            Text = item.Content,
+                            FontSize = font,
+                            Margin = new Thickness(2),
+                            Foreground = System.Windows.Media.Brushes.White,
+                            HorizontalAlignment = HorizontalAlignment.Center
+                        };
+                        container.Children.Add(textBlock);
+                    }
                 }
             }
             return container;

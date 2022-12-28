@@ -1,14 +1,9 @@
-﻿using Android.Graphics;
-using Android.Media;
-using Android.Util;
-using Java.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PocketLearn.Core.PlatformSpecifics.Interfaces;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;

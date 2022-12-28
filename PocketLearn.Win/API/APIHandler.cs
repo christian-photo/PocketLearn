@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace PocketLearn.Win.API
 {
@@ -18,17 +19,17 @@ namespace PocketLearn.Win.API
         public static LearnProject ProjectToSync { get; set; }
 
         [Route(HttpVerbs.Get, "/GetProject")] // http://localhost:{WinConfig.Get().Port}/api + /GetProject
-        public object GetLearnProject([QueryField] bool images = false)
+        public void GetLearnProject([QueryField] bool images = false)
         {
             if (ProjectToSync is null)
             {
-                return new Hashtable() { { "Error", "NO-PROJECT" } };
+                HttpContext.WriteToResponse(JsonConvert.SerializeObject(new Hashtable() { { "Error", "NO-PROJECT" } }));
             }
             if (images)
             {
-                return new List<object>() { ProjectToSync, GetImages(ProjectToSync) };
+                HttpContext.WriteToResponse(JsonConvert.SerializeObject(new List<object>() { ProjectToSync, GetImages(ProjectToSync) }));
             }
-            return ProjectToSync;
+            HttpContext.WriteToResponse(JsonConvert.SerializeObject(ProjectToSync));
         }
 
         public Hashtable GetImages(LearnProject project) // returns a hashtable of the image name and images base64 encoded
@@ -54,6 +55,14 @@ namespace PocketLearn.Win.API
         {
             MainWindowVM.Instance.ProjectManager.LearnProjects.RemoveAll(x => x.ProjectID == ProjectToSync.ProjectID);
             MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
+        }
+    }
+
+    public static class WebUtility
+    {
+        public static void WriteToResponse(this IHttpContext context, string json)
+        {
+            context.SendStringAsync(json, MimeType.Json, Encoding.UTF8).Wait();
         }
     }
 }
