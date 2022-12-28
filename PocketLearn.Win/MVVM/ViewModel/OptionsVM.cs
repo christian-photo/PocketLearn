@@ -10,8 +10,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
     public class OptionsVM : ObservableObject
     {
 
-        private List<object> _learnTimesView;
-        public List<object> LearnTimesView
+        private List<LearnTimeControl> _learnTimesView;
+        public List<LearnTimeControl> LearnTimesView
         {
             get => _learnTimesView;
             set
@@ -158,12 +158,12 @@ namespace PocketLearn.Win.MVVM.ViewModel
             }
             Projects = t;
             Index = 0;
-            List<object> l = new();
+            List<LearnTimeControl> l = new();
             foreach (var lt in LearnProject.LearnTimes)
             {
 
-                
-                l.Add(lt);
+
+                l.Add(new LearnTimeControl(lt.Item1, lt.Item2));
             }
             LearnTimesView = l;
         }
