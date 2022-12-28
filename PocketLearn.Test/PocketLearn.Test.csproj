@@ -63,14 +63,6 @@
       <Project>{ed28d556-5ae4-40e3-a830-58276f033748}</Project>
       <Name>PocketLearn.Win</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PocketLearn\PocketLearn.Android\PocketLearn.Android.csproj">
-      <Project>{7bcab42d-848b-4e6e-8aca-ff1d6bbb31eb}</Project>
-      <Name>PocketLearn.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PocketLearn\PocketLearn.iOS\PocketLearn.iOS.csproj">
-      <Project>{686df0bd-4239-4e88-ab0d-0d30c4d4341b}</Project>
-      <Name>PocketLearn.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PocketLearn\PocketLearn\PocketLearn.csproj">
       <Project>{2cba5d59-ff85-46cf-9add-ce7198d78e03}</Project>
       <Name>PocketLearn</Name>
