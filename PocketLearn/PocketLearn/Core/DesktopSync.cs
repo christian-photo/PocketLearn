@@ -1,11 +1,13 @@
-﻿using Android.OS;
+﻿using Android.Graphics;
+using Android.Media;
+using Android.Util;
+using Java.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PocketLearn.Core.PlatformSpecifics.Interfaces;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -23,7 +25,7 @@ namespace PocketLearn.Core
         /// <param name="manager">The ProjectManager</param>
         /// <param name="constants">Platform dependend Application Constats</param>
         /// <returns>The updated LearnProject (not added to the Manager) and a bool if it was a new unknown project or not. If this is false, the Project is already in the Manager, so don't add it</returns>
-        public static (LearnProject, bool) SyncProject(string json, bool containsImages, ProjectManager manager, IApplicationConstants constants)
+        public static (LearnProject, bool) SyncProject(string json, bool containsImages, ProjectManager manager, IFile fileOperation)
         {
             // Create a LearnProject object deserialized from the given JSON code of the project
             LearnProject project;
@@ -42,11 +44,11 @@ namespace PocketLearn.Core
                 List<object> objects = JsonConvert.DeserializeObject<List<object>>(json);
                 project = JsonConvert.DeserializeObject<LearnProject>(objects[0].ToString());
 
-                foreach (object obj in objects)
+                foreach (JObject obj in objects)
                 {
                     if (obj == objects[0]) continue; // Skip the first element, as it has already been saved as a LearnProject object
-                    KeyValuePair<string, string> img = JsonConvert.DeserializeObject<KeyValuePair<string, string>>(obj.ToString());
-                    SaveImage(constants, img.Key, img.Value); // Save the image
+                    KeyValuePair<string, string> img = new KeyValuePair<string, string>(obj.Properties().ElementAt(0).Name, obj.Properties().ElementAt(0).Value.ToString());
+                    fileOperation.SaveBase64Image(img.Value, img.Key); // Save the image
                 }
             }
 
@@ -93,15 +95,6 @@ namespace PocketLearn.Core
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Project", JsonConvert.SerializeObject(tempProject));
             await client.GetAsync(url);
-        }
-
-        private static void SaveImage(IApplicationConstants constants, string filename, string image)
-        {
-            byte[] imgBytes = Convert.FromBase64String(image);
-            using (var ms = new MemoryStream(imgBytes, 0, imgBytes.Length))
-            {
-                Image.FromStream(ms, true).Save(Path.Combine(constants.GetDataPath(), "Images", filename));
-            }
         }
     }
 }

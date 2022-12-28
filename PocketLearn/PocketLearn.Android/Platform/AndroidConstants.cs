@@ -16,6 +16,6 @@ namespace PocketLearn.Droid.Platform
 {
     public class AndroidConstants : IApplicationConstants
     {
-        public string GetDataPath() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PocketLearn");
+        public string GetDataPath() => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     }
 }

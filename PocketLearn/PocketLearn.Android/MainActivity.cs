@@ -25,7 +25,7 @@ namespace PocketLearn.Droid
             ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
 
             PlatformMediator plat = new(Core.PlatformSpecifics.DevicePlatform.Android);
-            plat.RegisterServices(new AndroidConstants(), new AndroidNotificationSender(), new AndroidQrScanner());
+            plat.RegisterServices(new AndroidConstants(), new AndroidNotificationSender(), new AndroidQrScanner(), new File());
 
             LoadApplication(new App(plat));
             Instance = this;

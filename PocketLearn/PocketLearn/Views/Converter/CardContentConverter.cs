@@ -1,9 +1,8 @@
-﻿using PocketLearn.Core;
+﻿using Android.Graphics;
+using PocketLearn.Core;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -27,7 +26,7 @@ namespace PocketLearn.Views.Converter
                 width = int.Parse(split[1]);
                 height = int.Parse(split[2]);
             }
-            string directory = Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Images");
+            string directory = App.PlatformMediator.ApplicationConstants.GetDataPath();
             CardContent content = (CardContent)value;
             StackLayout container = new()
             {
@@ -35,36 +34,29 @@ namespace PocketLearn.Views.Converter
             };
             foreach (CardContentItem item in content.Items)
             {
-                if (((item).Type == CardContentItemType.Image))
+                if (item.Type == CardContentItemType.Image)
                 {
-                    if (!File.Exists(Path.Combine(directory, item.Content)))
+                    if (!File.Exists(System.IO.Path.Combine(directory, item.Content)))
                     {
                         continue;
                     }
-                    Bitmap bmp = new(Path.Combine(directory, item.Content));
-                    int factor = SharedUtility.GetSizeFactor(bmp.Height, height);
-                    int targetwidth = bmp.Width / factor;
-                    if (targetwidth > width)
+                    Image image = new()
                     {
-                        factor = SharedUtility.GetSizeFactor(bmp.Width, width);
-                    }
-                    Xamarin.Forms.Image image = new()
-                    {
-                        Source = bmp.ToBitmapImage(),
+                        Source = System.IO.Path.Combine(directory, item.Content),
                         Margin = new Thickness(2),
-                        HeightRequest = bmp.Height / factor,
-                        WidthRequest = bmp.Width / factor
+                        HorizontalOptions = LayoutOptions.Center
                     };
                     container.Children.Add(image);
                 }
-                else if ((item).Type == CardContentItemType.Text)
+                else if (item.Type == CardContentItemType.Text)
                 {
                     Label textBlock = new()
                     {
                         Text = item.Content,
                         FontSize = font,
                         Margin = new Thickness(2),
-                        TextColor = Utility.GetColorFromHex("#FFF").Color
+                        TextColor = Utility.GetColorFromHex("#FFF").Color,
+                        HorizontalOptions = LayoutOptions.Center
                     };
                     container.Children.Add(textBlock);
                 }

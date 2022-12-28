@@ -37,21 +37,12 @@ namespace PocketLearn.ViewModels
 
 
             ProjectManager = CreateProjectManager();
-            ProjectManager.AddProject(new LearnProject(DateTime.Now, new DateTime(2023, 1, 1), Guid.NewGuid())
-            {
-                LastLearnedTime = DateTime.Now,
-                LearnSubject = LearnSubject.Art,
-                ProjectName = "asdf",
-                ProjectConfig = new ProjectConfig(),
-                Cards = new List<LearnCard>() { new LearnCard() { CardContent1 = new CardContent(new List<CardContentItem> { new CardContentItem("dffd", CardContentItemType.Text) })} }
-                
-            });
 
             Sync = new Command(async () =>
             {
                 ZXing.Result result = await App.PlatformMediator.QrScanner.StartScan();
                 string json = await new HttpClient().GetStringAsync(result.Text);
-                (LearnProject, bool) res = DesktopSync.SyncProject(json, json.Contains("images=true"), ProjectManager, App.PlatformMediator.ApplicationConstants);
+                (LearnProject, bool) res = DesktopSync.SyncProject(json, result.Text.Contains("images=true"), ProjectManager, App.PlatformMediator.FileOperations);
                 if (res.Item2)
                 {
                     ProjectManager.AddProject(res.Item1);

@@ -37,10 +37,6 @@ namespace PocketLearn.ViewModels
             Instance = this;
             ProjectListViewModel = new ProjectListViewModel();
             Current = ProjectListViewModel;
-
-           
         }
-
-       
     }
 }

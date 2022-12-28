@@ -95,6 +95,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Platform\AndroidConstants.cs" />
     <Compile Include="Platform\AndroidQrScanner.cs" />
+    <Compile Include="Platform\File.cs" />
     <Compile Include="Platform\NotificationSender.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
