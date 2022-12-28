@@ -114,12 +114,7 @@ namespace PocketLearn.ViewModels
             List<string> list = new List<string>();
             list.AddRange(split);
             list.RemoveAt(list.Count - 1);
-            string res = "";
-            foreach (string str in list)
-            {
-                res += str;
-            }
-            return res;
+            return $"{split[0]}//{split[1]}/"; ;
         }
     }
 }
