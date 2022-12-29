@@ -59,7 +59,7 @@
                             <ui:MenuItem
                                 Click="TrayMenuItem_OnClick"
                                 Header="Close"
-                                SymbolIcon="ClosedCaption24"
+                                SymbolIcon="Stop24"
                                 Tag="Close" />
                         </ContextMenu>
                     </ui:NotifyIcon.Menu>
