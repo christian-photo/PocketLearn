@@ -91,6 +91,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Platform\ApplicationConstants.cs" />
+    <Compile Include="Platform\FileOperations.cs" />
     <Compile Include="Platform\NotificationSender.cs" />
     <Compile Include="Platform\QrScanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

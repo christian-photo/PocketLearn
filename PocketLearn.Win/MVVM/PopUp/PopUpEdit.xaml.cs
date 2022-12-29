@@ -52,6 +52,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
             }
             ContainsLaTeX.IsChecked = learnCard.CardContent1.ContainsLaTeX;
+
             foreach (object obj in learnCard.CardContent1.Items)
             {
                 CardContentItem item = (CardContentItem)obj;

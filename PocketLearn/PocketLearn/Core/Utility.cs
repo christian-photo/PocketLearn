@@ -1,5 +1,4 @@
 ﻿using PocketLearn.Shared.Core.Learning;
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -10,7 +9,7 @@ namespace PocketLearn.Core
 {
     public static class Utility
     {
-        public static Xamarin.Forms.ImageSource ToBitmapImage(this Bitmap bitmap)
+        public static ImageSource ToBitmapImage(this Bitmap bitmap)
         {
             return ImageSource.FromStream(() =>
             {
@@ -37,14 +36,14 @@ namespace PocketLearn.Core
             {
                 if (item.Type != CardContentItemType.Text)
                 {
-                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Images", item.Content));
+                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), item.Content));
                 }
             }
             foreach (CardContentItem item in card.CardContent2.Items)
             {
                 if (item.Type != CardContentItemType.Text)
                 {
-                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Images", item.Content));
+                    File.Delete(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), item.Content));
                 }
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
 using PocketLearn.Core.PlatformSpecifics;
 using PocketLearn.iOS.Platform;
 using UIKit;
@@ -30,7 +26,7 @@ namespace PocketLearn.iOS
 
             app.RegisterUserNotificationSettings(notificationSettings);
             PlatformMediator plat = new PlatformMediator(DevicePlatform.iOS);
-            plat.RegisterServices(new ApplicationConstants(), new NotificationSender(), new QrScanner());
+            plat.RegisterServices(new ApplicationConstants(), new NotificationSender(), new QrScanner(), new FileOperations());
             LoadApplication(new App(plat));
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 

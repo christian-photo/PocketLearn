@@ -27,23 +27,7 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Icon="ApplicationIcon.ico">
-            <ui:TitleBar.Tray>
-                <ui:NotifyIcon
-                    FocusOnLeftClick="True"
-                    MenuOnRightClick="True"
-                    TooltipText="PocketLearn">
-                    <ui:NotifyIcon.Menu>
-                        <ContextMenu>
-                            <ui:MenuItem
-                                Header="Home"
-                                SymbolIcon="Library28"
-                                Tag="home" />
-                        </ContextMenu>
-                    </ui:NotifyIcon.Menu>
-                </ui:NotifyIcon>
-            </ui:TitleBar.Tray>
-        </ui:TitleBar>
+            Icon="ApplicationIcon.ico" />
 
         <StackPanel
             Grid.Row="1"
