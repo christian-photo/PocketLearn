@@ -9,10 +9,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
@@ -140,10 +137,8 @@ namespace PocketLearn.Win.MVVM.PopUp
                     break;
 
             }
-            foreach (string part in QuestionText.Text.Split('\n'))
-            {
-                ActiveCard.CardContent1.Items.Add(new CardContentItem(part, CardContentItemType.Text));
-            }
+            ActiveCard.CardContent1.Items.Add(new CardContentItem(QuestionText.Text, CardContentItemType.Text));
+
             foreach (Image bmp in QuestionImages.Items)
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
@@ -153,10 +148,8 @@ namespace PocketLearn.Win.MVVM.PopUp
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
 
-            foreach (string part in AnswerText.Text.Split('\n'))
-            {
-                ActiveCard.CardContent2.Items.Add(new CardContentItem(part, CardContentItemType.Text));
-            }
+            ActiveCard.CardContent2.Items.Add(new CardContentItem(AnswerText.Text, CardContentItemType.Text));
+
             foreach (Image bmp in AnswerImages.Items)
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();

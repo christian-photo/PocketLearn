@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="EditPopUp"
-    Width="650"
-    Height="550"
+    Width="700"
+    Height="850"
     Background="DimGray"
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
@@ -85,9 +85,13 @@
                     Text="Question" />
                 <TextBox
                     x:Name="QuestionText"
-                    Width="450"
-                    Height="50"
-                    Margin="5,0,0,0" />
+                    Width="500"
+                    Height="100"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Stretch"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <StackPanel Margin="5" Orientation="Horizontal">
@@ -109,7 +113,7 @@
                 </StackPanel>
                 <ListView
                     x:Name="QuestionImages"
-                    MinHeight="100"
+                    MinHeight="150"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
                     Background="Transparent"
@@ -133,6 +137,7 @@
 
                 </ListView>
             </StackPanel>
+            <Separator Margin="15,5,15,5" />
             <StackPanel
                 Margin="5"
                 HorizontalAlignment="Stretch"
@@ -145,10 +150,13 @@
                     Text="Answer   " />
                 <TextBox
                     x:Name="AnswerText"
-                    Width="450"
-                    Height="50"
+                    Width="500"
+                    Height="100"
                     Margin="5,0,0,0"
-                    FontSize="14" />
+                    VerticalAlignment="Stretch"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <StackPanel Margin="5" Orientation="Horizontal">
@@ -170,6 +178,7 @@
                 </StackPanel>
                 <ListView
                     x:Name="AnswerImages"
+                    MinHeight="150"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
                     Background="Transparent"

@@ -1,14 +1,10 @@
-﻿using Android.Graphics;
-using CSharpMath.Forms;
+﻿using CSharpMath.Forms;
 using PocketLearn.Core;
-using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Text;
 using Xamarin.Forms;
-using Brush = Xamarin.Forms.Brush;
 
 namespace PocketLearn.Views.Converter
 {
@@ -33,13 +29,13 @@ namespace PocketLearn.Views.Converter
             {
                 if (item.Type == CardContentItemType.Image)
                 {
-                    if (!File.Exists(System.IO.Path.Combine(directory, item.Content)))
+                    if (!File.Exists(Path.Combine(directory, item.Content)))
                     {
                         continue;
                     }
                     Image image = new()
                     {
-                        Source = System.IO.Path.Combine(directory, item.Content),
+                        Source = Path.Combine(directory, item.Content),
                         Margin = new Thickness(2),
                         HorizontalOptions = LayoutOptions.Center
                     };

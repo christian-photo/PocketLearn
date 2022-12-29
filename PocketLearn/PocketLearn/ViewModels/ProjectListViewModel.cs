@@ -41,6 +41,13 @@ namespace PocketLearn.ViewModels
             Sync = new Command(async () =>
             {
                 ZXing.Result result = await App.PlatformMediator.QrScanner.StartScan();
+
+                ActivityIndicator activity = new()
+                {
+                    IsRunning = true
+                };
+                IsBusy = true;
+
                 string json = await new HttpClient().GetStringAsync(result.Text);
                 (LearnProject, bool) res = DesktopSync.SyncProject(json, result.Text.Contains("images=true"), ProjectManager, App.PlatformMediator.FileOperations);
                 if (res.Item2)
@@ -49,6 +56,9 @@ namespace PocketLearn.ViewModels
 
                 }
                 if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
+
+                activity.IsRunning = false;
+                IsBusy = false;
             });
 
             ProjectManager.ProjectsChanged += ProjectManager_ProjectsChanged;

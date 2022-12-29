@@ -8,9 +8,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using WpfMath.Controls;
-using Brush = System.Windows.Media.Brush;
 using Image = System.Windows.Controls.Image;
 
 namespace PocketLearn.Win.MVVM.Model.ValueConverter
@@ -53,7 +51,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     Image image = new()
                     {
                         Source = bmp.ToBitmapImage(),
-                        Margin = new System.Windows.Thickness(2),
+                        Margin = new Thickness(2),
                         MaxHeight = bmp.Height / factor,
                         MaxWidth = bmp.Width / factor
                     };
