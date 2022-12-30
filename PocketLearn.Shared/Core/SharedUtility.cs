@@ -8,10 +8,6 @@ namespace PocketLearn.Shared.Core
 {
     public static class SharedUtility
     {
-        public static int GetSizeFactor(int dimension, int targetDimension)
-        {
-            return dimension / targetDimension;
-        }
 
         public static T MakeDeepCopy<T>(this T obj)
         {

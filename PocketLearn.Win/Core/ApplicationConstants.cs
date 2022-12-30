@@ -12,6 +12,11 @@ namespace PocketLearn.Win.Core
         public static string APPLICATIONDIRECTORY = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string APPLICATION_DATA_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PocketLearn");
 
+        public static string GetNewTempFile()
+        {
+            return Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
+        }
+
         public static string Version
         {
             get

@@ -26,7 +26,7 @@ namespace PocketLearn.Win.Core.Notification
                     return;
                 }
             });
-
+            BackgroundTask.SentNotification = false;
             t.Start(MainWindowVM.UIContext);
         }
     }

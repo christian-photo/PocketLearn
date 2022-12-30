@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using PocketLearn.Core.PlatformSpecifics;
 using PocketLearn.iOS.Platform;
+using System;
 using UIKit;
 
 namespace PocketLearn.iOS
@@ -31,6 +32,11 @@ namespace PocketLearn.iOS
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public void OnNotificationSent(object sender, EventArgs e)
+        {
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber++;
         }
     }
 }

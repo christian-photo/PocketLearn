@@ -10,6 +10,12 @@ namespace PocketLearn.Shared.Core
         private Timer _timer;
         private INotificationSender notification;
         private ProjectManager manager;
+
+        public delegate void EventArgs(object sender, EventArgs e);
+        public event EventArgs OnNotificationSent;
+
+        public static bool SentNotification { get; set; }
+
         public BackgroundTask(INotificationSender sender, ProjectManager projectmanager)
         {
             notification = sender;
@@ -26,6 +32,12 @@ namespace PocketLearn.Shared.Core
         private void RequestLearnIfNeeded(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
+            if (SentNotification)
+            {
+                _timer.Start();
+                return;
+            }
+            SentNotification = true;
             List<LearnProject> projects = new List<LearnProject>();
             foreach (LearnProject project in manager.LearnProjects)
             {

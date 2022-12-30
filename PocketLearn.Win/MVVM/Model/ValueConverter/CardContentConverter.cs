@@ -1,5 +1,4 @@
-﻿using PocketLearn.Shared.Core;
-using PocketLearn.Shared.Core.Learning;
+﻿using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using System;
 using System.Drawing;
@@ -35,18 +34,18 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             };
             foreach (CardContentItem item in content.Items)
             {
-                if (((item).Type == CardContentItemType.Image))
+                if (item.Type == CardContentItemType.Image)
                 {
                     if (!File.Exists(Path.Combine(directory, item.Content)))
                     {
                         continue;
                     }
                     Bitmap bmp = new(Path.Combine(directory, item.Content));
-                    int factor = SharedUtility.GetSizeFactor(bmp.Height, height);
+                    int factor = bmp.Height / height;
                     int targetwidth = bmp.Width / factor;
                     if (targetwidth > width)
                     {
-                        factor = SharedUtility.GetSizeFactor(bmp.Width, width);
+                        factor = bmp.Width / width;
                     }
                     Image image = new()
                     {
@@ -57,7 +56,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     };
                     container.Children.Add(image);
                 }
-                else if ((item).Type == CardContentItemType.Text)
+                else if (item.Type == CardContentItemType.Text)
                 {
                     if (content.ContainsLaTeX)
                     {
