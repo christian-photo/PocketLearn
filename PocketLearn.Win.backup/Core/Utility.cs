@@ -3,10 +3,12 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
-using Microsoft.Win32;
+using System.Windows.Forms;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using System;
 using System.Windows.Navigation;
 using Application = System.Windows.Application;
+using System.Runtime.Serialization.Formatters.Binary;
 using QRCoder;
 using System.Net.Sockets;
 using System.Net;
@@ -106,7 +108,8 @@ namespace PocketLearn.Win.Core
             dialog.Filter = filter;
             dialog.Title = title;
             dialog.Multiselect = true;
-            if ((bool)dialog.ShowDialog())
+            DialogResult res = dialog.ShowDialog();
+            if (res == DialogResult.OK)
             {
                 return dialog.FileNames.ToList();
             }
