@@ -9,7 +9,7 @@
     BindingContext="{Binding QuestionViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
     <ContentView.Content>
         <StackLayout>
-            <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
+            <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="CenterAndExpand" />
 
             <!--  Parameter isnt updated for mobile  -->
 

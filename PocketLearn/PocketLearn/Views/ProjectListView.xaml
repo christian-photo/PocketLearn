@@ -10,43 +10,49 @@
     BindingContext="{Binding ProjectListViewModel, Source={x:Static viewmodel:HomeViewModel.Instance}}">
 
     <ContentView.Content>
-        <StackLayout>
-            <CollectionView x:Name="ProjectItem" ItemsSource="{Binding ProjectItems}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout x:DataType="model:ProjectItem">
-                            <Frame
-                                Margin="2,5,2,2"
-                                BackgroundColor="{StaticResource ButtonSelected}"
-                                CornerRadius="4"
-                                HeightRequest="140">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Project.ProjectName}" TextColor="White" />
+        <Grid>
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+            <StackLayout>
+                <CollectionView x:Name="ProjectItem" ItemsSource="{Binding ProjectItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:ProjectItem">
+                                <Frame
+                                    Margin="2,5,2,2"
+                                    BackgroundColor="{StaticResource ButtonSelected}"
+                                    CornerRadius="4"
+                                    HeightRequest="140">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Project.ProjectName}" TextColor="White" />
 
-                                    <Label Text="{Binding Project.CreationTime, Converter={StaticResource dateTimeConverter}, ConverterParameter='Creation Date'}" TextColor="White" />
-                                    <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}, ConverterParameter='Has to be completed'}" TextColor="White" />
+                                        <Label Text="{Binding Project.CreationTime, Converter={StaticResource dateTimeConverter}, ConverterParameter='Creation Date'}" TextColor="White" />
+                                        <Label Text="{Binding Project.HasToBeCompleted, Converter={StaticResource dateTimeConverter}, ConverterParameter='Has to be completed'}" TextColor="White" />
 
-                                    <Label Text="{Binding Project.LearnSubject, Converter={StaticResource learnSubjectConverter}, ConverterParameter='Subject'}" TextColor="White" />
+                                        <Label Text="{Binding Project.LearnSubject, Converter={StaticResource learnSubjectConverter}, ConverterParameter='Subject'}" TextColor="White" />
 
-                                    <Button
-                                        Command="{Binding DeleteProject}"
-                                        HorizontalOptions="End"
-                                        Text="Delete"
-                                        WidthRequest="100" />
-                                </StackLayout>
+                                        <Button
+                                            Command="{Binding DeleteProject}"
+                                            HorizontalOptions="End"
+                                            Text="Delete"
+                                            WidthRequest="100" />
+                                    </StackLayout>
 
-                            </Frame>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}}, Path=ProjectItemTapped}"
-                                    CommandParameter="{Binding .}"
-                                    NumberOfTapsRequired="1" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Command="{Binding Sync}" Text="Sync" />
-        </StackLayout>
+                                </Frame>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}}, Path=ProjectItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Command="{Binding Sync}" Text="Sync" />
+            </StackLayout>
+        </Grid>
     </ContentView.Content>
 </ContentView>

@@ -42,22 +42,22 @@ namespace PocketLearn.ViewModels
             {
                 ZXing.Result result = await App.PlatformMediator.QrScanner.StartScan();
 
-                ActivityIndicator activity = new()
-                {
-                    IsRunning = true
-                };
                 IsBusy = true;
 
-                string json = await new HttpClient().GetStringAsync(result.Text);
-                (LearnProject, bool) res = DesktopSync.SyncProject(json, result.Text.Contains("images=true"), ProjectManager, App.PlatformMediator.FileOperations);
-                if (res.Item2)
+                try
                 {
-                    ProjectManager.AddProject(res.Item1);
+                    string json = await new HttpClient().GetStringAsync(result.Text);
+                    (LearnProject, bool) res = DesktopSync.SyncProject(json, result.Text.Contains("images=true"), ProjectManager, App.PlatformMediator.FileOperations);
+                    if (res.Item2)
+                    {
+                        ProjectManager.AddProject(res.Item1);
 
+                    }
+                    if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
+                } catch (Exception e)
+                {
+                    
                 }
-                if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
-
-                activity.IsRunning = false;
                 IsBusy = false;
             });
 

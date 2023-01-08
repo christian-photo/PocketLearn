@@ -37,7 +37,7 @@ namespace PocketLearn.Views.Converter
                     {
                         Source = Path.Combine(directory, item.Content),
                         Margin = new Thickness(2),
-                        HorizontalOptions = LayoutOptions.Center
+                        HorizontalOptions = LayoutOptions.CenterAndExpand
                     };
                     container.Children.Add(image);
                 }
@@ -63,7 +63,7 @@ namespace PocketLearn.Views.Converter
                             FontSize = font,
                             Margin = new Thickness(2),
                             TextColor = Utility.GetColorFromHex("#FFF").Color,
-                            HorizontalOptions = LayoutOptions.Center
+                            HorizontalOptions = LayoutOptions.CenterAndExpand
                         };
                         container.Children.Add(textBlock);
                     }

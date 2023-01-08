@@ -10,13 +10,13 @@
         <StackLayout>
 
             <StackLayout>
-                <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
+                <ContentView Content="{Binding QuestionContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="CenterAndExpand" />
                 <!--  Parameter isnt updated for mobile  -->
                 <Rectangle
                     Fill="DimGray"
                     HeightRequest="3"
                     WidthRequest="100" />
-                <ContentView Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="Center" />
+                <ContentView Content="{Binding AnswerContent, Converter={StaticResource CardContentConverter}, ConverterParameter='30-400-200'}" HorizontalOptions="CenterAndExpand" />
             </StackLayout>
 
 
