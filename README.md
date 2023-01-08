@@ -11,10 +11,10 @@ TODO
 ## LaTeX
 - when using environments like pmatrix, you have to use a \begin \end environment, eg:
 ```
-\begin{bmatrix}
+\begin{pmatrix}
 a_1 & a_2 & a_3 \\
 b_1 & b_2 & b_3 \\
 c_1 & c_2 & c_3 
-\end{bmatrix}
+\end{pmatrix}
 ```
 Build: passing
