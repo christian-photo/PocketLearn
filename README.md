@@ -8,4 +8,13 @@ PocketLearn is an application for Windows, Android and iOS to help students like
 ## How does PocketLearn work?
 TODO
 
+## LaTeX
+- when using environments like pmatrix, you have to use a \begin \end environment, eg:
+```
+\begin{bmatrix}
+a_1 & a_2 & a_3 \\
+b_1 & b_2 & b_3 \\
+c_1 & c_2 & c_3 
+\end{bmatrix}
+```
 Build: passing
