@@ -14,9 +14,6 @@ namespace PocketLearn.Shared.Core.Learning
         public DateTime LastLearnedTime { get; set; }
 
         [JsonProperty]
-        public static List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>() {  };
-
-        [JsonProperty]
         private List<LearnCard> _cards;
 
         [JsonIgnore]

@@ -1,4 +1,6 @@
-﻿using PocketLearn.Core;
+﻿using Newtonsoft.Json;
+using PocketLearn.Core;
+using PocketLearn.Core.Config;
 using PocketLearn.Models;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
@@ -54,6 +56,8 @@ namespace PocketLearn.ViewModels
 
                     }
                     if (!res.Item2) await DesktopSync.SyncBack(GetRawURL(result.Text) + "/SetProject", res.Item1);
+                    string learnTimes = await new HttpClient().GetStringAsync(GetRawURL(result.Text) + "/LearnTimes");
+                    MobileConfig.Get().LearnTimes = JsonConvert.DeserializeObject<List<(TimeSpan, TimeSpan)>>(learnTimes);
                 } catch (Exception e)
                 {
                     
@@ -104,9 +108,9 @@ namespace PocketLearn.ViewModels
         {
             if (File.Exists(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")))
             {
-                return ProjectManager.Create(File.ReadAllText(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")));
+                return ProjectManager.Create(File.ReadAllText(Path.Combine(App.PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json")), MobileConfig.Get());
             }
-            return ProjectManager.Create(string.Empty);
+            return ProjectManager.Create(string.Empty, MobileConfig.Get());
         }
 
         private string GetRawURL(string url)

@@ -1,4 +1,5 @@
-﻿using PocketLearn.Core.PlatformSpecifics;
+﻿using PocketLearn.Core.Config;
+using PocketLearn.Core.PlatformSpecifics;
 using PocketLearn.ViewModels;
 using System.IO;
 using Xamarin.Forms;
@@ -24,12 +25,12 @@ namespace PocketLearn
         protected override void OnSleep()
         {
             File.WriteAllText(Path.Combine(PlatformMediator.ApplicationConstants.GetDataPath(), "Projects.json"), HomeViewModel.Instance.ProjectListViewModel.ProjectManager.Serialize());
-            HomeViewModel.Instance.ProjectListViewModel.BackgroundTask.Stop();
+            MobileConfig.Get().Save();
         }
 
         protected override void OnResume()
         {
-            HomeViewModel.Instance.ProjectListViewModel.BackgroundTask.Start();
+            
         }
     }
 }

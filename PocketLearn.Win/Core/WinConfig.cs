@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PocketLearn.Win.Core;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PocketLearn.Public.Core.Config
@@ -7,6 +9,8 @@ namespace PocketLearn.Public.Core.Config
     public class WinConfig
     {
         public int Port { get; set; } = 4242;
+
+        public List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>();
 
         [JsonIgnore]
         private static WinConfig instance;

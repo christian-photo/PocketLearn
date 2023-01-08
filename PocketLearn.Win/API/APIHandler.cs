@@ -2,6 +2,7 @@
 using EmbedIO.Routing;
 using EmbedIO.WebApi;
 using Newtonsoft.Json;
+using PocketLearn.Public.Core.Config;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
@@ -55,6 +56,12 @@ namespace PocketLearn.Win.API
         {
             MainWindowVM.Instance.ProjectManager.LearnProjects.RemoveAll(x => x.ProjectID == ProjectToSync.ProjectID);
             MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
+        }
+
+        [Route(HttpVerbs.Get, "/LearnTimes")]
+        public void GetLearnTimes()
+        {
+            HttpContext.WriteToResponse(JsonConvert.SerializeObject(WinConfig.Get().LearnTimes));
         }
     }
 

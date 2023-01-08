@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PocketLearn.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace PocketLearn.Shared.Core.Learning
         public event EventHandler ProjectsChanged;
 
         private static ProjectManager instance;
+        private IConfig config;
 
         public void DeleteProject(LearnProject project) // Delete from List and json file
         {
@@ -27,48 +29,49 @@ namespace PocketLearn.Shared.Core.Learning
             ProjectsChanged?.Invoke(this);
         }
 
-        private ProjectManager()
+        private ProjectManager(IConfig config)
         {
+            this.config = config;
             if (LearnProjects is null)
             {
                 LearnProjects = new List<LearnProject>();
             }
         }
 
-        public static ProjectManager Create(string JsonContent)
+        public static ProjectManager Create(string JsonContent, IConfig config)
         {
             if (JsonContent == string.Empty)
             {
-                instance = new ProjectManager();
+                instance = new ProjectManager(config);
                 return instance;
             }
-            instance = new ProjectManager() { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
+            instance = new ProjectManager(config) { LearnProjects = JsonConvert.DeserializeObject<List<LearnProject>>(JsonContent) };
             return instance;
         }
 
         public void AddLearntime(TimeSpan from, TimeSpan to)
         {
-            LearnProject.LearnTimes.Add((from,to));
+            config.LearnTimes.Add((from,to));
             ProjectsChanged?.Invoke(this);
         }
         
         public void RemoveLearnTime(TimeSpan from, TimeSpan to)
         {
             
-            foreach(var s in LearnProject.LearnTimes)
+            foreach(var s in config.LearnTimes)
             {
                 if(s.Item1 == from && s.Item2 == to)
                 {
-                    LearnProject.LearnTimes.Remove(s);
+                    config.LearnTimes.Remove(s);
                     break;
                 }
             }
             ProjectsChanged?.Invoke(this);
         }
 
-        public static ProjectManager Create(List<LearnProject> projects)
+        public static ProjectManager Create(List<LearnProject> projects, IConfig config)
         {
-            instance = new ProjectManager() { LearnProjects = projects };
+            instance = new ProjectManager(config) { LearnProjects = projects };
             return instance;
         }
 
