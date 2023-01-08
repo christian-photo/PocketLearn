@@ -53,21 +53,27 @@ namespace PocketLearn.Core
             // If the LearnProject was found in the ProjectManager:
             if (localProject.Count() > 0)
             {
+                LearnProject local = localProject.ElementAt(0).MakeDeepCopy();
+                if (containsImages)
+                {
+                    localProject.ElementAt(0).DeleteAssets();
+                }
+                manager.DeleteProject(localProject.ElementAt(0));
                 // If the local LearnProject has a newer edit time than the given LearnProject:
-                if (localProject.ElementAt(0).LastEdit > project.LastEdit)
+                if (local.LastEdit > project.LastEdit)
                 {
                     // If the local LearnProject also has a newer LastLearnedTime, return the local LearnProject without updating it
-                    if (localProject.ElementAt(0).LastLearnedTime > project.LastLearnedTime)
+                    if (local.LastLearnedTime > project.LastLearnedTime)
                     {
-                        return (localProject.ElementAt(0), false);
+                        return (local, false);
                     }
                     // Otherwise, update the LastLearnedTime of the local LearnProject and return it
-                    localProject.ElementAt(0).LastLearnedTime = project.LastLearnedTime;
-                    return (localProject.ElementAt(0), false);
+                    local.LastLearnedTime = project.LastLearnedTime;
+                    return (local, false);
                 }
-                if (localProject.ElementAt(0).LastLearnedTime > project.LastLearnedTime) 
+                if (local.LastLearnedTime > project.LastLearnedTime) 
                 { 
-                    project.LastLearnedTime = localProject.ElementAt(0).LastLearnedTime;
+                    project.LastLearnedTime = local.LastLearnedTime;
                     return (project, false);
                 }
                 return (project, false);
