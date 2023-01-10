@@ -95,6 +95,7 @@
     <Compile Include="Platform\NotificationSender.cs" />
     <Compile Include="Platform\QrScanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="PocketLearn.Win.licenseheader" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
