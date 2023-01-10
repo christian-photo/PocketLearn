@@ -36,7 +36,6 @@ namespace PocketLearn.Win.MVVM.PopUp
                     int.Parse(ToMinutesBox.Text), 0));
             }
 
-            Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
 
             File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
 

@@ -87,14 +87,8 @@ namespace PocketLearn.Core
 
         public static async Task SyncBack(string url, LearnProject project) // Send the updated project back to the computer
         {
-            LearnProject tempProject = project.MakeDeepCopy();
-            foreach (LearnCard card in tempProject.Cards)
-            {
-                card.CardContent1.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
-                card.CardContent2.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
-            }
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Project", JsonConvert.SerializeObject(tempProject));
+            client.DefaultRequestHeaders.Add("Project", JsonConvert.SerializeObject(project));
             await client.GetAsync(url);
         }
     }

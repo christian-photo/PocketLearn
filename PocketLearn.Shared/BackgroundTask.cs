@@ -12,7 +12,6 @@ namespace PocketLearn.Shared.Core
         private ProjectManager manager;
 
         public delegate void EventArgs(object sender, EventArgs e);
-        public event EventArgs OnNotificationSent;
 
         public static bool SentNotification { get; set; }
 

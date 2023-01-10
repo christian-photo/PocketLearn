@@ -54,45 +54,8 @@ namespace PocketLearn.Win.API
         [Route(HttpVerbs.Get, "/SetProject")]
         public void RecieveProject()
         {
-            // Remove any existing projects with the same ProjectID as ProjectToSync
             MainWindowVM.Instance.ProjectManager.LearnProjects.RemoveAll(x => x.ProjectID == ProjectToSync.ProjectID);
-
-            // Deserialize a new project from the "Project" HTTP request header
-            LearnProject newProject = JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]);
-
-            // Loop through each card in ProjectToSync
-            foreach (LearnCard card in ProjectToSync.Cards)
-            {
-                // Loop through each CardContentItem in card.CardContent1.Items
-                foreach (CardContentItem item in card.CardContent1.Items)
-                {
-                    // If the CardContentItem is an image, skip it
-                    if (item.Type == CardContentItemType.Image)
-                    {
-                        continue;
-                    }
-                    // Replace the content of the CardContentItem with the corresponding
-                    // text content from newProject
-                    item.Content = newProject.Cards.Where(x => x.CardID == card.CardID)
-                        .First().CardContent1.Items.Where(i => i.Type == CardContentItemType.Text)
-                        .FirstOrDefault(new CardContentItem("", CardContentItemType.Text)).Content;
-                }
-
-                // Repeat the process for card.CardContent2.Items
-                foreach (CardContentItem item in card.CardContent2.Items)
-                {
-                    if (item.Type == CardContentItemType.Image)
-                    {
-                        continue;
-                    }
-                    item.Content = newProject.Cards.Where(x => x.CardID == card.CardID)
-                        .First().CardContent2.Items.Where(i => i.Type == CardContentItemType.Text)
-                        .FirstOrDefault(new CardContentItem("", CardContentItemType.Text)).Content;
-                }
-            }
-
-            // Add the updated ProjectToSync back to the LearnProjects list
-            MainWindowVM.Instance.ProjectManager.AddProject(ProjectToSync);
+            MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
         }
 
         [Route(HttpVerbs.Get, "/LearnTimes")]

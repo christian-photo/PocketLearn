@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PocketLearn.Shared.Interfaces;
 using PocketLearn.Win.Core;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.IO;
 
 namespace PocketLearn.Public.Core.Config
 {
-    public class WinConfig
+    public class WinConfig : IConfig
     {
         public int Port { get; set; } = 4242;
 

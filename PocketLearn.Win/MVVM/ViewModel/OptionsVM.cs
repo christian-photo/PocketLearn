@@ -1,8 +1,10 @@
-﻿using PocketLearn.Shared.Core.Learning;
+﻿using PocketLearn.Public.Core.Config;
+using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PocketLearn.Win.MVVM.ViewModel
@@ -111,14 +113,9 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
         public OptionsVM(ProjectManager manager)
         {
-            LearnTimesView = new();
             Manager = manager;
-            List<string> t = new();
-            foreach (LearnProject proj in manager.LearnProjects)
-            {
-                t.Add(proj.ProjectName);
-            }
-            Projects = t;
+
+            UpdateList(this);
 
             if (Projects.Count > 0)
                 UpdateSettings();
@@ -132,6 +129,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
 
             DonateCoffee = new RelayCommand(_ =>
             {
+                return; // TODO: Make paypal address/account
                 string url = "";
 
                 string business = "my@paypalemail.com";  // your paypal email
@@ -149,7 +147,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                     "&currency_code=" + currency +
                     "&bn=" + "PP%2dDonationsBF";
 
-                System.Diagnostics.Process.Start(url);
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             });
         }
 
@@ -163,10 +161,8 @@ namespace PocketLearn.Win.MVVM.ViewModel
             Projects = t;
             Index = 0;
             List<LearnTimeControl> l = new();
-            foreach (var lt in LearnProject.LearnTimes)
+            foreach (var lt in WinConfig.Get().LearnTimes)
             {
-
-
                 l.Add(new LearnTimeControl(lt.Item1, lt.Item2));
             }
             LearnTimesView = l;

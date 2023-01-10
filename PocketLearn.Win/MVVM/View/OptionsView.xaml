@@ -118,6 +118,7 @@
                     </StackPanel>
 
                     <ScrollViewer
+                        Margin="15,5,0,0"
                         Focusable="False"
                         IsTabStop="True"
                         VerticalScrollBarVisibility="Auto">
@@ -151,17 +152,7 @@
                     Command="{Binding DonateCoffee}"
                     Content="Donate a Coffee &#x2615;"
                     Foreground="White" />
-
-
-
-
-
-
-
             </StackPanel>
-
-
-
 
         </ScrollViewer>
 

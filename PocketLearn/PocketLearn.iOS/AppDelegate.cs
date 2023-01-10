@@ -30,14 +30,8 @@ namespace PocketLearn.iOS
             plat.RegisterServices(new ApplicationConstants(), new NotificationSender(), new QrScanner(), new FileOperations());
             LoadApplication(new App(plat));
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-            HomeViewModel.Instance.ProjectListViewModel.BackgroundTask.OnNotificationSent += BackgroundTask_OnNotificationSent; ;
 
             return base.FinishedLaunching(app, options);
-        }
-
-        private void BackgroundTask_OnNotificationSent(object sender, Shared.Core.BackgroundTask.EventArgs e)
-        {
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber++;
         }
     }
 }

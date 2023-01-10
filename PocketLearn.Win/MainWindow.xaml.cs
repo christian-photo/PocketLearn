@@ -6,6 +6,7 @@ using PocketLearn.Win.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using Wpf.Ui.Controls;
@@ -21,6 +22,7 @@ namespace PocketLearn.Win
         public static DependencyObject DepObject;
         public MainWindow()
         {
+            Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
             new MainWindowVM();
             InitializeComponent();
             DepObject = this;
