@@ -11,6 +11,7 @@
 
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
+using PocketLearn.Win.MVVM.ViewModel;
 using System.Windows;
 using Wpf.Ui.Controls;
 

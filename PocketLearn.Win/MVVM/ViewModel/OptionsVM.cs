@@ -11,11 +11,13 @@
 
 using PocketLearn.Public.Core.Config;
 using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace PocketLearn.Win.MVVM.ViewModel
@@ -136,6 +138,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             AddLearnTime = new RelayCommand(_ =>
             {
                 new LearnTimePopUp(manager).ShowDialog();
+                WinConfig.Get().Save();
             });
 
             DonateCoffee = new RelayCommand(_ =>

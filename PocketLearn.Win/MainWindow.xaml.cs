@@ -9,13 +9,8 @@
 
 #endregion "copyright"
 
-using Microsoft.Toolkit.Uwp.Notifications;
-using PocketLearn.Core;
 using PocketLearn.Win.Core;
-using PocketLearn.Win.Core.Notification;
 using PocketLearn.Win.MVVM.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -34,6 +29,7 @@ namespace PocketLearn.Win
         public MainWindow()
         {
             Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
+            Directory.CreateDirectory(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images"));
             new MainWindowVM();
             InitializeComponent();
             DepObject = this;

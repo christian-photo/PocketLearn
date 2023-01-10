@@ -63,7 +63,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
             });
         }
 
-        private ProjectManager CreateProjectManager()
+        private static ProjectManager CreateProjectManager()
         {
             if (File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json")))
             {

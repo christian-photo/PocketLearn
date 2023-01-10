@@ -65,7 +65,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             project.InitCards();
             project.LastEdit = DateTime.Now;
             projectManager.AddProject(project);
-            File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
             Close();
         }
     }

@@ -10,10 +10,12 @@
 #endregion "copyright"
 
 using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.Model;
 using PocketLearn.Win.MVVM.PopUp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PocketLearn.Win.MVVM.ViewModel
 {
@@ -47,6 +49,7 @@ namespace PocketLearn.Win.MVVM.ViewModel
                 new PopUpEdit(project, card).ShowDialog();
                 project.Cards.Add(card);
                 project.InitCards();
+                File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
                 UpdateView(project);
             });
         }

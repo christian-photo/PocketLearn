@@ -41,16 +41,13 @@ namespace PocketLearn.Win.MVVM.ViewModel
             AddProject = new RelayCommand(_ =>
             {
                 new NewProjectPopUp(projectManager).ShowDialog();
+                File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
             });
         }
 
         private void ProjectsChanged(object sender)
         {
             UpdateView((ProjectManager)sender);
-            if (!Directory.Exists(ApplicationConstants.APPLICATION_DATA_PATH))
-            {
-                Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
-            }
 
             File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
         }

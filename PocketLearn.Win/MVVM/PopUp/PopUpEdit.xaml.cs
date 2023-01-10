@@ -155,7 +155,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                image.Save(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
+                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
 
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
@@ -166,7 +166,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
                 image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
@@ -178,7 +177,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
 
             LearnProject.LastEdit = DateTime.Now;
-            File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
             Close();
         }
 
