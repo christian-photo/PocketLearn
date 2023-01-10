@@ -10,7 +10,7 @@ PocketLearn is an application for Windows, Android and iOS to help students like
 - Click on the sync button
 - Scan the QR code using your phone (You have to be in the same WLAN)
 
-### LaTeX
+### LaTeX:
 - when using environments like pmatrix, you have to use a \begin \end environment, eg:
 ```
 \begin{pmatrix}
