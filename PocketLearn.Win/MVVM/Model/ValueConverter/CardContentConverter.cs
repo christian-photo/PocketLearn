@@ -15,9 +15,12 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Intrinsics.X86;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
+using Windows.Storage;
 using WpfMath.Controls;
 using Image = System.Windows.Controls.Image;
 
@@ -51,21 +54,26 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     {
                         continue;
                     }
-                    Bitmap bmp = new(Path.Combine(directory, item.Content));
-                    int factor = bmp.Height / height;
-                    int targetwidth = bmp.Width / factor;
-                    if (targetwidth > width)
+                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(directory, item.Content))))
                     {
-                        factor = bmp.Width / width;
+                        var decoder = BitmapDecoder.Create(ms,
+                                                           BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                        BitmapSource source = decoder.Frames[0];
+                        double factor = source.Height / height;
+                        double targetwidth = source.Width / factor;
+                        if (targetwidth > width)
+                        {
+                            factor = source.Width / width;
+                        }
+                        Image image = new()
+                        {
+                            Source = source,
+                            Margin = new Thickness(2),
+                            MaxHeight = source.Height / factor,
+                            MaxWidth = source.Width / factor
+                        };
+                        container.Children.Add(image);
                     }
-                    Image image = new()
-                    {
-                        Source = bmp.ToBitmapImage(),
-                        Margin = new Thickness(2),
-                        MaxHeight = bmp.Height / factor,
-                        MaxWidth = bmp.Width / factor
-                    };
-                    container.Children.Add(image);
                 }
                 else if (item.Type == CardContentItemType.Text)
                 {
