@@ -48,9 +48,9 @@
             </DataTemplate>
 
 
-            <Color x:Key="ApplicationBackgroundColor">#FF202020</Color>
+            <Color x:Key="ApplicationBackgroundColor">#171717</Color>
 
-            <Color x:Key="Background">#333333</Color>
+            <Color x:Key="Background">#292929</Color>
 
             <Color x:Key="KeyboardFocusBorderColor">#87FFFFFF</Color>
 

@@ -78,7 +78,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource ButtonSelected}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource TextFillColorPrimary}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

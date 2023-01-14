@@ -29,7 +29,7 @@
                             <StackLayout x:DataType="model:ProjectItem">
                                 <Frame
                                     Margin="2,5,2,2"
-                                    BackgroundColor="{StaticResource ButtonSelected}"
+                                    BackgroundColor="{StaticResource Background}"
                                     CornerRadius="4"
                                     HeightRequest="140">
                                     <StackLayout Orientation="Vertical">

@@ -39,7 +39,7 @@
                         Height="220"
                         Margin="5,5,5,5"
                         HorizontalAlignment="Stretch"
-                        Background="#444444"
+                        Background="#292929"
                         BorderThickness="0"
                         CornerRadius="10"
                         Effect="{StaticResource dropShadow}"
