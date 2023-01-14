@@ -17,6 +17,7 @@ using PocketLearn.Public.Core.Config;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -33,6 +34,7 @@ namespace PocketLearn.Win.API
         [Route(HttpVerbs.Get, "/GetProject")] // http://localhost:{WinConfig.Get().Port}/api + /GetProject
         public void GetLearnProject([QueryField] bool images = false)
         {
+            Log.Information("Recieved sync request");
             if (ProjectToSync is null)
             {
                 HttpContext.WriteToResponse(JsonConvert.SerializeObject(new Hashtable() { { "Error", "NO-PROJECT" } }));
@@ -46,6 +48,7 @@ namespace PocketLearn.Win.API
 
         public Hashtable GetImages(LearnProject project) // returns a hashtable of the image name and images base64 encoded
         {
+            Log.Information("Recieved image request");
             string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             Hashtable images = new();
             foreach (LearnCard card in project.Cards)
@@ -65,6 +68,7 @@ namespace PocketLearn.Win.API
         [Route(HttpVerbs.Get, "/SetProject")]
         public void RecieveProject()
         {
+            Log.Information("Recieved set project request");
             MainWindowVM.Instance.ProjectManager.LearnProjects.RemoveAll(x => x.ProjectID == ProjectToSync.ProjectID);
             MainWindowVM.Instance.ProjectManager.AddProject(JsonConvert.DeserializeObject<LearnProject>(HttpContext.Request.Headers["Project"]));
         }
@@ -72,6 +76,7 @@ namespace PocketLearn.Win.API
         [Route(HttpVerbs.Get, "/LearnTimes")]
         public void GetLearnTimes()
         {
+            Log.Information("Recieved learnTimes request");
             HttpContext.WriteToResponse(JsonConvert.SerializeObject(WinConfig.Get().LearnTimes));
         }
     }

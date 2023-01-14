@@ -11,10 +11,12 @@
 
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Wpf.Ui.Controls;
 
 namespace PocketLearn.Win.MVVM.Model
 {
@@ -104,6 +106,7 @@ namespace PocketLearn.Win.MVVM.Model
 
             Delete = new RelayCommand(_ =>
             {
+                Log.Information($"Deleted LearnTime");
                 MainWindowVM.Instance.ProjectManager.RemoveLearnTime(from, to);
             });
         }

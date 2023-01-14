@@ -12,6 +12,7 @@
 using Microsoft.Toolkit.Uwp.Notifications;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Interfaces;
+using Serilog;
 using System;
 
 namespace PocketLearn.Core.Interfaces.Classes
@@ -25,6 +26,8 @@ namespace PocketLearn.Core.Interfaces.Classes
                 .AddText(message)
                 .AddArgument(parameter.Argument)
                 .Show();
+
+            Log.Debug("Sended notification with argument: {param}", parameter.Argument);
         }
 
         public void SendNotification(string message, NotificationArguments parameter, Guid projectID)
@@ -34,6 +37,8 @@ namespace PocketLearn.Core.Interfaces.Classes
                 .AddText(message)
                 .AddArgument(parameter.Argument + "&" + projectID.ToString())
                 .Show();
+
+            Log.Debug("Sended notification with argument: {param}", parameter.Argument);
         }
     }
 }

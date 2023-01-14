@@ -9,8 +9,11 @@
 
 #endregion "copyright"
 
+using PocketLearn.Public.Core.Config;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -30,6 +33,24 @@ namespace PocketLearn.Win
         {
             Directory.CreateDirectory(ApplicationConstants.APPLICATION_DATA_PATH);
             Directory.CreateDirectory(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images"));
+            Directory.CreateDirectory(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs"));
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Is(WinConfig.Get().LogLevel)
+                .WriteTo.Console()
+                .WriteTo.File(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs", DateTime.Now.ToString("dd.MM-H:m:s") + ".txt"),
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true)
+                .CreateLogger();
+
+            foreach (string file in Directory.GetFiles(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs")))
+            {
+                if (File.GetCreationTime(file) < DateTime.Now.AddMonths(-1))
+                {
+                    File.Delete(file);
+                }
+            }
+
             new MainWindowVM();
             InitializeComponent();
             DepObject = this;
@@ -63,6 +84,7 @@ namespace PocketLearn.Win
         {
             if (Keyboard.GetKeyStates(Key.LeftShift) == KeyStates.Down)
             {
+                Log.Debug("Shutdown application");
                 ((App)Application.Current).Window_Closing(this, null);
                 Application.Current.Shutdown();
                 return;
@@ -71,6 +93,7 @@ namespace PocketLearn.Win
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             WindowState = WindowState.Minimized;
             Hide();
+            Log.Debug("Minimize application to tray");
         }
     }
 }

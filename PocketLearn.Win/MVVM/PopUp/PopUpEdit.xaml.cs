@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using Wpf.Ui.Controls;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
@@ -84,7 +85,18 @@ namespace PocketLearn.Win.MVVM.PopUp
                     {
                         learnCard.CardContent1.Items.Remove(item);
                     }
-                    QuestionImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
+                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content))))
+                    {
+                        var decoder = BitmapDecoder.Create(ms,
+                                                           BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                        BitmapSource source = decoder.Frames[0];
+                        Image image = new()
+                        {
+                            Source = source,
+                            Margin = new Thickness(2)
+                        };
+                        QuestionImages.Items.Add(image);
+                    }
                 }
             }
             foreach (object obj in learnCard.CardContent2.Items)
@@ -107,7 +119,18 @@ namespace PocketLearn.Win.MVVM.PopUp
                     {
                         learnCard.CardContent2.Items.Remove(item);
                     }
-                    AnswerImages.Items.Add(new Image() { Source = new Bitmap(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)).ToBitmapImage() });
+                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content))))
+                    {
+                        var decoder = BitmapDecoder.Create(ms,
+                                                           BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                        BitmapSource source = decoder.Frames[0];
+                        Image image = new()
+                        {
+                            Source = source,
+                            Margin = new Thickness(2)
+                        };
+                        AnswerImages.Items.Add(image);
+                    }
                 }
             }
         }
@@ -118,7 +141,18 @@ namespace PocketLearn.Win.MVVM.PopUp
             if (files == null) return;
             foreach (string file in files)
             {
-                QuestionImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
+                using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(file)))
+                {
+                    var decoder = BitmapDecoder.Create(ms,
+                                                       BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    BitmapSource source = decoder.Frames[0];
+                    Image image = new()
+                    {
+                        Source = source,
+                        Margin = new Thickness(2)
+                    };
+                    QuestionImages.Items.Add(image);
+                }
             }
         }
 
@@ -128,7 +162,18 @@ namespace PocketLearn.Win.MVVM.PopUp
             if (files == null) return;
             foreach (string file in files)
             {
-                AnswerImages.Items.Add(new Image() { Source = new Bitmap(file).ToBitmapImage() });
+                using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(file)))
+                {
+                    var decoder = BitmapDecoder.Create(ms,
+                                                       BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    BitmapSource source = decoder.Frames[0];
+                    Image image = new()
+                    {
+                        Source = source,
+                        Margin = new Thickness(2)
+                    };
+                    AnswerImages.Items.Add(image);
+                }
             }
         }
 

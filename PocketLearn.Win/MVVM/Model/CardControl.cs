@@ -13,6 +13,7 @@ using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -143,10 +144,12 @@ namespace PocketLearn.Win.MVVM.Model
 
             Edit = new RelayCommand(_ =>
             {
+                Log.Information($"Editing card {card.CardID}");
                 new PopUpEdit(project, card).ShowDialog();
             });
             Delete = new RelayCommand(_ =>
             {
+                Log.Information($"Delete card {card.CardID}");
                 card.DeleteAssets();
                 project.Cards.Remove(card);
                 MainWindowVM.Instance.EditVM.UpdateView(project);

@@ -11,16 +11,14 @@
 
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
+using Serilog;
 using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Runtime.Intrinsics.X86;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using Windows.Storage;
 using WpfMath.Controls;
 using Image = System.Windows.Controls.Image;
 
@@ -40,6 +38,10 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                 width = int.Parse(split[1]);
                 height = int.Parse(split[2]);
             }
+            else
+            {
+                Log.Verbose("No parameters passed, using default parameters");
+            }
             string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
             CardContent content = (CardContent)value;
             StackPanel container = new()
@@ -50,6 +52,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             {
                 if (item.Type == CardContentItemType.Image)
                 {
+                    Log.Verbose("Found ItemType Image");
                     if (!File.Exists(Path.Combine(directory, item.Content)))
                     {
                         continue;
@@ -79,6 +82,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                 {
                     if (content.ContainsLaTeX)
                     {
+                        Log.Verbose("Found Text with LaTeX");
                         FormulaControl latex = new FormulaControl()
                         {
                             Formula = item.Content,
@@ -91,6 +95,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     }
                     else
                     {
+                        Log.Verbose("Found Text");
                         TextBlock textBlock = new()
                         {
                             Text = item.Content,

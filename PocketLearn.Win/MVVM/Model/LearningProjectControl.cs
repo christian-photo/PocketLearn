@@ -13,6 +13,7 @@ using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -185,6 +186,7 @@ namespace PocketLearn.Win.MVVM.Model
 
             Learn = new RelayCommand(_ =>
             {
+                Log.Information($"Start learning project {project.ProjectName}, {project.ProjectID}");
                 MainWindowVM.Instance.QuestionVM = new QuestionVM(project);
                 MainWindowVM.Instance.AnswerVM = new AnswerVM(project);
 
@@ -192,15 +194,18 @@ namespace PocketLearn.Win.MVVM.Model
             });
             Edit = new RelayCommand(_ =>
             {
+                Log.Information($"Edit project {project.ProjectName}, {project.ProjectID}");
                 MainWindowVM.Instance.EditVM.UpdateView(project);
                 Utility.NavigateToPage(ApplicationConstants.EditViewURI);
             });
             Sync = new RelayCommand(_ =>
             {
+                Log.Information($"Start sync for {project.ProjectName}, {project.ProjectID}");
                 new SyncPopUp(project).ShowDialog();
             });
             Delete = new RelayCommand(_ =>
             {
+                Log.Information($"Delete {project.ProjectName}, {project.ProjectID}");
                 new DeleteProjectPopUp(project, manager).ShowDialog();
             });
             UUID = project.ProjectID;

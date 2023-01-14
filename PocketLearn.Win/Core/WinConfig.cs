@@ -12,6 +12,7 @@
 using Newtonsoft.Json;
 using PocketLearn.Shared.Interfaces;
 using PocketLearn.Win.Core;
+using Serilog.Events;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,8 @@ namespace PocketLearn.Public.Core.Config
         public int Port { get; set; } = 4242;
 
         public List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>();
+
+        public LogEventLevel LogLevel { get; set; } = LogEventLevel.Information;
 
         [JsonIgnore]
         private static WinConfig instance;

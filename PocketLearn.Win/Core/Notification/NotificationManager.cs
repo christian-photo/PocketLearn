@@ -13,6 +13,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using PocketLearn.Shared.Core;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace PocketLearn.Win.Core.Notification
         [STAThread]
         public static void Handle(ToastNotificationActivatedEventArgsCompat e)
         {
+            Log.Debug("Clicked on notification: {ex}", e.Argument);
             Task t = new(() =>
             {
                 string[] split = e.Argument.Split('&');
