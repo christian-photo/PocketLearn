@@ -12,6 +12,7 @@
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -45,6 +46,7 @@ namespace PocketLearn.Win.MVVM.PopUp
                     int.Parse(ToHourBox.Text), 
                     int.Parse(ToMinutesBox.Text), 0));
             }
+            Log.Information("Created new Learntimes");
 
             Close();
         }

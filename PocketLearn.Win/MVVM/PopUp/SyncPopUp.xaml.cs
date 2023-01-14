@@ -36,13 +36,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             bool syncImages = SyncImages.IsChecked.Value;
             if (!syncImages)
             {
-                LearnProject tempProject = syncProject.MakeDeepCopy();
-                foreach (LearnCard card in tempProject.Cards)
-                {
-                    card.CardContent1.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
-                    card.CardContent2.Items.RemoveAll(x => x.Type == CardContentItemType.Image);
-                }
-                APIHandler.ProjectToSync = tempProject;
+                APIHandler.ProjectToSync = syncProject;
                 QrCode.Source = Utility.CreateQRCode($"http://{Utility.GetIPv4Address()}:{WinConfig.Get().Port}/api/GetProject?images=false").ToBitmapImage();
             }
             else

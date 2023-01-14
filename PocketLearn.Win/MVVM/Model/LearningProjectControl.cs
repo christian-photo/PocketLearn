@@ -205,7 +205,6 @@ namespace PocketLearn.Win.MVVM.Model
             });
             Delete = new RelayCommand(_ =>
             {
-                Log.Information($"Delete {project.ProjectName}, {project.ProjectID}");
                 new DeleteProjectPopUp(project, manager).ShowDialog();
             });
             UUID = project.ProjectID;

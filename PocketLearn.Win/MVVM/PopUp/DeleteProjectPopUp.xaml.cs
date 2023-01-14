@@ -12,6 +12,7 @@
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System.Windows;
 using Wpf.Ui.Controls;
 
@@ -36,6 +37,7 @@ namespace PocketLearn.Win.MVVM.PopUp
         {
             project.DeleteAssets();
             manager.DeleteProject(project);
+            Log.Information($"Deleted {project.ProjectName}, {project.ProjectID}");
             Close();
         }
 

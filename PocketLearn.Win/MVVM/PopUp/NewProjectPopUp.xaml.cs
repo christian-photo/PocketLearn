@@ -12,6 +12,7 @@
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,16 +40,6 @@ namespace PocketLearn.Win.MVVM.PopUp
             Subject.SelectedIndex = 0;
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void Accept(object sender, RoutedEventArgs e)
         {
             if( new TimeSpan(((DateTime)TargetDate.SelectedDate).Ticks).TotalDays <= new TimeSpan(DateTime.Now.Ticks).TotalDays) { return; }
@@ -65,6 +56,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             project.InitCards();
             project.LastEdit = DateTime.Now;
             projectManager.AddProject(project);
+            Log.Information($"Created new project: {project.ProjectName}, {project.ProjectID}");
             Close();
         }
     }
