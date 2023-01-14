@@ -35,21 +35,14 @@ namespace PocketLearn.Win
             Directory.CreateDirectory(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images"));
             Directory.CreateDirectory(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs"));
 
+            if (File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs", "latest.txt")))
+                File.Delete(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs", "latest.txt"));
+
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Is(WinConfig.Get().LogLevel)
                 .WriteTo.Console()
-                .WriteTo.File(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs", DateTime.Now.ToString("dd.MM-H:m:s") + ".txt"),
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true)
+                .WriteTo.File(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs", "latest.txt"), outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
                 .CreateLogger();
-
-            foreach (string file in Directory.GetFiles(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Logs")))
-            {
-                if (File.GetCreationTime(file) < DateTime.Now.AddMonths(-1))
-                {
-                    File.Delete(file);
-                }
-            }
 
             new MainWindowVM();
             InitializeComponent();
