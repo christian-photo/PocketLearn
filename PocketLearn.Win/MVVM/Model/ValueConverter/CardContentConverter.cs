@@ -13,6 +13,7 @@ using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using Serilog;
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -22,6 +23,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfMath.Controls;
 using Image = System.Windows.Controls.Image;
+using Brushes = System.Windows.Media.Brushes;
+using Windows.AI.MachineLearning;
 
 namespace PocketLearn.Win.MVVM.Model.ValueConverter
 {
@@ -34,7 +37,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
             int height = 200;
             if (parameter != null)
             {
-                string[] split = parameter.ToString().Split('-'); // 20&400&200 (font, width, height)
+                string[] split = parameter.ToString().Split('-'); // 20-400-200 (font, width, height)
                 font = int.Parse(split[0]);
                 width = int.Parse(split[1]);
                 height = int.Parse(split[2]);
@@ -58,24 +61,33 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                     {
                         continue;
                     }
-                    using MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(directory, item.Content)));
-
-                    var decoder = BitmapDecoder.Create(ms,
-                                                       BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    BitmapSource source = decoder.Frames[0];
-                    double factor = source.Height / height;
-                    double targetwidth = source.Width / factor;
+                    Stream s = File.OpenRead(Path.Combine(directory, item.Content));
+                    System.Drawing.Image img = Bitmap.FromStream(s, false, false); // Read only the metadata
+                    double factor = img.Height / height;
+                    double targetwidth = img.Width / factor;
                     if (targetwidth > width)
                     {
-                        factor = source.Width / width;
+                        factor = img.Width / width;
                     }
-                    source.Freeze();
+                    int resHeight = (int)(img.Height / factor);
+                    int resWidth = (int)(img.Width / factor);
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.UriSource = new Uri(Path.Combine(directory, item.Content));
+                    bmp.DecodePixelHeight = resHeight;
+                    bmp.DecodePixelWidth = resWidth;
+                    bmp.EndInit();
+                    if (!bmp.IsFrozen) bmp.Freeze();
+                    s.Dispose();
+                    img.Dispose();
+
                     Image image = new()
                     {
-                        Source = source,
+                        Source = bmp,
                         Margin = new Thickness(2),
-                        MaxHeight = source.Height / factor,
-                        MaxWidth = source.Width / factor
+                        MaxHeight = resHeight,
+                        MaxWidth = resWidth
                     };
                     container.Children.Add(image);
                 }
@@ -89,7 +101,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                             Formula = item.Content,
                             FontSize = font,
                             Margin = new Thickness(2),
-                            Foreground = System.Windows.Media.Brushes.White,
+                            Foreground = Brushes.White,
                             HorizontalAlignment = HorizontalAlignment.Center
                         };
                         container.Children.Add(latex);
@@ -102,7 +114,7 @@ namespace PocketLearn.Win.MVVM.Model.ValueConverter
                             Text = item.Content,
                             FontSize = font,
                             Margin = new Thickness(2),
-                            Foreground = System.Windows.Media.Brushes.White,
+                            Foreground = Brushes.White,
                             HorizontalAlignment = HorizontalAlignment.Center
                         };
                         container.Children.Add(textBlock);
