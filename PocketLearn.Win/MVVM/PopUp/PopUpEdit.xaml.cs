@@ -141,18 +141,18 @@ namespace PocketLearn.Win.MVVM.PopUp
             if (files == null) return;
             foreach (string file in files)
             {
-                using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(file)))
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad;
+                bmp.UriSource = new Uri(file);
+                bmp.EndInit();
+                if (!bmp.IsFrozen) bmp.Freeze();
+                Image image = new()
                 {
-                    var decoder = BitmapDecoder.Create(ms,
-                                                       BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    BitmapSource source = decoder.Frames[0];
-                    Image image = new()
-                    {
-                        Source = source,
-                        Margin = new Thickness(2)
-                    };
-                    QuestionImages.Items.Add(image);
-                }
+                    Source = bmp,
+                    Margin = new Thickness(2)
+                };
+                QuestionImages.Items.Add(image);
             }
         }
 
@@ -162,18 +162,18 @@ namespace PocketLearn.Win.MVVM.PopUp
             if (files == null) return;
             foreach (string file in files)
             {
-                using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(file)))
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad;
+                bmp.UriSource = new Uri(file);
+                bmp.EndInit();
+                if (!bmp.IsFrozen) bmp.Freeze();
+                Image image = new()
                 {
-                    var decoder = BitmapDecoder.Create(ms,
-                                                       BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    BitmapSource source = decoder.Frames[0];
-                    Image image = new()
-                    {
-                        Source = source,
-                        Margin = new Thickness(2)
-                    };
-                    AnswerImages.Items.Add(image);
-                }
+                    Source = bmp,
+                    Margin = new Thickness(2)
+                };
+                AnswerImages.Items.Add(image);
             }
         }
 
