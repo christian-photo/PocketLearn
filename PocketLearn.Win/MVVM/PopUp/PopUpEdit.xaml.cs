@@ -137,16 +137,33 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void AddImage(object sender, RoutedEventArgs e)
         {
+            int height = 90;
+            int width = 200;
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
             if (files == null) return;
             foreach (string file in files)
             {
+                Stream s = File.OpenRead(file);
+                System.Drawing.Image img = Bitmap.FromStream(s, false, false); // Read only the metadata
+                double factor = img.Height / height;
+                double targetwidth = img.Width / factor;
+                if (targetwidth > width)
+                {
+                    factor = img.Width / width;
+                }
+                int resHeight = (int)(img.Height / factor);
+                int resWidth = (int)(img.Width / factor);
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
                 bmp.UriSource = new Uri(file);
+                bmp.DecodePixelHeight = resHeight;
+                bmp.DecodePixelWidth = resWidth;
                 bmp.EndInit();
                 if (!bmp.IsFrozen) bmp.Freeze();
+                s.Dispose();
+                img.Dispose();
+
                 Image image = new()
                 {
                     Source = bmp,
@@ -158,16 +175,33 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         private void AddImageAnswer(object sender, RoutedEventArgs e)
         {
+            int height = 90;
+            int width = 200;
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
             if (files == null) return;
             foreach (string file in files)
             {
+                Stream s = File.OpenRead(file);
+                System.Drawing.Image img = Bitmap.FromStream(s, false, false); // Read only the metadata
+                double factor = img.Height / height;
+                double targetwidth = img.Width / factor;
+                if (targetwidth > width)
+                {
+                    factor = img.Width / width;
+                }
+                int resHeight = (int)(img.Height / factor);
+                int resWidth = (int)(img.Width / factor);
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
                 bmp.UriSource = new Uri(file);
+                bmp.DecodePixelHeight = resHeight;
+                bmp.DecodePixelWidth = resWidth;
                 bmp.EndInit();
                 if (!bmp.IsFrozen) bmp.Freeze();
+                s.Dispose();
+                img.Dispose();
+
                 Image image = new()
                 {
                     Source = bmp,
