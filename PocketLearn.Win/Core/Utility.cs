@@ -84,14 +84,14 @@ namespace PocketLearn.Win.Core
         }
 
         /// <summary>
-        /// 1L = Lowest Quality
-        /// 25L = Low Quality
-        /// 50L = Medium Quality
-        /// 75L = High Quality
-        /// 100L = Highest Quality
+        /// 1 = Lowest Quality
+        /// 25 = Low Quality
+        /// 50 = Medium Quality
+        /// 75 = High Quality
+        /// 100 = Highest Quality
         /// </summary>
         /// <returns></returns>
-        public static EncoderParameters GetCompression(long quality = 50L)
+        public static EncoderParameters GetCompression(int quality)
         {
             var encoderParameters = new EncoderParameters(1);
             encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);

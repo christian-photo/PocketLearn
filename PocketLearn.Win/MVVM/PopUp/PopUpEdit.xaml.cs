@@ -9,6 +9,7 @@
 
 #endregion "copyright"
 
+using PocketLearn.Public.Core.Config;
 using PocketLearn.Shared.Core.Learning;
 using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
@@ -36,6 +37,9 @@ namespace PocketLearn.Win.MVVM.PopUp
         public LearnCard ActiveCard { get; set; }
         public LearnProject LearnProject { get; set; }
 
+        int height = 90;
+        int width = 200;
+
         public PopUpEdit(LearnProject learnProject, LearnCard learnCard)
         {
             ActiveCard = learnCard;
@@ -55,10 +59,10 @@ namespace PocketLearn.Win.MVVM.PopUp
                         CardTypeCombo.SelectedIndex = 0;
                         break;
                     case CardType.OneWay:
-                        CardTypeCombo.SelectedIndex=1;
+                        CardTypeCombo.SelectedIndex = 1;
                         break;
                     case CardType.ReverseOneWay:
-                        CardTypeCombo.SelectedIndex=2;
+                        CardTypeCombo.SelectedIndex = 2;
                         break;
 
                 }
@@ -85,18 +89,38 @@ namespace PocketLearn.Win.MVVM.PopUp
                     {
                         learnCard.CardContent1.Items.Remove(item);
                     }
-                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content))))
+                    if (!File.Exists(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content)))
                     {
-                        var decoder = BitmapDecoder.Create(ms,
-                                                           BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                        BitmapSource source = decoder.Frames[0];
-                        Image image = new()
-                        {
-                            Source = source,
-                            Margin = new Thickness(2)
-                        };
-                        QuestionImages.Items.Add(image);
+                        learnCard.CardContent2.Items.Remove(item);
                     }
+                    Stream s = File.OpenRead(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                    System.Drawing.Image img = Bitmap.FromStream(s, false, false); // Read only the metadata
+                    double factor = img.Height / height;
+                    double targetwidth = img.Width / factor;
+                    if (targetwidth > width)
+                    {
+                        factor = img.Width / width;
+                    }
+                    int resHeight = (int)(img.Height / factor);
+                    int resWidth = (int)(img.Width / factor);
+
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.UriSource = new Uri(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                    bmp.DecodePixelHeight = resHeight; // Load image in specified resolution, memory efficiency!
+                    bmp.DecodePixelWidth = resWidth;
+                    bmp.EndInit();
+                    if (!bmp.IsFrozen) bmp.Freeze();
+                    s.Dispose();
+                    img.Dispose();
+
+                    Image image = new()
+                    {
+                        Source = bmp,
+                        Margin = new Thickness(2)
+                    };
+                    QuestionImages.Items.Add(image);
                 }
             }
             foreach (object obj in learnCard.CardContent2.Items)
@@ -119,26 +143,40 @@ namespace PocketLearn.Win.MVVM.PopUp
                     {
                         learnCard.CardContent2.Items.Remove(item);
                     }
-                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content))))
+                    Stream s = File.OpenRead(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                    System.Drawing.Image img = Bitmap.FromStream(s, false, false); // Read only the metadata
+                    double factor = img.Height / height;
+                    double targetwidth = img.Width / factor;
+                    if (targetwidth > width)
                     {
-                        var decoder = BitmapDecoder.Create(ms,
-                                                           BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                        BitmapSource source = decoder.Frames[0];
-                        Image image = new()
-                        {
-                            Source = source,
-                            Margin = new Thickness(2)
-                        };
-                        AnswerImages.Items.Add(image);
+                        factor = img.Width / width;
                     }
+                    int resHeight = (int)(img.Height / factor);
+                    int resWidth = (int)(img.Width / factor);
+
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.UriSource = new Uri(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images", item.Content));
+                    bmp.DecodePixelHeight = resHeight; // Load image in specified resolution, memory efficiency!
+                    bmp.DecodePixelWidth = resWidth;
+                    bmp.EndInit();
+                    if (!bmp.IsFrozen) bmp.Freeze();
+                    s.Dispose();
+                    img.Dispose();
+
+                    Image image = new()
+                    {
+                        Source = bmp,
+                        Margin = new Thickness(2)
+                    };
+                    AnswerImages.Items.Add(image);
                 }
             }
         }
 
         private void AddImage(object sender, RoutedEventArgs e)
         {
-            int height = 90;
-            int width = 200;
             List<string> files = Utility.FileDialog("Images(*.jpg;*.bmp;*.png;*.tiff)|*.jpg;*.bmp;*.png;*.tiff", "Select images");
             if (files == null) return;
             foreach (string file in files)
@@ -153,11 +191,12 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 int resHeight = (int)(img.Height / factor);
                 int resWidth = (int)(img.Width / factor);
-                BitmapImage bmp = new BitmapImage();
+
+                BitmapImage bmp = new BitmapImage(); 
                 bmp.BeginInit();
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
                 bmp.UriSource = new Uri(file);
-                bmp.DecodePixelHeight = resHeight;
+                bmp.DecodePixelHeight = resHeight; // Load image in specified resolution, memory efficiency!
                 bmp.DecodePixelWidth = resWidth;
                 bmp.EndInit();
                 if (!bmp.IsFrozen) bmp.Freeze();
@@ -191,11 +230,12 @@ namespace PocketLearn.Win.MVVM.PopUp
                 }
                 int resHeight = (int)(img.Height / factor);
                 int resWidth = (int)(img.Width / factor);
+
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
                 bmp.UriSource = new Uri(file);
-                bmp.DecodePixelHeight = resHeight;
+                bmp.DecodePixelHeight = resHeight; // Load image in specified resolution, memory efficiency!
                 bmp.DecodePixelWidth = resWidth;
                 bmp.EndInit();
                 if (!bmp.IsFrozen) bmp.Freeze();
@@ -234,7 +274,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
+                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
 
                 ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
@@ -245,7 +285,7 @@ namespace PocketLearn.Win.MVVM.PopUp
             {
                 Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
                 Guid imageGuid = Guid.NewGuid();
-                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression());
+                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
 
                 ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }

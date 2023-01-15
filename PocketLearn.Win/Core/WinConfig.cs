@@ -21,11 +21,17 @@ namespace PocketLearn.Public.Core.Config
 {
     public class WinConfig : IConfig
     {
+
+        #region Settings
         public int Port { get; set; } = 4242;
 
         public List<(TimeSpan, TimeSpan)> LearnTimes { get; set; } = new List<(TimeSpan, TimeSpan)>();
 
         public LogEventLevel LogLevel { get; set; } = LogEventLevel.Information;
+
+        public int ImageCompression { get; set; } = 50;
+
+        #endregion
 
         [JsonIgnore]
         private static WinConfig instance;

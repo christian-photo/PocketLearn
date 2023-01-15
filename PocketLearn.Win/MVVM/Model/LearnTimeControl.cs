@@ -9,10 +9,13 @@
 
 #endregion "copyright"
 
+using PocketLearn.Public.Core.Config;
 using PocketLearn.Shared.Core.Learning;
+using PocketLearn.Win.Core;
 using PocketLearn.Win.MVVM.ViewModel;
 using Serilog;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -108,6 +111,7 @@ namespace PocketLearn.Win.MVVM.Model
             {
                 Log.Information($"Deleted LearnTime");
                 MainWindowVM.Instance.ProjectManager.RemoveLearnTime(from, to);
+                WinConfig.Get().Save();
             });
         }
     }

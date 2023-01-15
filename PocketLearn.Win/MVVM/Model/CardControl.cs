@@ -15,6 +15,7 @@ using PocketLearn.Win.MVVM.PopUp;
 using PocketLearn.Win.MVVM.ViewModel;
 using Serilog;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -152,6 +153,7 @@ namespace PocketLearn.Win.MVVM.Model
                 Log.Information($"Delete card {card.CardID}");
                 card.DeleteAssets();
                 project.Cards.Remove(card);
+                File.WriteAllText(Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Projects.json"), MainWindowVM.Instance.ProjectManager.Serialize());
                 MainWindowVM.Instance.EditVM.UpdateView(project);
             });
         }

@@ -25,6 +25,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>ApplicationIcon.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <RepositoryUrl>https://github.com/rennmaus-coder/PocketLearn</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\x64\Debug\</OutputPath>

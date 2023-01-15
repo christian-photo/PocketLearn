@@ -19,12 +19,10 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfMath.Controls;
 using Image = System.Windows.Controls.Image;
 using Brushes = System.Windows.Media.Brushes;
-using Windows.AI.MachineLearning;
 
 namespace PocketLearn.Win.MVVM.Model.ValueConverter
 {
