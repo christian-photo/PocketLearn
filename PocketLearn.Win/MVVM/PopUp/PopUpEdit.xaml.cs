@@ -39,6 +39,7 @@ namespace PocketLearn.Win.MVVM.PopUp
 
         int height = 90;
         int width = 200;
+        string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
 
         public PopUpEdit(LearnProject learnProject, LearnCard learnCard)
         {
@@ -209,6 +210,10 @@ namespace PocketLearn.Win.MVVM.PopUp
                     Margin = new Thickness(2)
                 };
                 QuestionImages.Items.Add(image);
+
+                Guid imageGuid = Guid.NewGuid();
+                bmp.ToBitmap().Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
+                ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
         }
 
@@ -248,14 +253,15 @@ namespace PocketLearn.Win.MVVM.PopUp
                     Margin = new Thickness(2)
                 };
                 AnswerImages.Items.Add(image);
+
+                Guid imageGuid = Guid.NewGuid();
+                bmp.ToBitmap().Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
+                ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
             }
         }
 
         private void Accept(object sender, RoutedEventArgs e)
         {
-            string directory = Path.Combine(ApplicationConstants.APPLICATION_DATA_PATH, "Images");
-            ActiveCard.CardContent1.ClearItems(directory);
-            ActiveCard.CardContent2.ClearItems(directory);
             switch(CardTypeCombo.Text) {
                 case "twoway":
                     ActiveCard.CardType = CardType.TwoWay;
@@ -268,40 +274,21 @@ namespace PocketLearn.Win.MVVM.PopUp
                     break;
 
             }
+
+            ActiveCard.CardContent1.Items.RemoveAll(x => x.Type == CardContentItemType.Text);
             ActiveCard.CardContent1.Items.Add(new CardContentItem(QuestionText.Text, CardContentItemType.Text));
 
-            foreach (Image bmp in QuestionImages.Items)
-            {
-                Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
-                Guid imageGuid = Guid.NewGuid();
-                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
-
-                ActiveCard.CardContent1.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
-            }
-
+            ActiveCard.CardContent2.Items.RemoveAll(x => x.Type == CardContentItemType.Text);
             ActiveCard.CardContent2.Items.Add(new CardContentItem(AnswerText.Text, CardContentItemType.Text));
 
-            foreach (Image bmp in AnswerImages.Items)
-            {
-                Bitmap image = ((BitmapImage)bmp.Source).ToBitmap();
-                Guid imageGuid = Guid.NewGuid();
-                image.Save(Path.Combine(directory, imageGuid.ToString() + ".jpg"), Utility.GetEncoder(ImageFormat.Jpeg), Utility.GetCompression(WinConfig.Get().ImageCompression)); // backup compressed copy of image
-
-                ActiveCard.CardContent2.Items.Add(new CardContentItem(imageGuid.ToString() + ".jpg", CardContentItemType.Image));
-            }
             ActiveCard.CardContent1.ContainsLaTeX = (bool)ContainsLaTeX.IsChecked;
             ActiveCard.CardContent2.ContainsLaTeX = (bool)ContainsLaTeX.IsChecked;
 
             ActiveCard.LastEdit = DateTime.Now;
+            LearnProject.LastEdit = DateTime.Now;
             MainWindowVM.Instance.EditVM.UpdateView(LearnProject);
 
-            LearnProject.LastEdit = DateTime.Now;
             Close();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
